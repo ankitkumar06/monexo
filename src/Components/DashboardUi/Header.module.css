@@ -1,0 +1,13 @@
+.line{
+    position: absolute;
+    width: 27.08px;
+    height: 0px;
+    left: 133px;
+    top: 26px;
+    border: 0.451253px solid #CCCCCC;
+    transform: rotate(90deg);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 9px;
+}

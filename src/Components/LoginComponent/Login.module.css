@@ -1,0 +1,24 @@
+
+.main{
+    background-color: "green";
+}
+.line{
+    position: absolute;
+    width: 27.08px;
+    height: 0px;
+    left: 115px;
+    top: 26px;
+    border: 0.451253px solid #CCCCCC;
+    transform: rotate(90deg);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 9px;
+}
+.logo{
+    width: 786;
+    height: 56;
+    text-align: "left";
+    margin-top: 60px;
+    border-bottom: 1px solid #CCCCCC;
+}
