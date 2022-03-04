@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import {
   Grid,
   Paper,
@@ -14,17 +14,21 @@ import ellipse from "../../assets/images/Ellipse.png";
 import ndfc from "../../assets/images/nbfc-logo.png";
 import monexologo from "../../assets/images/monexo-logo.png";
 import classes from './Login.module.css';
-import { useHistory } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import env from '../../enviorment.json';
+import setAuthToken from '../../utilities/setAuthToken'
 
 
-const Login = () => {
+const Login = (props) => {
   // const history = useHistory();
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailErr, setEmailErr] = useState(false);
   const [passErr, setPassErr] = useState(false);
+  const navigate = useNavigate();
+  const usernameRef = useRef();
+  const passwordRef = useRef();
 
   const MainStyle = {};
   const div1Style = {
@@ -59,7 +63,7 @@ const Login = () => {
   };
 
   function emailHandler(e) {
-    console.warn(e.target.value);
+  //   console.warn(e.target.value);
     let item = e.target.value;
     if (item.length < 4) {
       setEmailErr(true);
@@ -70,7 +74,7 @@ const Login = () => {
   }
 
   function PasswordHandler(e) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     let item = e.target.value;
     if (item.length < 4) {
       setPassErr(true);
@@ -80,14 +84,40 @@ const Login = () => {
     setPassword(item);
   }
   function loginHandle(e) {
+    e.preventDefault();
     // if (email.length < 4 || password.length < 4) {
     //   alert("Provide Valid Input");
     // } else {
     //   alert("Welcome to Monexo");
     // }
     // this.props.history.push('/dashboard')
-    this.props.navigate.push('/dashboard')
-    // navigate("/dashboard");
+    const enteredValue = usernameRef.current.value;
+    console.log(enteredValue);
+    const user = {
+      email: email,
+      password: password,
+    };
+    axios.post(env.apiUrl + 'api/auth/login/',user,
+    {
+      headers:{
+        "Content-type": "application/json",
+     }
+    }).then(res =>{
+      console.log(res)
+      if(res.status === 200)
+      {
+        const access_token = res.data.Token
+        const userNameIs = res.data.firstName
+        localStorage.setItem("token",access_token)
+        setAuthToken(access_token)
+        props.onChange(userNameIs);
+        navigate('/dashboard')
+      }else{
+        alert("wrong username or password")
+      }
+    })
+
+   
   }
 
   return (
@@ -115,6 +145,7 @@ const Login = () => {
                       </InputAdornment>
                     ),
                   }}
+                  ref={usernameRef}
                   variant="filled"
                   placeholder="Email Address"
                   fullWidth
@@ -142,6 +173,7 @@ const Login = () => {
                   type="password"
                   fullWidth required
                   style={txt}
+                  ref={passwordRef}
                   onChange={PasswordHandler}
                 />
                 {passErr ? (

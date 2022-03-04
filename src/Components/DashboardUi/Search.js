@@ -9,9 +9,11 @@ import { ClassNames } from "@emotion/react";
 import seachcss from "./Search.module.css"
 import TabPanel from "./TabPanel"
 
-const Search =()=>{
+const Search =(props)=>{
   const [value1, setValue1] = React.useState(new Date());
   const [value2, setValue2] = React.useState(new Date());
+  const [searchval,setSearchval] = React.useState('');
+
 
   const handleChange1 = (newValue1) => {
     setValue1(newValue1);
@@ -19,6 +21,10 @@ const Search =()=>{
   const handleChange2 = (newValue2) => {
     setValue2(newValue2);
   };
+
+  const searchField = (srch) =>{
+    setSearchval(srch)
+  }
   return(
     <div>
     <Grid className="searchMain" container >
@@ -39,6 +45,8 @@ const Search =()=>{
                     ),
                   }}
                    placeholder="Search User ID, Application ID"   
+                   value={searchval}
+                   onChange={searchField}
                 />
                 </div>
       </Grid>
@@ -78,7 +86,7 @@ const Search =()=>{
      <Grid item className={seachcss.papercss} container >
      <Card  className={seachcss.main_css}>
       <CardContent>
-       <TabPanel />
+       <TabPanel startDate={value1} endDate={value2} searchVal={searchval} />
       </CardContent>
     </Card>
      </Grid>

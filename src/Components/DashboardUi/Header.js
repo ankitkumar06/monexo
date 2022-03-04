@@ -5,19 +5,23 @@ import ellipse from "../../assets/images/Ellipse.png";
 import ndfc from "../../assets/images/nbfc-logo.png";
 import monexologo from "../../assets/images/monexo-logo.png";
 import classes from "./Header.module.css";
+import { useState } from "react";
 
-const Header = () => {
+const Header = (props) => {
+
+  
   return (
       <Grid container>
         
         <div className="header">
-          <Grid>
-          <Grid item sm={5}>
+          <Grid container >
+          <Grid item lg={5}>
               <img src={monexologo} className="monexo-logo" />
               <div className={classes.line}></div>
               <img src={ndfc} className="nbfc-logo" />
           </Grid>
-          <Grid item sm={7}>
+          <Grid item lg={7}>
+            <span className={classes.subtitle}>Hi, {props.usersName}</span>
               <img src={ellipse} className="ellipse-logo" />
           </Grid>
           </Grid>

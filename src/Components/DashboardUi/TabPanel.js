@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { orange, pink, green } from "@material-ui/core/colors";
 import EnhancedTable from './EnhancedTable'
+import {useEffect } from "react";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,7 +42,7 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+export default function BasicTabs(props) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -77,6 +78,17 @@ export default function BasicTabs() {
     }
   });
 
+  useEffect(() =>{
+    console.log(localStorage.getItem("token"))
+    console.log("use effect works tabpanel")
+    const dashboard = {
+      search: props.searchVal,
+      startdate: props.startDate,
+      endDate :props.endDate
+    };
+    console.log(dashboard)
+  },[])
+
   return (
 
     <MuiThemeProvider theme={theme}>
@@ -95,7 +107,7 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-       <EnhancedTable />
+       <EnhancedTable startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

@@ -11,3 +11,25 @@
     flex-grow: 0;
     margin: 0px 9px;
 }
+.subtitle{
+    position: absolute;
+/* width: 55px; */
+height: 20px;
+right: 94px;
+top: 18px;
+
+/* Subtitle 1 */
+
+font-family: Nunito;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.1px;
+
+color: #111111;
+}

@@ -4,8 +4,18 @@ import Login from './Components/LoginComponent/Login';
 import CustomerDetails from './Components/CustomerDetailMain/CustomerDetails';
 import MainDashboard  from './Components/DashboardUi/MainDashboard';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useState } from "react";
 
 function App() {
+
+  const [usersName, setUsersName] = useState("Nikhil");
+
+  const usersNamehandler = (value)=>{
+    setUsersName(value)
+    // setUsersName((prevExpense) => {
+    //   return [expen , ...prevExpense]
+    // });
+  }
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -30,8 +40,8 @@ function App() {
     <Router >
       <div>
       <Routes>
-              <Route exact path="/" element={ <Login />} />
-              <Route exact path="/dashboard" element={ <MainDashboard />} />
+              <Route exact path="/" element={ <Login onChange={usersNamehandler} />} />
+              <Route exact path="/dashboard" element={ <MainDashboard usersName={usersName} />} />
               {/* <Route exact path="/admin" render={(props) => <ProductAdmin {...props} auth={authProps} />} /> */}
               </Routes>
           </div>

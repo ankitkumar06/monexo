@@ -3,10 +3,10 @@ import Header from "./Header";
 import Search from "./Search";
 
 
-const MainDashboard =()=>{
+const MainDashboard =(props)=>{
     return(
         <div>
-            <Header/>
+            <Header usersName={props.usersName} />
             <Search/>
             
         </div>
