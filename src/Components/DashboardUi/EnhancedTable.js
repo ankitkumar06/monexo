@@ -21,6 +21,7 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import Stack from '@mui/material/Stack';
 
 function createData(Cust_ID, Cust_Name, App_ID, Completed_time, City,Loan_Product,Bureau_Score,Stage,Loan_Offered,User) {
   return {
@@ -331,6 +332,7 @@ export default function EnhancedTable() {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -411,7 +413,9 @@ export default function EnhancedTable() {
             </TableBody>
           </Table>
         </TableContainer>
+        <Stack direction="row" spacing={2}>
         <TablePagination
+          
           rowsPerPageOptions={[10, 25]}
           component="div"
           count={rows.length}
@@ -420,6 +424,7 @@ export default function EnhancedTable() {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
+        </Stack>
       </Paper>
 
     </Box>

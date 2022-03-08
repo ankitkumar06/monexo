@@ -1,12 +1,14 @@
 .main_css{
+    
     position: sticky;
     width: 1415px;
-    height: 812px;
-    left: 50px;
-    top: 272px;
+    /* height: 812px; */
+    left: 80px;
+    top: 2px;
     background: #FFFFFF;
     border-radius: 8px;
     margin-top: 3em;
+    
 }
 .papercss{
 
@@ -14,7 +16,7 @@
 }
 .horizon_line{
     position: absolute;
-    width: 1400px;
+    width: 1460px;
     height: 0px;
     left: 50px;
     top: 165px;
