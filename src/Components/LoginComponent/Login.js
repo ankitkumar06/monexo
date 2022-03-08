@@ -104,15 +104,19 @@ const Login = (props) => {
      }
     }).then(res =>{
       console.log(res)
-      if(res.status === 200)
+      if(res.data.code === 1)
       {
         const access_token = res.data.Token
         const userNameIs = res.data.firstName
         localStorage.setItem("token",access_token)
         setAuthToken(access_token)
         props.onChange(userNameIs);
+        setEmail("");
+        setPassword("");
         navigate('/dashboard')
       }else{
+        setEmail("");
+        setPassword("");
         alert("wrong username or password")
       }
     })
@@ -151,6 +155,7 @@ const Login = (props) => {
                   fullWidth
                   required
                   style={txt}
+                  value={email}
                   onChange={emailHandler}
                 />
                 {emailErr ? (
@@ -174,6 +179,7 @@ const Login = (props) => {
                   fullWidth required
                   style={txt}
                   ref={passwordRef}
+                  value={password}
                   onChange={PasswordHandler}
                 />
                 {passErr ? (

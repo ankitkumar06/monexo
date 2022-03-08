@@ -1,5 +1,5 @@
 import React from "react"
-import {Grid,TextField,InputAdornment,Card,CardActions,CardContent,Button} from "@material-ui/core"
+import {Grid,TextField,InputAdornment,Card,CardActions,CardContent} from "@material-ui/core"
 import SearchIcon from '@material-ui/icons/Search';
 import Stack from "@mui/material/Stack";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -8,11 +8,17 @@ import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import { ClassNames } from "@emotion/react";
 import seachcss from "./Search.module.css"
 import TabPanel from "./TabPanel"
+import DownloadIcon from '@mui/icons-material/Download';
+// import { green } from "@mui/material/colors";
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+
+
 
 const Search =(props)=>{
   const [value1, setValue1] = React.useState(new Date());
   const [value2, setValue2] = React.useState(new Date());
-  const [searchval,setSearchval] = React.useState('');
+  const [searchval,setSearchval] = React.useState("");
 
 
   const handleChange1 = (newValue1) => {
@@ -22,11 +28,35 @@ const Search =(props)=>{
     setValue2(newValue2);
   };
 
-  const searchField = (srch) =>{
-    setSearchval(srch)
+  const searchField = (event) =>{
+    let item = event.target.value;
+    console.log(item)
+    setSearchval(item)
+    // if(item.length > 3)
+    // {
+    //   props.fetchCustomerDataHandler
+    // }
   }
+  
+  const theme = createTheme({
+    overrides : {
+      MuiButton : {
+        root : {
+       // apply your style here 
+      }
+    },
+    palette: {
+      primary: {
+         main:green,
+     }
+   },
+  }});
+
   return(
+    
+    
     <div>
+      
     <Grid className="searchMain" container >
 
       <Grid item md={4}>
@@ -84,9 +114,12 @@ const Search =(props)=>{
     </Grid>
     <Grid item className={seachcss.horizon_line}></Grid>
      <Grid item className={seachcss.papercss} container >
-     <Card  className={seachcss.main_css}>
+     <Card  className={seachcss.main_css} >
+   
       <CardContent>
-       <TabPanel startDate={value1} endDate={value2} searchVal={searchval} />
+      <ThemeProvider theme={theme}>
+      </ThemeProvider>
+       <TabPanel startDate={value1} endDate={value2} searchVal={searchval}  />
       </CardContent>
     </Card>
      </Grid>

@@ -1,7 +1,0 @@
-{
-    "cognito": {
-        "REGION": "ap-south-1",
-        "USER_POOL_ID": "ap-south-1_VSZDAmkfC",
-        "APP_CLIENT_ID": "2cf5d0h049k12ep06u0vn359af"
-      }
-}

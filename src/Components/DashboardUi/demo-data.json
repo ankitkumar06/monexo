@@ -1,0 +1,138 @@
+{
+    "code": 1,
+    "response": [
+        {
+            "customer_id": 11268,
+            "customer_name": "MURTHY KURAMDASU",
+            "beaure_score": "715",
+            "Call" :""
+        },
+        {
+            "customer_id": 11269,
+            "customer_name": "MANISH MEENA",
+            "beaure_score": "658",
+            "city": "RJ",
+            "Call" :""
+        },
+        {
+            "customer_id": 11270,
+            "customer_name": "VIMAL KUMAR",
+            "beaure_score": "741",
+            "city": "DL",
+            "Call" :""
+        },
+        {
+            "customer_id": 11271,
+            "customer_name": "BHAVESHKUMAR RAVAL",
+            "city": "",
+            "Call" :""
+        },
+        {
+            "customer_id": 11272,
+            "customer_name": "MOHAN Arun",
+            "beaure_score": "687",
+            "city": "KA",
+            "Call" :""
+        },
+        {
+            "customer_id": 11273,
+            "customer_name": "KAMAL SINGH",
+            "beaure_score": "733",
+            "city": "HP",
+            "Call" :""
+        },
+        {
+            "customer_id": 11274,
+            "customer_name": "SUNIL GOTHE",
+            "beaure_score": "705",
+            "city": "MH",
+            "Call" :""
+        },
+        {
+            "customer_id": 11275,
+            "customer_name": "SANJAY MEENA",
+            "beaure_score": "656",
+            "city": "RJ",
+            "Call" :""
+        },
+        {
+            "customer_id": 11276,
+            "customer_name": "PANKAJ PAGARE",
+            "beaure_score": "636",
+            "Call" :""
+        },
+        {
+            "customer_id": 11277,
+            "customer_name": "DILIP TIWARI",
+            "beaure_score": "642",
+            "Call" :""
+        },
+        {
+            "customer_id": 11278,
+            "customer_name": "NEHA JAMDADE",
+            "beaure_score": "726",
+            "city": "MH",
+            "Call" :""
+        },
+        {
+            "customer_id": 11279,
+            "customer_name": "SHAHRUKH KHAN",
+            "Call" :""
+        },
+        {
+            "customer_id": 11280,
+            "customer_name": "DEVENDRA SINGH",
+            "beaure_score": "755",
+            "city": "",
+            "Call" :""
+        },
+        {
+            "customer_id": 11281,
+            "customer_name": "KABIR MIRJA",
+            "beaure_score": "686",
+            "city": "WB",
+            "Call" :""
+        },
+        {
+            "customer_id": 11282,
+            "customer_name": "TUSHAR PISAL",
+            "beaure_score": "700",
+            "city": "MH",
+            "Call" :""
+        },
+        {
+            "customer_id": 11283,
+            "customer_name": "AJAY KUMAR",
+            "beaure_score": "726",
+            "city": "HP",
+            "Call" :""
+        },
+        {
+            "customer_id": 11284,
+            "customer_name": "SHAMIMBANU AGA",
+            "beaure_score": "762",
+            "city": "GJ",
+            "Call" :""
+        },
+        {
+            "customer_id": 11285,
+            "customer_name": "Balakumar GURUSAMY",
+            "beaure_score": "754",
+            "city": "TN",
+            "Call" :""
+        },
+        {
+            "customer_id": 11286,
+            "customer_name": "MOHAMMAD AZHAR",
+            "beaure_score": "601",
+            "Call" :""
+        },
+        {
+            "customer_id": 11287,
+            "customer_name": "DINESH MEGHWAL",
+            "beaure_score": "748",
+            "city": "MP",
+            "Call" :""
+        }
+    ]
+}

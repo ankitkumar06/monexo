@@ -21,9 +21,7 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { useState,useRef,useEffect,useCallback } from "react";
-import axios from 'axios';
-import env from '../../enviorment.json';
+import Stack from '@mui/material/Stack';
 
 function createData(Cust_ID, Cust_Name, App_ID, Completed_time, City,Loan_Product,Bureau_Score,Stage,Loan_Offered,User) {
   return {
@@ -39,83 +37,25 @@ function createData(Cust_ID, Cust_Name, App_ID, Completed_time, City,Loan_Produc
     User
   };
 }
-const totalRow = 180
+
 const rows = [
-  createData('2564895412', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895432', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895442', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895452', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895462', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895472', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895482', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895492', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895488', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895499', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895421', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895423', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895424', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895425', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895426', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895434', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895445', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895467', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895488', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895499', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895421', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895423', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895424', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895425', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895426', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895434', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895445', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895467', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895488', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895499', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895421', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895423', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895424', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895425', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895426', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895434', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895445', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895467', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895488', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895499', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895421', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895423', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895424', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895425', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895426', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895434', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895445', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
-  createData('2564895467', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
- 
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
+  createData('25648954', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin'),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -224,7 +164,6 @@ function EnhancedTableHead(props) {
     onRequestSort(event, property);
   };
 
-  
   return (
     <TableHead>
       <TableRow>
@@ -247,7 +186,7 @@ function EnhancedTableHead(props) {
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
-              active={orderBy != headCell.id }
+              active={orderBy != headCell.id || orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
@@ -332,7 +271,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable(props) {
+export default function EnhancedTable() {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState();
   const [selected, setSelected] = React.useState([]);
@@ -376,7 +315,6 @@ export default function EnhancedTable(props) {
   };
 
   const handleChangePage = (event, newPage) => {
-    
     setPage(newPage);
   };
 
@@ -394,56 +332,6 @@ export default function EnhancedTable(props) {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-    const fetchCustomerDataHandler = useCallback(async () => {
-      try {
-        const dashboard = {
-          search: props.searchVal,
-          startdate: props.startDate,
-          endDate :props.endDate
-        };
-        const token =localStorage.getItem("token")
-        console.log("on tabel " +token)
-        axios.get(env.apiUrl + 'api/users/demo-api/',
-        {
-           headers: {"Authorization" : `Bearer ${token}`}
-
-        }).then(res =>{
-          console.log("demo url" +res.data.respone)
-         
-        })
-  
-        // for (const key in data) {
-        //   loadedMovies.push({
-        //     id: key,
-        //     title: data[key].title,
-        //     openingText: data[key].openingText,
-        //     releaseDate: data[key].releaseDate,
-        //   });
-        // }
-  
-        // setMovies(loadedMovies);
-      } catch (error) {
-        console.log(error)
-      }
-    }, []);
-  
-  
-  
-    useEffect(() => {
-      fetchCustomerDataHandler();
-    }, []);
-
-    useEffect(() =>{
-      console.log("use effect works table")
-      const dashboard = {
-        search: props.searchVal,
-        startdate: props.startDate,
-        endDate :props.endDate
-      };
-      console.log(dashboard)
-    },[])
-
     
 
   return (
@@ -525,15 +413,18 @@ export default function EnhancedTable(props) {
             </TableBody>
           </Table>
         </TableContainer>
+        <Stack direction="row" spacing={2}>
         <TablePagination
-          rowsPerPageOptions={[10]}
+          
+          rowsPerPageOptions={[10, 25]}
           component="div"
-          count={totalRow}
+          count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
+        </Stack>
       </Paper>
 
     </Box>
