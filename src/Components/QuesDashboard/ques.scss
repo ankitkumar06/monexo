@@ -1,0 +1,398 @@
+// 
+
+.message1{
+    justify-self:right;
+    padding: 0.4rem 0.5rem;
+    
+    width: 300px;
+    height: 35px;
+    min-height: 35px;
+    max-height: 100px;
+    outline: none;
+    border-radius: 5px;
+    display: grid;
+    // align-content: center;
+    // justify-items: start;
+    // align-items: center;
+    font-size: 1.1rem;
+    grid-auto-flow: row;
+    border: 1px solid #cccccc;
+}
+
+
+
+.headertab{
+    position: absolute;
+    margin-left: 1.6rem;
+    height: 64px;
+    left: 0px;
+    right: 0px;
+    top: 95px;
+    margin-bottom: 8.1rem;
+    width:96%;
+    
+    background: #EAF4EB;
+
+}
+
+.Newtext{
+
+    position: absolute;
+width: 130px;
+height: 19px;
+left: 33px;
+top: 22px;
+
+font-family: Nunito;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 19px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+color: #111111;
+
+
+
+}
+
+.Newtext1{
+
+    position: absolute;
+    width: 130px;
+    height: 19px;
+    left: 29.9rem;
+    top: 22px;
+    
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    
+    color: #111111;
+
+
+
+}
+
+.Newtext2{
+
+    position: absolute;
+    width: 130px;
+    height: 19px;
+    left: 58.4rem;
+    top: 22px;
+    
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    
+    color: #111111;
+    
+
+}
+
+.row1{
+
+    position: absolute;
+    height: 97px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    
+    background: rgba(255, 255, 255, 0.1);  
+}
+
+
+.line2 {
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 265px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+.line3{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 400px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+.line4{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 530px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+.line5{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 665px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+.line6{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 785px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line7{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top:925px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line8{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 1055px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line9{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 1190px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line10{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 1915px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line11{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 1340px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line12{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 1475px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line13{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 1605px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line14{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 1735px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line15{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 1855px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line16{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 2000px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+.line17{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 2135px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+.line18{
+    position: absolute;
+    width: 1400px;
+    height: 0px;
+    left: 5px;
+    top: 2255px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+
+.form-inline {  
+    margin-top: 80px;
+    display: grid;
+    // grid-auto-flow: row;
+    grid-template-columns: repeat(6, 0.2fr);
+    justify-items: start;
+    gap: 0.2rem;
+    align-items: center;
+    justify-content: start;
+    // gap: 10.4rem;
+    
+
+  }
+  
+  .form-inline label {
+    margin-top: 1.5rem;
+    margin-right: 0rem;
+    // margin-left: 1.0rem;
+    margin-bottom: 10px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    white-space: nowrap;
+  }
+  
+  .form-inline input {
+    background: #F1F3F4;
+            justify-self: start;
+            padding: .5rem .6rem;
+            width: 400px;
+            height: 35px;
+            min-height: 35px;
+            max-height: 100px;
+            outline: none;
+            border-radius: 4px;
+            display: grid;
+            // grid-template-columns: repeat(4, 1fr);
+            align-content: left;
+            // justify-content: center;
+            justify-items: start;
+            align-items: left;
+            font-family: 'Nunito';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 22px;
+                color: rgba(51, 51, 51, 0.6);
+            grid-auto-flow: row;
+            border:1px solid #DAE1E4;
+            // padding-right: -1.8rem;
+
+            .boxsize{
+                width: 700px;
+              }
+
+  }
+
+
+  .TextField  {
+    background: #F1F3F4;
+            justify-self: start;
+            padding: .5rem .6rem;
+            width: 400px;
+            height: 35px;
+            min-height: 35px;
+            max-height: 100px;
+            outline: none;
+            border-radius: 4px;
+            display: grid;
+            // grid-template-columns: repeat(4, 1fr);
+            align-content: left;
+            // justify-content: center;
+            justify-items: start;
+            align-items: left;
+            font-family: 'Nunito';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 22px;
+                color: rgba(51, 51, 51, 0.6);
+            grid-auto-flow: row;
+            border:1px solid #DAE1E4;
+            // padding-right: -1.8rem;
+
+        
+
+  }
+  .form-inline select {
+    background: #F1F3F4;
+            justify-self: start;
+            padding: .5rem .6rem;
+            width: 430px;
+            height: 51px;
+            min-height: 35px;
+            max-height: 100px;
+            outline: none;
+            border-radius: 4px;
+            display: grid;
+            // grid-template-columns: repeat(4, 1fr);
+            align-content: left;
+            // justify-content: center;
+            justify-items: start;
+            align-items: left;
+            font-family: 'Nunito';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 22px;
+                color: rgba(51, 51, 51, 0.6);
+            grid-auto-flow: row;
+            border:1px solid #DAE1E4;
+            padding-right: -1.8rem;
+
+  }
+  
+    .Sbtn {
+        // padding: 17px 154px;
+        background-color: #2A9134;
+        margin-right: 9.8rem;
+        margin-top: 2.8rem;
+        text-align: center;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        // font-size: 11px;
+        transition: all 0.2s;
+        cursor: pointer;
+        width: 162px;
+        height: 57px;
+  }
+
+  
+  
