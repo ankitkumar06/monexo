@@ -15,7 +15,7 @@ import {
 
 const CustomerDetails = () =>{
     return(
-        <div>
+    <div className={classes.header2}>
     <Grid container >
         <Grid item xs={12} sm container>
           <Grid item xs container direction="row" className={classes.cust_info_rectangle}>

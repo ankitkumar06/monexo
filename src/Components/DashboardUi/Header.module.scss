@@ -1,0 +1,95 @@
+.line{
+    position: absolute;
+    width: 27.08px;
+    height: 0px;
+    left: 133px;
+    top: 26px;
+    border: 0.451253px solid #CCCCCC;
+    transform: rotate(90deg);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 9px;
+}
+.subtitle{
+    position: absolute;
+/* width: 55px; */
+height: 20px;
+right: 94px;
+top: 18px;
+
+/* Subtitle 1 */
+
+font-family: Nunito;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.1px;
+
+color: #111111;
+}
+
+
+
+// @import '../../_base.scss';
+
+// .mainHeader{
+//     display: grid;
+//     justify-content: end;
+//     align-items: center;
+//     padding: 1.3rem 2rem;
+//     border-bottom:.1px solid #dbdbdb ;
+//     width: 100%;
+//     position: sticky;
+//     top:0;
+//     left: 0;
+//     right: 0;
+//     z-index: 100;
+
+//     &__inside{
+//     display: grid;
+//     grid-auto-flow: column;
+//     justify-content: center;
+//     align-items: center;
+//     padding: .5rem 1rem;
+//     border-radius: 4px;
+        
+//         &:hover{
+//            background-color: $color-primary-light;
+//            color: white;
+//         }
+//     &--hi{
+//        h6{
+//         margin-top: 3px;
+//         font-size: 11px;
+//         color: rgb(170, 160, 160);
+//        }
+//     }
+//     &--userName{
+//         h5{
+//             font-size: 14px;
+//             font-weight: 700;
+//             color:$color-primary;
+//             padding: .5rem;
+//         }
+//     }
+//     &--userprofile{
+//         button {
+//             background-color: #d9eaea;
+//             width: 35px;
+//             height: 35px;
+//             outline: none;
+//             border: none;
+//             border-radius: 4px;
+//             font-size: 19px;
+//             color: green;
+//             font-weight: 800;
+//         }
+//     }
+//  }
+// }

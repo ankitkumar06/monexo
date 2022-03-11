@@ -4,7 +4,7 @@ import "../DashboardUi/dashboard.css";
 import ellipse from "../../assets/images/Ellipse.png";
 import ndfc from "../../assets/images/nbfc-logo.png";
 import monexologo from "../../assets/images/monexo-logo.png";
-import classes from "./Header.module.css";
+import classes from "./Header.module.scss";
 import { useState } from "react";
 
 const Header = (props) => {

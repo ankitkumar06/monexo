@@ -3,6 +3,7 @@ import './App.css';
 import Login from './Components/LoginComponent/Login';
 import CustomerDetails from './Components/CustomerDetailMain/CustomerDetails';
 import MainDashboard  from './Components/DashboardUi/MainDashboard';
+import Questionnaire  from './Components/QuesDashboard/Questionnaire';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from "react";
 
@@ -42,6 +43,7 @@ function App() {
       <Routes>
               <Route exact path="/" element={ <Login onChange={usersNamehandler} />} />
               <Route exact path="/dashboard" element={ <MainDashboard usersName={usersName} />} />
+              <Route exact path="/questionnaire" element={ <Questionnaire usersName={usersName} />} />
               {/* <Route exact path="/admin" render={(props) => <ProductAdmin {...props} auth={authProps} />} /> */}
               </Routes>
           </div>
