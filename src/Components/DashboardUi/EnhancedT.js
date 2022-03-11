@@ -29,6 +29,7 @@ import env from '../../enviorment.json';
 import json from './demo-data.json';
 import  { useState } from "react";
 import classes from './EnhancedT.module.css';
+import { useNavigate } from 'react-router-dom';
 
 
 // function createData(Cust_ID, Cust_Name, App_ID, Completed_time, City,Loan_Product,Bureau_Score,Stage,Loan_Offered,User,Call,) {
@@ -327,7 +328,9 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedT(props) {
+export default function EnhancedT(props ,{parentCallback}) {
+//  const {setData} =props;
+
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState();
   const [selected, setSelected] = React.useState([]);
@@ -341,8 +344,17 @@ export default function EnhancedT(props) {
   const [countData, setCountData] = useState(0);
   const [isload, setIsLoading] =useState(false)
   const [tmproryrows,setTemporaryRows] = useState([]);
+  const [isRecord, setIsRecord] = useState(false)
   let storetempdata = [];
+  const navigate = useNavigate();
 
+  
+  
+    // React.useEffect(() => {
+    //   childFunc.current = fetchCustomerDataHandler
+    //   }, [])
+
+  
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -422,60 +434,73 @@ export default function EnhancedT(props) {
         //     stop:11
         //   }
         // }
-        console.log(paginationVal)
+        // console.log(paginationVal)
+        console.log(props.startDate)
+        let today = new Date(props.startDate);
+        console.log(today)
+        console.log(props.endDate)
+
+        let startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+        let endDateVal  = props.endDate.getFullYear() + "-"+props.endDate.getMonth()  + "-" +props.endDate.getDate() ;
+        if(startdateVal === endDateVal)
+        {
+          props.startDate.setDate(props.startDate.getDate() - 10)
+        }
+        startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+
+        if(startdateVal < endDateVal)
+        {
+
         let valrequired={
-          search: props.searchVal
+          search: props.searchVal,
+          from_date: startdateVal,
+          to_date:endDateVal
         }
 
         const token =localStorage.getItem("token")
-        console.log("on tabel " +token)
         setIsLoading(true)
-        await axios.post(env.apiUrl + 'api/users/mono-report/',valrequired,
+        await axios.post(env.apiUrl + 'api/users/dashboard/',valrequired,
         {
            headers: {"Authorization" : `Bearer ${token}`}
 
         }).then(res =>{
-          console.log("demo url" + res.data.response.response)
-          let rowsval = res.data.response.response
-      
-          rowsval.map((item) => (
-            item.call = <Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
-            // key={item.id}
-          ))
-          // if(paginationVal ==0)
-          // {
-          //   setTemporaryRows(rowsval)
-          // }else{
-          //   setTemporaryRows(tmproryrows => [...tmproryrows, ...rowsval]);
-          // }
+          // console.log("demo url" + res.data.response.response)
+          let rowsval = res.data.response
 
-          
-        //   for (let i = 0; i < rowsval.length; i++) {
-        //     storetempdata.push(rowsval[i]);
-        //     // setTemporaryRows((tmproryrows) =>[...tmproryrows, rowsval[i]]);
-        // }
-        // console.log(tmproryrows)
-        //   console.log(tmproryrows)
+          if(props.searchVal != "")
+          {
+            rowsval.call = <Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
+            setCountData(1);
+          }
+          else{
+            rowsval.map((item) => (
+              item.call = <Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
+              // key={item.id}
+            ))
+            let pgcount = res.data.pagination.total_pages
+            setCountData(pgcount);
+            setIsLoading(false)
+          }
+          props.setData(rowsval);
           setRowsData(rowsval)
-          let pgcount = res.data.response.pagination.total_pages
-          setCountData(pgcount);
           setIsLoading(false)
           setdataRender(true);
+          if(rowsval.length == 0)
+          {
+            setIsRecord(true)
+          }
          
          
         })
   
-      } catch (error) {
+      } 
+    }catch (error) {
         console.log(error)
+        // alert("Please login again")
+        // navigate('/dashboard')
       }
     }
   
-  
-  
-    // useEffect(() => {
-    //   fetchCustomerDataHandler();
-    // }, []);
-
     useEffect(() =>{
 
       // setdataRender(true)
@@ -484,9 +509,22 @@ export default function EnhancedT(props) {
       //   startdate: props.startDate,
       //   endDate :props.endDate
       // };
+    
       fetchCustomerDataHandler();
       // console.log(dashboard)
-    },[])
+    },[props.searchVal,props.startDate,props.endDate])
+  
+    const tablerowClickHandler = () =>{
+
+      console.log("table row click")
+      navigate('/customerDetails')
+    }
+  
+    // useEffect(() => {
+    //   fetchCustomerDataHandler();
+    // }, []);
+
+  
 
 
   return (
@@ -506,7 +544,8 @@ export default function EnhancedT(props) {
               rowCount={countData}
             />
             {isload && <h3>Loading...</h3>}
-               { datarender && !isload &&
+            { isRecord && !isload && <h3>No Record Found</h3>}
+               { datarender && !isload && !isRecord &&
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
@@ -543,15 +582,15 @@ export default function EnhancedT(props) {
                         id={labelId}
                         scope="row"
                         padding="none"
-                        
+                        className={classes.rowCursor}
+                        onClick={tablerowClickHandler} 
                       >
                         {row.customer_id}
                       </TableCell>
-                      <TableCell align="left" >{row.customer_name}</TableCell>
-                      <TableCell align="left">{row.app_id}</TableCell>
+                      <TableCell align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.customer_name}</TableCell>
+                      <TableCell align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.app_id}</TableCell>
                       <TableCell align="left">{row.completed_date}</TableCell>
-                      <TableCell align="left">{row.city}
-                    </TableCell>
+                      <TableCell align="left">{row.city}</TableCell>
                       <TableCell align="left">{row.loan_product}</TableCell>
                       <TableCell align="left">{row.beaure_score}</TableCell>
                       <TableCell align="left">{row.user_stage}</TableCell>

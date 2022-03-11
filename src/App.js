@@ -43,8 +43,9 @@ function App() {
       <Routes>
               <Route exact path="/" element={ <Login onChange={usersNamehandler} />} />
               <Route exact path="/dashboard" element={ <MainDashboard usersName={usersName} />} />
-              <Route exact path="/questionnaire" element={ <Questionnaire usersName={usersName} />} />
-              {/* <Route exact path="/admin" render={(props) => <ProductAdmin {...props} auth={authProps} />} /> */}
+	                 <Route exact path="/dashboard" element={ <MainDashboard usersName={usersName} />} />
+ <Route exact path="/customerDetails" element={ <Custo
+                {/* <Route exact path="/admin" render={(props) => <Pr|                {/* <Route exact path="/admin" render={(props) => <Pro|               : {/* <Route exact path="/admin" render={(props) => <ProductAdmin {...props} auth={authProps} />} /> */}
               </Routes>
           </div>
 

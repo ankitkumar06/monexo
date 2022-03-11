@@ -6,17 +6,49 @@ import {
     TextField,
     Button,
     Typography,
-    Link,
+    Link
+    ,Card,CardActions,CardContent
   } from "@material-ui/core";
   import ButtonBase from '@mui/material/ButtonBase';
   import { styled } from '@mui/material/styles';
   import image from "../../assets/images/Ellipse.png";
+  import Header from "../DashboardUi/Header";
+  import { Fragment } from 'react';
+  import TabPanel from './TabPanel.js';
+  import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+  import green from '@material-ui/core/colors/green';
+  
+ 
 
 
-const CustomerDetails = () =>{
+const CustomerDetails = (props) =>{
+
+
+    const theme = createTheme({
+        overrides : {
+          MuiButton : {
+            root : {
+           // apply your style here 
+          }
+        },
+        palette: {
+          primary: {
+             main:green,
+         }
+       },
+      }});
+
+
     return(
+<<<<<<< HEAD
     <div className={classes.header2}>
     <Grid container >
+=======
+        <Fragment>
+            <Grid container><Header usersName={props.usersName} /></Grid>
+             
+    <Grid container className={classes.shadow_grid} >
+>>>>>>> 9b10bda (UI chnages credit details)
         <Grid item xs={12} sm container>
           <Grid item xs container direction="row" className={classes.cust_info_rectangle}>
             <Grid item xs >
@@ -58,7 +90,20 @@ const CustomerDetails = () =>{
         </Grid>
       </Grid>
 
-        </div>
+<Grid container className={classes.maintabcss}>
+<Grid  className={classes.papercss} container >
+     <Card  className={classes.main_css} >
+   
+      <CardContent>
+      <ThemeProvider theme={theme}>
+      </ThemeProvider>
+      <TabPanel ></TabPanel>
+      </CardContent>
+    </Card>
+     </Grid>
+</Grid>
+
+        </Fragment>
     );
 }
 export default CustomerDetails;
