@@ -1,109 +1,142 @@
 import React from "react";
+
 import classes from "./CustomerDetails.module.css";
+
 import {
+
     Grid,
+
     Paper,
+
     TextField,
+
     Button,
+
     Typography,
-    Link
-    ,Card,CardActions,CardContent
+
+    Link,
+
   } from "@material-ui/core";
+
   import ButtonBase from '@mui/material/ButtonBase';
+
   import { styled } from '@mui/material/styles';
+
   import image from "../../assets/images/Ellipse.png";
-  import Header from "../DashboardUi/Header";
-  import { Fragment } from 'react';
-  import TabPanel from './TabPanel.js';
-  import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-  import green from '@material-ui/core/colors/green';
-  
- 
+  import { useEffect ,useState} from "react";
 
 
-const CustomerDetails = (props) =>{
+
+const CustomerDetails = () =>{
+  const [custIDval, setcustID] = useState('-');
+  const [custNameval, setcustName] = useState('-');
+  const [appIDval, setappID] = useState('-');
+  const [laonIDval, setlaonID] = useState('-');
 
 
-    const theme = createTheme({
-        overrides : {
-          MuiButton : {
-            root : {
-           // apply your style here 
-          }
-        },
-        palette: {
-          primary: {
-             main:green,
-         }
-       },
-      }});
 
+  useEffect(() =>{
+    const token =localStorage.getItem("token")
+    const a = localStorage.getItem("custID")
+    setcustID(a)
+    let b = localStorage.getItem("custName")
+    setcustName(b)
+    let c = localStorage.getItem("appID")
+    setappID(c)
+    console.log(a)
+
+  },[])
 
     return(
-<<<<<<< HEAD
     <div className={classes.header2}>
+
     <Grid container >
-=======
-        <Fragment>
-            <Grid container><Header usersName={props.usersName} /></Grid>
-             
-    <Grid container className={classes.shadow_grid} >
->>>>>>> 9b10bda (UI chnages credit details)
+
         <Grid item xs={12} sm container>
+
           <Grid item xs container direction="row" className={classes.cust_info_rectangle}>
+
             <Grid item xs >
+
                 <img className={classes.img} alt="complex" src={image} />        
+
             </Grid>
+
                 <Grid item xs direction="column">
+
                     <div  className={classes.customer_ID}>
+
                          Customer ID
+
                     </div>
+
                     <div className={classes.cust_head_value}>
-                          CID-000312377
+
+                        {custIDval}
+
                     </div>                      
+
                 </Grid>
+
                 <Grid item xs direction="column">   
+
                     <div className={classes.cust_name}>
+
                           Customer Name
+
                     </div>
+
                     <div className={classes.cust_name_value}>
-                            Theresa
+
+                            {custNameval}
+
                     </div>      
+
                 </Grid>
+
                 <Grid item xs direction="column">
+
                     <div className={classes.app_number}>
+
                          Application Number
+
                     </div>
+
                     <div className={classes.app_number_value}>
-                         55889924
+
+                         {appIDval}
+
                     </div>           
+
                 </Grid>
+
                 <Grid item xs direction="column">  
+
                     <div className={classes.load_app_ID}>
+
                     Loan Application ID
+
                     </div>
+
                     <div className={classes.load_app_ID_value}>
-                        LAP-000312549
+
+                        {laonIDval}
+
                     </div>         
+
                 </Grid>
+
           </Grid>
+
         </Grid>
+
       </Grid>
 
-<Grid container className={classes.maintabcss}>
-<Grid  className={classes.papercss} container >
-     <Card  className={classes.main_css} >
-   
-      <CardContent>
-      <ThemeProvider theme={theme}>
-      </ThemeProvider>
-      <TabPanel ></TabPanel>
-      </CardContent>
-    </Card>
-     </Grid>
-</Grid>
 
-        </Fragment>
+        </div>
+
     );
+
 }
+
 export default CustomerDetails;

@@ -32,75 +32,6 @@ import classes from './EnhancedT.module.css';
 import { useNavigate } from 'react-router-dom';
 
 
-// function createData(Cust_ID, Cust_Name, App_ID, Completed_time, City,Loan_Product,Bureau_Score,Stage,Loan_Offered,User,Call,) {
-//   return {
-//     Cust_ID,
-//     Cust_Name,
-//     App_ID,
-//     Completed_time,
-//     City,
-//     Loan_Product,
-//     Bureau_Score,
-//     Stage,
-//     Loan_Offered,
-//     User,
-//     Call,
-//   };
-// }
-// let rows= []
-// const rows = [
-  // createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895488', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895499', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895400', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895488', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895499', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895400', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895488', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895499', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895400', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-
-// ];
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -371,23 +302,30 @@ export default function EnhancedT(props ,{parentCallback}) {
   };
 
   const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
+    console.log("table row click" + name)
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
+    localStorage.setItem("custID",name.customer_id)
+    localStorage.setItem("custName",name.customer_name)
+    localStorage.setItem("appID",name.app_id)
+    navigate('/questionnaire')
+    // localStorage.setItem("custID",name)
+    // const selectedIndex = selected.indexOf(name);
+    // let newSelected = [];
 
-    setSelected(newSelected);
+    // if (selectedIndex === -1) {
+    //   newSelected = newSelected.concat(selected, name);
+    // } else if (selectedIndex === 0) {
+    //   newSelected = newSelected.concat(selected.slice(1));
+    // } else if (selectedIndex === selected.length - 1) {
+    //   newSelected = newSelected.concat(selected.slice(0, -1));
+    // } else if (selectedIndex > 0) {
+    //   newSelected = newSelected.concat(
+    //     selected.slice(0, selectedIndex),
+    //     selected.slice(selectedIndex + 1)
+    //   );
+    // }
+
+    // setSelected(newSelected);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -417,24 +355,7 @@ export default function EnhancedT(props ,{parentCallback}) {
 
     const fetchCustomerDataHandler =async () =>{
       try {
-        // let valrequired={
-        //   start: 0,
-        //   stop:200
-        // }
       
-        // if(paginationIs)
-        // {
-        //   valrequired={
-        //     start: paginationIs,
-        //     stop:11
-        //   }
-        // }else{
-        //   valrequired={
-        //     start: paginationVal,
-        //     stop:11
-        //   }
-        // }
-        // console.log(paginationVal)
         console.log(props.startDate)
         let today = new Date(props.startDate);
         console.log(today)
@@ -448,8 +369,8 @@ export default function EnhancedT(props ,{parentCallback}) {
         }
         startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
 
-        if(startdateVal < endDateVal)
-        {
+        // if(startdateVal < endDateVal)
+        // {
 
         let valrequired={
           search: props.searchVal,
@@ -493,7 +414,7 @@ export default function EnhancedT(props ,{parentCallback}) {
          
         })
   
-      } 
+      // } 
     }catch (error) {
         console.log(error)
         // alert("Please login again")
@@ -516,8 +437,8 @@ export default function EnhancedT(props ,{parentCallback}) {
   
     const tablerowClickHandler = () =>{
 
-      console.log("table row click")
-      navigate('/customerDetails')
+      // console.log("table row click" + values)
+     
     }
   
     // useEffect(() => {
@@ -559,7 +480,7 @@ export default function EnhancedT(props ,{parentCallback}) {
                  
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -598,6 +519,7 @@ export default function EnhancedT(props ,{parentCallback}) {
                       <TableCell align="left">{row.user }</TableCell>
                       <TableCell align="left">{row.call}</TableCell>
                     </TableRow>
+
      
                   );
                 })}
