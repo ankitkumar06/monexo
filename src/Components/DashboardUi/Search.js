@@ -12,19 +12,32 @@ import DownloadIcon from '@mui/icons-material/Download';
 // import { green } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
+import CallIcon from '@mui/icons-material/Call';
+import Button from '@mui/material/Button';
+import { useState,useEffect } from "react";
+import axios from 'axios';
+import env from '../../enviorment.json';
+
 
 
 
 const Search =(props)=>{
-  const [value1, setValue1] = React.useState(new Date());
+  let today = new Date();
+  // today.setDate(today.getDate() - 10);
+  const [value1, setValue1] = React.useState(Date.now() - 10 * 24 * 60 * 60 * 1000);
   const [value2, setValue2] = React.useState(new Date());
   const [searchval,setSearchval] = React.useState("");
+  const [searchvalToCall,setSearchvalToCall] = React.useState("");
+  const ParentFunc = React.useRef(null)
+  const [singleData, setSingledata] = useState([]);
 
 
   const handleChange1 = (newValue1) => {
+  //  let startdate  = newValue1.getFullYear() + "-" +newValue1.getDate() + "-"+newValue1.getMonth() ;
     setValue1(newValue1);
   };
   const handleChange2 = (newValue2) => {
+    // let endDate = newValue2.getFullYear() + "-" +newValue2.getDate() + "-"+newValue2.getMonth() ;
     setValue2(newValue2);
   };
 
@@ -32,10 +45,12 @@ const Search =(props)=>{
     let item = event.target.value;
     console.log(item)
     setSearchval(item)
-    // if(item.length > 3)
-    // {
-    //   props.fetchCustomerDataHandler
-    // }
+    if(item.length > 3)
+    {
+      // childFunc.current()
+      setSearchvalToCall(item)
+
+    }
   }
   
   const theme = createTheme({
@@ -51,6 +66,14 @@ const Search =(props)=>{
      }
    },
   }});
+  // useEffect(() =>{
+//     let today = new Date();
+// today.setDate(today.getDate() - 10);
+// let date = new Date(today).toLocaleDateString("de");
+//     setValue2()
+
+  // },[])
+
 
   return(
     
@@ -119,7 +142,7 @@ const Search =(props)=>{
       <CardContent>
       <ThemeProvider theme={theme}>
       </ThemeProvider>
-       <TabPanel startDate={value1} endDate={value2} searchVal={searchval}  />
+       <TabPanel startDate={value1} endDate={value2} searchVal={searchvalToCall} ParentFunc={singleData} />
       </CardContent>
     </Card>
      </Grid>

@@ -6,15 +6,15 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 import { orange, pink, green } from "@material-ui/core/colors";
-import EnhancedT from './EnhancedT';
-import EnhancedTable from './EnhancedTable';
+
 import DownloadIcon from '@mui/icons-material/Download';
 import {Button} from "@material-ui/core";
 import {useEffect } from "react";
 
-import "./TabPanel.scss";
+// import "./TabPanel.scss";
 import { MarginOutlined } from '@mui/icons-material';
 import { CSVLink  } from "react-csv";
+import CreditBureauDetail from './CreditBureauDetail'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -146,28 +146,19 @@ export default function BasicTabs(props) {
                
                  inkbarstyle={{background: 'red'}}
         >
-          <Tab className="new "label="Work In Progress" {...a11yProps(0)} />
-          <Tab className="new"label="Referred" {...a11yProps(1)} />
-          <Tab className="new"label="Downgrade" {...a11yProps(2)} />
-          <Tab className="new"label="Approved/Disbursed" {...a11yProps(2)} />
-          <Tab className="new"label="Pending Disbursed" {...a11yProps(2)} />
-          {/* <CSVDownload  target="_blank" />; */}
-  
-          {/* <Button style={{maxWidth: '30px', maxHeight: '50px', minWidth: '23px', minHeight: '50px', paddingRight:'28px',left:'550px',background:'#2A9134',color:'white'}} variant="contained"  endIcon={<DownloadIcon />} > */}
-          <CSVLink data={data}  headers={headers} style={{ minHeight: '50px', marginLeft:'550px',background:'#2A9134',color:'white',
-           borderRadius: '9px',padding:'10px'}} variant="contained" 
-           >
-            
-            <span style={{paddingTop:'10px'}}><DownloadIcon /></span> 
-        </CSVLink>
-            {/* </Button> */}
+          <Tab className="new "label="Questionnire" {...a11yProps(0)} />
+          <Tab className="new"label="Credit Bureau Details" {...a11yProps(1)} />
+          <Tab className="new"label="Customer Information" {...a11yProps(2)} />
+          <Tab className="new"label="Address & Bank Information" {...a11yProps(2)} />
+          <Tab className="new"label="KYC Information " {...a11yProps(2)} />
+          <Tab className="new"label="Documents" {...a11yProps(2)} />
         </Tabs>
         
       <TabPanel value={value} index={0}>
-       <EnhancedT startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
+       {/* <EnhancedT startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} /> */}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <CreditBureauDetail />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three
