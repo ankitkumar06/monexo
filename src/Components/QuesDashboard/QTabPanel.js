@@ -93,16 +93,16 @@ export default function QTabs(props) {
       }
     }
   });
-  useEffect(() => {
-    console.log(localStorage.getItem("token"))
-    console.log("use effect works QTabPanel")
-    const dashboard = {
-      search: props.searchVal,
-      startdate: props.startDate,
-      endDate: props.endDate
-    };
-    console.log(dashboard)
-  }, [])
+  useEffect(() =>{
+    // console.log(localStorage.getItem("token"))
+    // console.log("use effect works QTabPanel")
+    // const dashboard = {
+    //   search: props.searchVal,
+    //   startdate: props.startDate,
+    //   endDate :props.endDate
+    // };
+    // console.log(dashboard)
+  },[])
 
   return (
 
@@ -166,7 +166,7 @@ export default function QTabs(props) {
       </Tabs>
 
       <QTabPanel value={value} index={0}>
-        <QuestionT />
+       <QuestionT  usersName={props.usersName} />
       </QTabPanel>
       <QTabPanel value={value} index={1}>
         <CreditB />

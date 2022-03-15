@@ -1,3 +1,6 @@
 .loadingData{
     margin-left: 600px;
 }
+.rowCursor{
+ cursor: pointer;
+}

@@ -9,7 +9,7 @@ const Questionnaire =(props)=>{
         <div>
             <Header usersName={props.usersName} />
             <CustomerDetails usersName={props.usersName} />
-            <QuesModule />
+            <QuesModule usersName={props.usersName} />
            
             
         </div>

@@ -1,0 +1,70 @@
+.HeadingName{
+    position: absolute;
+width: 203px;
+height: 28px;
+left: 55px;
+top: 117px;
+/* Headline 4 */
+font-family: 'Nunito';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 28px;
+/* identical to box height, or 140% */
+letter-spacing: 0.15px;
+color: #333333;
+}
+.HeadingData{
+    margin-top: 4em;
+}
+.horizon_line{
+    position: absolute;
+    width: 1300px;
+    height: 0px;
+    left: 50px;
+    top: 165px;
+    border: 1px solid rgb(13 13 13 / 26%);
+
+}
+.label_css{
+    /* position: static; */ 
+    /* width: 128px; */
+    height: 19px;
+    left: 0px;
+    top: 0px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(51, 51, 51, 0.4);
+    /* flex: none; */
+    order: 0;
+    flex-grow: 0;
+    margin: 30px 0px;
+    text-align: left;
+}
+.label_value_css{
+    /* position: static; */
+/* width: 128px; */
+height: 19px;
+left: 0px;
+top: 0px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 19px;
+
+color: #111111;
+
+
+/* Inside auto layout */
+
+/* flex: none; */
+order: 0;
+flex-grow: 0;
+margin: 30px 0px;
+text-align: left;
+}

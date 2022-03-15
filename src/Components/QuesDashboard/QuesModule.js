@@ -33,7 +33,7 @@ const QuesModule =(props)=>{
       <CardContent>
       <ThemeProvider >
       </ThemeProvider>
-       <QTabPanel  />
+       <QTabPanel usersName={props.usersName} />
       </CardContent>
     </Card>
      </Grid>

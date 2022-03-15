@@ -29,76 +29,8 @@ import env from '../../enviorment.json';
 import json from './demo-data.json';
 import  { useState } from "react";
 import classes from './EnhancedT.module.css';
+import { useNavigate } from 'react-router-dom';
 
-
-// function createData(Cust_ID, Cust_Name, App_ID, Completed_time, City,Loan_Product,Bureau_Score,Stage,Loan_Offered,User,Call,) {
-//   return {
-//     Cust_ID,
-//     Cust_Name,
-//     App_ID,
-//     Completed_time,
-//     City,
-//     Loan_Product,
-//     Bureau_Score,
-//     Stage,
-//     Loan_Offered,
-//     User,
-//     Call,
-//   };
-// }
-// let rows= []
-// const rows = [
-  // createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895488', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895499', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895400', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895488', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895499', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895400', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895477', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895488', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895499', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895400', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895411', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895422', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895433', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895444', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895455', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-//   createData('2564895466', 'Ryan Dias', '25648954', '28-12-2021 15.30 hrs', 'Ahmadabad','Freedom',455,'EKYC','₹ 100,000','Alfonso Lubin',<Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>),
-
-// ];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -327,7 +259,9 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedT(props) {
+export default function EnhancedT(props ,{parentCallback}) {
+//  const {setData} =props;
+
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState();
   const [selected, setSelected] = React.useState([]);
@@ -341,8 +275,17 @@ export default function EnhancedT(props) {
   const [countData, setCountData] = useState(0);
   const [isload, setIsLoading] =useState(false)
   const [tmproryrows,setTemporaryRows] = useState([]);
+  const [isRecord, setIsRecord] = useState(false)
   let storetempdata = [];
+  const navigate = useNavigate();
 
+  
+  
+    // React.useEffect(() => {
+    //   childFunc.current = fetchCustomerDataHandler
+    //   }, [])
+
+  
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -359,23 +302,30 @@ export default function EnhancedT(props) {
   };
 
   const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
+    console.log("table row click" + name)
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
+    localStorage.setItem("custID",name.customer_id)
+    localStorage.setItem("custName",name.customer_name)
+    localStorage.setItem("appID",name.app_id)
+    navigate('/questionnaire')
+    // localStorage.setItem("custID",name)
+    // const selectedIndex = selected.indexOf(name);
+    // let newSelected = [];
 
-    setSelected(newSelected);
+    // if (selectedIndex === -1) {
+    //   newSelected = newSelected.concat(selected, name);
+    // } else if (selectedIndex === 0) {
+    //   newSelected = newSelected.concat(selected.slice(1));
+    // } else if (selectedIndex === selected.length - 1) {
+    //   newSelected = newSelected.concat(selected.slice(0, -1));
+    // } else if (selectedIndex > 0) {
+    //   newSelected = newSelected.concat(
+    //     selected.slice(0, selectedIndex),
+    //     selected.slice(selectedIndex + 1)
+    //   );
+    // }
+
+    // setSelected(newSelected);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -405,77 +355,73 @@ export default function EnhancedT(props) {
 
     const fetchCustomerDataHandler =async () =>{
       try {
-        // let valrequired={
-        //   start: 0,
-        //   stop:200
-        // }
       
-        // if(paginationIs)
+        console.log(props.startDate)
+        let today = new Date(props.startDate);
+        console.log(today)
+        console.log(props.endDate)
+
+        let startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+        let endDateVal  = props.endDate.getFullYear() + "-"+props.endDate.getMonth()  + "-" +props.endDate.getDate() ;
+        if(startdateVal === endDateVal)
+        {
+          props.startDate.setDate(props.startDate.getDate() - 10)
+        }
+        startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+
+        // if(startdateVal < endDateVal)
         // {
-        //   valrequired={
-        //     start: paginationIs,
-        //     stop:11
-        //   }
-        // }else{
-        //   valrequired={
-        //     start: paginationVal,
-        //     stop:11
-        //   }
-        // }
-        console.log(paginationVal)
+
         let valrequired={
-          search: props.searchVal
+          search: props.searchVal,
+          from_date: startdateVal,
+          to_date:endDateVal
         }
 
         const token =localStorage.getItem("token")
-        console.log("on tabel " +token)
         setIsLoading(true)
-        await axios.post(env.apiUrl + 'api/users/mono-report/',valrequired,
+        await axios.post(env.apiUrl + 'api/users/dashboard/',valrequired,
         {
            headers: {"Authorization" : `Bearer ${token}`}
 
         }).then(res =>{
-          console.log("demo url" + res.data.response.response)
-          let rowsval = res.data.response.response
-      
-          rowsval.map((item) => (
-            item.call = <Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
-            // key={item.id}
-          ))
-          // if(paginationVal ==0)
-          // {
-          //   setTemporaryRows(rowsval)
-          // }else{
-          //   setTemporaryRows(tmproryrows => [...tmproryrows, ...rowsval]);
-          // }
+          // console.log("demo url" + res.data.response.response)
+          let rowsval = res.data.response
 
-          
-        //   for (let i = 0; i < rowsval.length; i++) {
-        //     storetempdata.push(rowsval[i]);
-        //     // setTemporaryRows((tmproryrows) =>[...tmproryrows, rowsval[i]]);
-        // }
-        // console.log(tmproryrows)
-        //   console.log(tmproryrows)
+          if(props.searchVal != "")
+          {
+            rowsval.call = <Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
+            setCountData(1);
+          }
+          else{
+            rowsval.map((item) => (
+              item.call = <Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
+              // key={item.id}
+            ))
+            let pgcount = res.data.pagination.total_pages
+            setCountData(pgcount);
+            setIsLoading(false)
+          }
+          props.setData(rowsval);
           setRowsData(rowsval)
-          let pgcount = res.data.response.pagination.total_pages
-          setCountData(pgcount);
           setIsLoading(false)
           setdataRender(true);
+          if(rowsval.length == 0)
+          {
+            setIsRecord(true)
+          }
          
          
         })
   
-      } catch (error) {
+      // } 
+    }catch (error) {
         console.log(error)
+        // alert("Please login again")
+        // navigate('/dashboard')
       }
     }
   
-  
-  
-    // useEffect(() => {
-    //   fetchCustomerDataHandler();
-    // }, []);
-
     useEffect(() =>{
 
       // setdataRender(true)
@@ -484,9 +430,22 @@ export default function EnhancedT(props) {
       //   startdate: props.startDate,
       //   endDate :props.endDate
       // };
+    
       fetchCustomerDataHandler();
       // console.log(dashboard)
-    },[])
+    },[props.searchVal,props.startDate,props.endDate])
+  
+    const tablerowClickHandler = () =>{
+
+      // console.log("table row click" + values)
+     
+    }
+  
+    // useEffect(() => {
+    //   fetchCustomerDataHandler();
+    // }, []);
+
+  
 
 
   return (
@@ -506,7 +465,8 @@ export default function EnhancedT(props) {
               rowCount={countData}
             />
             {isload && <h3>Loading...</h3>}
-               { datarender && !isload &&
+            { isRecord && !isload && <h3>No Record Found</h3>}
+               { datarender && !isload && !isRecord &&
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
@@ -520,7 +480,7 @@ export default function EnhancedT(props) {
                  
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -543,15 +503,15 @@ export default function EnhancedT(props) {
                         id={labelId}
                         scope="row"
                         padding="none"
-                        
+                        className={classes.rowCursor}
+                        onClick={tablerowClickHandler} 
                       >
                         {row.customer_id}
                       </TableCell>
-                      <TableCell align="left" >{row.customer_name}</TableCell>
-                      <TableCell align="left">{row.app_id}</TableCell>
+                      <TableCell align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.customer_name}</TableCell>
+                      <TableCell align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.app_id}</TableCell>
                       <TableCell align="left">{row.completed_date}</TableCell>
-                      <TableCell align="left">{row.city}
-                    </TableCell>
+                      <TableCell align="left">{row.city}</TableCell>
                       <TableCell align="left">{row.loan_product}</TableCell>
                       <TableCell align="left">{row.beaure_score}</TableCell>
                       <TableCell align="left">{row.user_stage}</TableCell>
@@ -559,6 +519,7 @@ export default function EnhancedT(props) {
                       <TableCell align="left">{row.user }</TableCell>
                       <TableCell align="left">{row.call}</TableCell>
                     </TableRow>
+
      
                   );
                 })}
