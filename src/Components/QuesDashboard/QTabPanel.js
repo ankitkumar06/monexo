@@ -1,4 +1,4 @@
-import * as React  from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -8,12 +8,15 @@ import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 import { orange, pink, green } from "@material-ui/core/colors";
 
 import DownloadIcon from '@mui/icons-material/Download';
-import {Button} from "@material-ui/core";
-import {useEffect } from "react";
+import { Button } from "@material-ui/core";
+import { useEffect } from "react";
 
 import "./QTabPanel.scss";
-import { MarginOutlined } from '@mui/icons-material';
+import { MarginOutlined, PaddingSharp } from '@mui/icons-material';
 import QuestionT from './QuestionT';
+import CreditB from './CreditBureau';
+import Badge from '@mui/material/Badge';
+
 
 function QTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,8 +57,8 @@ export default function QTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const colorhandle ={ 
-   color : "#2A9134"
+  const colorhandle = {
+    color: "#2A9134"
   }
 
   const customTheme = createTheme({
@@ -90,50 +93,83 @@ export default function QTabs(props) {
       }
     }
   });
-  useEffect(() =>{
+  useEffect(() => {
     console.log(localStorage.getItem("token"))
     console.log("use effect works QTabPanel")
     const dashboard = {
       search: props.searchVal,
       startdate: props.startDate,
-      endDate :props.endDate
+      endDate: props.endDate
     };
     console.log(dashboard)
-  },[])
+  }, [])
 
   return (
 
-   
+
     <Box sx={{ width: '200%' }}>
-        {/* <ThemeProvider theme={customTheme}>
+      {/* <ThemeProvider theme={customTheme}>
           <div className={classes.root}>
           <AppBar position="static" elevation={9}> */}
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
-                mat-stretch-tabs
-                textColor="secondary"
-                indicatorColor="secondary"
-                TabIndicatorProps={{
-                  style: {
-                    backgroundColor: "#2A9134"
-                   }
-                  }}
-               
-                 inkbarstyle={{background: 'red'}}
-        >
-          <Tab className="new1 "label="Questionnaire" {...a11yProps(0)} />
-          <Tab className="new1"label="Credit Bureau Details" {...a11yProps(1)} />
-          <Tab className="new1"label="Customer Information" {...a11yProps(2)} />
-          <Tab className="new1"label="Address & Bank information " {...a11yProps(2)} />
-          <Tab className="new1"label="KYC Information " {...a11yProps(2)} />
-          <Tab className="new1"label=" Documents " {...a11yProps(2)} />
-         
-        </Tabs>
-        
+      <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
+        mat-stretch-tabs
+        textColor="secondary"
+        indicatorColor="secondary"
+        TabIndicatorProps={{
+          style: {
+            backgroundColor: "#2A9134",
+          }
+        }}
+        inkbarstyle={{ background: 'red' }}
+      >
+        <Tab className="new1 " label="Questionnaire" {...a11yProps(0)} sx={{ paddingRight: "30px" }} />
+        {/* <Badge badgeContent={4} color="secondary"> */}
+        <Tab className="new1"
+          sx={{ paddingRight: "30px" }}
+          label={<Badge badgeContent={5} sx={{
+            "& .MuiBadge-badge": {
+              color: "white",
+              backgroundColor: "red",
+              right: "-15px",
+              top: "7px",
+            }
+          }}>
+            Credit Bureau Details
+          </Badge>} {...a11yProps(1)} />
+        {/* </Badge> */}
+        <Tab className="new1" label={<Badge badgeContent={5} sx={{
+            "& .MuiBadge-badge": {
+              color: "white",
+              backgroundColor: "red",
+              right: "-15px",
+              top: "7px",
+            }
+          }}>Customer Information </Badge>} {...a11yProps(2)} sx={{ paddingRight: "30px" }} />
+        <Tab className="new1" label="Address & Bank information " {...a11yProps(2)} sx={{ paddingRight: "30px" }} />
+        <Tab className="new1" label= {<Badge badgeContent={5} sx={{
+            "& .MuiBadge-badge": {
+              color: "white",
+              backgroundColor: "red",
+              right: "-15px",
+              top: "7px",
+            }
+          }}>KYC Information </Badge>} {...a11yProps(2)} sx={{ paddingRight: "30px" }} />
+        <Tab className="new1" label= {<Badge badgeContent={5} sx={{
+            "& .MuiBadge-badge": {
+              color: "white",
+              backgroundColor: "red",
+              right: "-15px",
+              top: "7px",
+            }
+          }}>Documents  </Badge>}{...a11yProps(2)} sx={{ paddingRight: "30px" }} />
+
+      </Tabs>
+
       <QTabPanel value={value} index={0}>
-       <QuestionT   />
+        <QuestionT />
       </QTabPanel>
       <QTabPanel value={value} index={1}>
-        Item Two
+        <CreditB />
       </QTabPanel>
       <QTabPanel value={value} index={2}>
         Item Three
@@ -144,8 +180,8 @@ export default function QTabs(props) {
       <QTabPanel value={value} index={4}>
         Item Five
       </QTabPanel>
-     
-      </Box>
-    
+
+    </Box>
+
   );
 }
