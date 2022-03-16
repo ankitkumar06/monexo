@@ -18,11 +18,14 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import Autocomplete from '@mui/material/Autocomplete';
 import env from '../../enviorment.json';
+import { useSelector } from "react-redux";
 
 
 
 
 const QuestionT = (props) => {
+
+    const token = useSelector((state)=>state.authRedux.token)
 
     const [banklist, setBankList] = useState([]);
     const [citylist, setCityList] = useState([]);
@@ -67,7 +70,7 @@ const QuestionT = (props) => {
 
     const fetchBankList =async () =>{
         try {
-          const token =localStorage.getItem("token")
+        //   const token =localStorage.getItem("token")
           await axios.get(env.apiUrl + 'api/teleservice/list-bank/',
           {
              headers: {"Authorization" : `Bearer ${token}`}
@@ -86,7 +89,7 @@ const QuestionT = (props) => {
 
       const fetchCityList =async () =>{
         try {
-          const token =localStorage.getItem("token")
+        //   const token =localStorage.getItem("token")
           await axios.get(env.apiUrl + 'api/teleservice/list-city/',
           {
              headers: {"Authorization" : `Bearer ${token}`}
@@ -105,7 +108,7 @@ const QuestionT = (props) => {
 
       const fetchFailReasonList =async () =>{
         try {
-          const token =localStorage.getItem("token")
+        //   const token =localStorage.getItem("token")
           await axios.get(env.apiUrl + 'api/teleservice/call-fail/',
           {
              headers: {"Authorization" : `Bearer ${token}`}
@@ -124,7 +127,7 @@ const QuestionT = (props) => {
 
       const fetchknowMonexo =async () =>{
         try {
-          const token =localStorage.getItem("token")
+        //   const token =localStorage.getItem("token")
           await axios.get(env.apiUrl + 'api/teleservice/how-i-know-monexo/',
           {
              headers: {"Authorization" : `Bearer ${token}`}
@@ -144,7 +147,7 @@ const QuestionT = (props) => {
 
       const fetchCustomerQuestionnierDetail =async () =>{
         try {
-          const token =localStorage.getItem("token")
+        //   const token =localStorage.getItem("token")
           let valrequired = {
             customer_id : customer_id
           }
@@ -157,12 +160,20 @@ const QuestionT = (props) => {
             let rowsval = res.data.response 
             setcustomerQuestionnierData(rowsval)
             console.log(customerQuestionnierData);
+            if(!rowsval)
+            {
+                let today = new Date();
+                let startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+                setcurrentDate(startdateVal)
+
+            }
             if(rowsval[0].updated_date)
             {
                 setcurrentDate(rowsval[0].updated_date)
             }else{
-                setcurrentDate(new Date().toLocaleString("en-US", { day: '2-digit', month: '2-digit', year: '2-digit' }))
-
+                let today = new Date();
+                let startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+                setcurrentDate(startdateVal)
             }
 
             setcurrentDateRemark(rowsval[0].date_remark)
@@ -426,7 +437,7 @@ const QuestionT = (props) => {
                 callRemark : callRemark
             }
     
-            const token =localStorage.getItem("token")
+            // const token =localStorage.getItem("token")
             await axios.post(env.apiUrl + 'api/teleservice/submit-questionnare/',valrequired,
             {
                headers: {"Authorization" : `Bearer ${token}`}

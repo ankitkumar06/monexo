@@ -30,6 +30,7 @@ import json from './demo-data.json';
 import  { useState } from "react";
 import classes from './EnhancedT.module.css';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 
 function descendingComparator(a, b, orderBy) {
@@ -262,7 +263,7 @@ EnhancedTableToolbar.propTypes = {
 
 export default function EnhancedT(props ,{parentCallback}) {
 //  const {setData} =props;
-
+  const token = useSelector((state)=>state.authRedux.token)
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState();
   const [selected, setSelected] = React.useState([]);
@@ -357,11 +358,8 @@ export default function EnhancedT(props ,{parentCallback}) {
     const fetchCustomerDataHandler =async () =>{
       try {
       
-        console.log(props.startDate)
-        let today = new Date(props.startDate);
-        console.log(today)
-        console.log(props.endDate)
 
+        let today = new Date(props.startDate);
         let startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
         let endDateVal  = props.endDate.getFullYear() + "-"+props.endDate.getMonth()  + "-" +props.endDate.getDate() ;
         if(startdateVal === endDateVal)
@@ -379,7 +377,7 @@ export default function EnhancedT(props ,{parentCallback}) {
           to_date:endDateVal
         }
 
-        const token =localStorage.getItem("token")
+        // const token =localStorage.getItem("token")
         setIsLoading(true)
         await axios.post(env.apiUrl + 'api/users/dashboard/',valrequired,
         {

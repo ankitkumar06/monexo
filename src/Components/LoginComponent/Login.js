@@ -18,9 +18,12 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import env from '../../enviorment.json';
 import setAuthToken from '../../utilities/setAuthToken'
+import { authAction } from '../../store/authSlice';
+import { useDispatch } from "react-redux";
 
 
 const Login = (props) => {
+  const dispatch = useDispatch();
   // const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -108,9 +111,13 @@ const Login = (props) => {
       {
         const access_token = res.data.Token
         const userNameIs = res.data.firstName
+        const userRoleis = res.data.group_id
         localStorage.setItem("token",access_token)
         setAuthToken(access_token)
         props.onChange(userNameIs);
+        dispatch(authAction.setUserNameApp(userNameIs))
+        dispatch(authAction.setUserRoken(access_token))
+        dispatch(authAction.setUserRole(userRoleis))
         setEmail("");
         setPassword("");
         navigate('/dashboard')

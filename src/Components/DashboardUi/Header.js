@@ -6,9 +6,10 @@ import ndfc from "../../assets/images/nbfc-logo.png";
 import monexologo from "../../assets/images/monexo-logo.png";
 import classes from "./Header.module.scss";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Header = (props) => {
-
+  const auth = useSelector((state)=>state.authRedux.userName)
   
   return (
       <Grid container>
@@ -21,7 +22,7 @@ const Header = (props) => {
               <img src={ndfc} className="nbfc-logo" />
           </Grid>
           <Grid item lg={7}>
-            <span className={classes.subtitle}>Hi, {props.usersName}</span>
+            <span className={classes.subtitle}>Hi, {auth}</span>
               <img src={ellipse} className="ellipse-logo" />
           </Grid>
           </Grid>
