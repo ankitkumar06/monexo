@@ -174,6 +174,7 @@ function EnhancedTableHead(props) {
           >
             <TableSortLabel
               hideSortIcon={ true ? headCell.id== 'App_ID' || headCell.id== 'Call' || headCell.id== 'Cust Name': false}
+              disabled={true ? headCell.id== 'App_ID' || headCell.id== 'Call' || headCell.id== 'Cust Name': false}
               active={ headCell.id=='customer_id' ||  headCell.id== 'completed_date' ||  headCell.id== 'city' ||  headCell.id== 'loan_product' ||   headCell.id== 'beaure_score'|| headCell.id== 'user_stage' ||   headCell.id== 'loan_offered'||   headCell.id== 'user' ||  orderBy === headCell.id }
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
@@ -390,12 +391,12 @@ export default function EnhancedT(props ,{parentCallback}) {
 
           if(props.searchVal != "")
           {
-            rowsval.call = <Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
+            rowsval.call = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
             setCountData(1);
           }
           else{
             rowsval.map((item) => (
-              item.call = <Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
+              item.call = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
               // key={item.id}
             ))
             let pgcount = res.data.pagination.total_pages

@@ -3,7 +3,6 @@
 .message1{
     justify-self:right;
     padding: 0.4rem 0.5rem;
-    
     width: 300px;
     height: 35px;
     min-height: 35px;
@@ -30,90 +29,63 @@
     top: 95px;
     margin-bottom: 8.1rem;
     width:96%;
-    
     background: #EAF4EB;
-
 }
 
 .Newtext{
-
-    position: absolute;
+position: absolute;
 width: 130px;
 height: 19px;
 left: 33px;
 top: 22px;
-
 font-family: Nunito;
 font-style: normal;
 font-weight: 600;
 font-size: 14px;
 line-height: 19px;
-/* identical to box height */
-
 display: flex;
 align-items: center;
-
-color: #111111;
-
-
-
+color: #111111;               
 }
 
 .Newtext1{
-
     position: absolute;
     width: 130px;
     height: 19px;
-    left: 29.9rem;
+    left: 29.4rem;
     top: 22px;
-    
     font-family: Nunito;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 19px;
-    /* identical to box height */
-    
     display: flex;
     align-items: center;
-    
     color: #111111;
-
-
-
 }
 
 .Newtext2{
-
     position: absolute;
     width: 130px;
     height: 19px;
-    left: 58.4rem;
+    left: 56.8rem;
     top: 22px;
-    
     font-family: Nunito;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 19px;
-    /* identical to box height */
-    
     display: flex;
-    align-items: center;
-    
+    align-items: center;  
     color: #111111;
-    
-
 }
 
 .row1{
-
     position: absolute;
     height: 97px;
     left: 0px;
     right: 0px;
     top: 0px;
-    
     background: rgba(255, 255, 255, 0.1);  
 }
 
@@ -264,13 +236,12 @@ color: #111111;
 .form-inline {  
     margin-top: 75px;
     display: grid;
-    // grid-auto-flow: row;
-    grid-template-columns: repeat(6, 0.2fr);
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 1.0fr);
     justify-items: start;
-    gap: 0.2rem;
+    gap: 1.0rem;
     align-items: center;
     justify-content: start;
-    // gap: 10.4rem;
     
 
   }
@@ -278,7 +249,6 @@ color: #111111;
   .form-inline label {
     margin-top: 1.5rem;
     margin-right: 0rem;
-    // margin-left: 1.0rem;
     margin-bottom: 10px;
     font-family: 'Nunito';
     font-style: normal;
@@ -381,8 +351,8 @@ color: #111111;
     .Sbtn {
         // padding: 17px 154px;
         background-color: #2A9134;
-        margin-right: 9.8rem;
-        margin-top: 2.8rem;
+        margin-left: 73.0rem;
+        margin-top: 3.8rem;
         text-align: center;
         color: white;
         border: none;

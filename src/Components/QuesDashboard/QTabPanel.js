@@ -15,6 +15,9 @@ import "./QTabPanel.scss";
 import { MarginOutlined, PaddingSharp } from '@mui/icons-material';
 import QuestionT from './QuestionT';
 import CreditB from './CreditBureau';
+import AddressBank from './AddressBank';
+import KycInfo from './KycInfo';
+import Documents from './Documents';
 import Badge from '@mui/material/Badge';
 
 
@@ -107,7 +110,7 @@ export default function QTabs(props) {
   return (
 
 
-    <Box sx={{ width: '200%' }}>
+    <Box sx={{ width: '100%' }}>
       {/* <ThemeProvider theme={customTheme}>
           <div className={classes.root}>
           <AppBar position="static" elevation={9}> */}
@@ -123,7 +126,6 @@ export default function QTabs(props) {
         inkbarstyle={{ background: 'red' }}
       >
         <Tab className="new1 " label="Questionnaire" {...a11yProps(0)} sx={{ paddingRight: "30px" }} />
-        {/* <Badge badgeContent={4} color="secondary"> */}
         <Tab className="new1"
           sx={{ paddingRight: "30px" }}
           label={<Badge badgeContent={5} sx={{
@@ -136,7 +138,7 @@ export default function QTabs(props) {
           }}>
             Credit Bureau Details
           </Badge>} {...a11yProps(1)} />
-        {/* </Badge> */}
+        
         <Tab className="new1" label={<Badge badgeContent={5} sx={{
             "& .MuiBadge-badge": {
               color: "white",
@@ -172,13 +174,16 @@ export default function QTabs(props) {
         <CreditB />
       </QTabPanel>
       <QTabPanel value={value} index={2}>
-        Item Three
+      Item Three
       </QTabPanel>
       <QTabPanel value={value} index={3}>
-        Item Four
+      <AddressBank />
       </QTabPanel>
       <QTabPanel value={value} index={4}>
-        Item Five
+      <KycInfo />
+      </QTabPanel>
+      <QTabPanel value={value} index={5}>
+      <Documents />
       </QTabPanel>
 
     </Box>

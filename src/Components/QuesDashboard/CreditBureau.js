@@ -18,7 +18,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { ArrowDropDownOutlined } from '@mui/icons-material';
 import useCollapse from 'react-collapsed';
 
-function Section(props) {
+ const Section = (props) =>{
     const [open, setOpen] = React.useState(true);
     const handleClick = () => {
         setOpen(!open);
@@ -27,11 +27,11 @@ function Section(props) {
 
     const config = {
         defaultExpanded: props.defaultExpanded || false,
-        collapsedHeight: props.collapsedHeight || 0
+        // collapsedHeight: props.collapsedHeight || 0
     };
     const { getCollapseProps, getToggleProps, isExpanded } = useCollapse(config);
     return (
-        <div className="collapsible">
+        <div className="collapsible" onClick={handleClick}>
             <div className="header" {...getToggleProps()}>
                 <div className="title">{props.title}</div>
                 <div className="icon">
@@ -51,7 +51,7 @@ function Section(props) {
 
 
 
-const CreditB = (props) => {
+const CreditB = () => {
 
     return (
 
