@@ -19,6 +19,7 @@ import AddressBank from './AddressBank';
 import KycInfo from './KycInfo';
 import Documents from './Documents';
 import Badge from '@mui/material/Badge';
+import CustomerInformation from './CustomerInformation'
 
 
 function QTabPanel(props) {
@@ -126,6 +127,7 @@ export default function QTabs(props) {
         inkbarstyle={{ background: 'red' }}
       >
         <Tab className="new1 " label="Questionnaire" {...a11yProps(0)} sx={{ paddingRight: "30px" }} />
+        {/* <Badge badgeContent={4} color="secondary"> */}
         <Tab className="new1"
           sx={{ paddingRight: "30px" }}
           label={<Badge badgeContent={5} sx={{
@@ -138,7 +140,7 @@ export default function QTabs(props) {
           }}>
             Credit Bureau Details
           </Badge>} {...a11yProps(1)} />
-        
+        {/* </Badge> */}
         <Tab className="new1" label={<Badge badgeContent={5} sx={{
             "& .MuiBadge-badge": {
               color: "white",
@@ -174,7 +176,7 @@ export default function QTabs(props) {
         <CreditB />
       </QTabPanel>
       <QTabPanel value={value} index={2}>
-      Item Three
+        <CustomerInformation />
       </QTabPanel>
       <QTabPanel value={value} index={3}>
       <AddressBank />
