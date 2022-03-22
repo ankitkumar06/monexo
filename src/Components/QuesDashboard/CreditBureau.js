@@ -1,9 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
-import { useEffect, useCallback } from "react";
-import axios from 'axios';
-import { useState } from "react";
 import * as Yup from 'yup'
 import { Container, Col, Dropdown } from 'react-bootstrap'
 import "./cred.scss";
@@ -17,6 +13,10 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { ArrowDropDownOutlined } from '@mui/icons-material';
 import useCollapse from 'react-collapsed';
+import { useEffect ,useState } from "react";
+import { useSelector } from "react-redux";
+import axios from 'axios';
+import env from '../../enviorment.json';
 
  const Section = (props) =>{
     const [open, setOpen] = React.useState(true);
@@ -53,7 +53,134 @@ import useCollapse from 'react-collapsed';
 
 const CreditB = () => {
 
+    const token = useSelector((state)=>state.authRedux.token)
+    const customerId = useSelector((state)=>state.custRedux.customerId)
+
+    const [customerIdVal , setCustomerIdVal] = useState('');
+    const [bureauPull, setbureauPull] = useState('');
+    const [customerName, setcustomerName] = useState('');
+    const [newAccountInLast6Month, setnewAccountInLast6Month] = useState('');
+    const [applicationId, setApplicationId] = useState('');
+    const [loanEnquiriInLast6Month, setloanEnquiriInLast6Month] = useState('');
+    const [loanApplicationId, setLoanApplicationId] = useState('');
+    const [totalUnsecureLoanOutstanding, settotalUnsecureLoanOutstanding] = useState('');
+    const [bureauPullval, setbureauPullval] = useState('');
+    const [totalsecureLoanOutstanding, settotalsecureLoanOutstanding] = useState('');
+    const [bureauReportId, setbureauReportId] = useState('');
+    const [totalCredidCardOutstanding, settotalCredidCardOutstanding] = useState('');
+    const [bureauRefernaceNum, setbureauRefernaceNum] = useState('');
+    const [goldLoanPOS, setgoldLoanPOS] = useState('');
+    const [bureauRequestStatus, setbureauRequestStatus] = useState('');
+    const [otherLoanPOS, setotherLoanPOS] = useState('');
+    const [bureauPullDate, setbureauPullDate] = useState('');
+    const [newdelinquenciesinlast6month, setnewdelinquenciesinlast6month] = useState('');
+    const [bureauPullResponse, setbureauPullResponse] = useState('');
+    const [personalLoan, setpersonalLoan] = useState('');
+    const [bureauUpdateFinalDate, setbureauUpdateFinalDate] = useState('');
+    const [homeLoan, sethomeLoan] = useState('');
+    const [emailIdInBureau, setemailIdInBureau] = useState('');
+    const [creditcard, setcreditcard] = useState('');
+    const [DOB, setDOB] = useState('');
+    const [goldLoan, setgoldLoan] = useState('');
+    const [pan, setPan] = useState('');
+    const [otherLoan, setotherLoan] = useState('');
+    const [bureauScore, setbureauScore] = useState('');
+    const [creditVintage, setcreditVintage] = useState('');
+    const [noOfActiveAcc, setnoOfActiveAcc] = useState('');
+    const [totalBalanceAcc, settotalBalanceAcc] = useState('');
+    const [noOfPastDueAcc, setnoOfPastDueAcc] = useState('');
+    const [totalSanctionAmt, settotalSanctionAmt] = useState('');
+    const [totalPastDue, settotalPastDue] = useState('');
+    const [totalmonthlyPaymentAmt, settotalmonthlyPaymentAmt] = useState('');
+    const [oldestAcc, setoldestAcc] = useState('');
+    const [mostserveStatuswithin24month, setmostserveStatuswithin24month] = useState('');
+    const [recentAcc, setrecentAcc] = useState('');
+    const [suitFiled, setsuitFiled] = useState('');
+    const [wilFulDefault, setwilFulDefault] = useState('');
+    const [settledAcc, setsettledAcc] = useState('');
+    const [loassAcc, setloassAcc] = useState('');
+    const [writtenOffAcc, setwrittenOffAcc] = useState('');
+    const [subStandardAcc, setsubStandardAcc] = useState('');
+
+    const getCreditBureauData =async  () =>{
+        try {
+    let valrequired = {
+        customer_id:customerId
+    }
+      await axios.post(env.apiUrl + 'api/teleservice/cerdit-beaure-details/',valrequired,
+      {
+         headers: {"Authorization" : `Bearer ${token}`}
+
+      }).then(res =>{
+        // console.log("demo url" + res.data.response.response)
+        let rowsval = res.data.response 
+        console.log(rowsval)
+        setCustomerIdVal(res.data.response[0].customer_id)
+        setbureauPull(res.data.response[0].beaure_pull)
+        setcustomerName(res.data.response[0].customer_name)
+        setnewAccountInLast6Month(res.data.response[0].new_account_in_last_6_months)
+        setApplicationId(res.data.response[0].application_id)
+        setloanEnquiriInLast6Month(res.data.response[0].loan_enquires_in_last_6_months)
+        setLoanApplicationId(res.data.response[0].loan_application_id)
+        settotalUnsecureLoanOutstanding(res.data.response[0].total_unsecured_loan_outstanding)
+
+        setbureauPullval(res.data.response[0].beaure_pull)
+        settotalsecureLoanOutstanding(res.data.response[0].total_secured_loan_outstanding)
+        setbureauReportId(res.data.response[0].beaure_report_id)
+        settotalCredidCardOutstanding(res.data.response[0].total_credit_card_outstanding)
+        setbureauRefernaceNum(res.data.response[0].beaure_reference_num)
+        setgoldLoanPOS(res.data.response[0].gold_loan_pos)
+        setbureauRequestStatus(res.data.response[0].beaure_request_status)
+        setotherLoanPOS(res.data.response[0].other_loan_pos)
+        setbureauPullDate(res.data.response[0].beaure_pull_date)
+        setnewdelinquenciesinlast6month(res.data.response[0].new_delipquencies_inlast_6_months)
+        setbureauPullResponse(res.data.response[0].beaure_pull_reponse)
+        setpersonalLoan(res.data.response[0].personal_loan)
+        setbureauUpdateFinalDate(res.data.response[0].beaure_update_final_loan)
+        sethomeLoan(res.data.response[0].home_loan)
+        setemailIdInBureau(res.data.response[0].email_id_in_beaure)
+        setcreditcard(res.data.response[0].credit_card)
+        setDOB(res.data.response[0].dob)
+        setgoldLoan(res.data.response[0].gold_loan)
+        setPan(res.data.response[0].pan)
+        setotherLoan(res.data.response[0].other_loan)
+        setbureauScore(res.data.response[0].beaure_score)
+        setcreditVintage(res.data.response[0].credit_vintage)
+
+        setnoOfActiveAcc(res.data.response[0].no_of_active_accounts)
+        settotalBalanceAcc(res.data.response[0].total_balance_amount)
+        setnoOfPastDueAcc(res.data.response[0].no_of_past_due_accounts)
+        settotalSanctionAmt(res.data.response[0].total_sanction_amount)
+        settotalPastDue(res.data.response[0].total_past_due)
+        settotalmonthlyPaymentAmt(res.data.response[0].total_montly_payment_amount)
+        setoldestAcc(res.data.response[0].oldest_account)
+        setmostserveStatuswithin24month(res.data.response[0].most_server_status_within_24_hours)
+        setrecentAcc(res.data.response[0].recent_account)
+
+        setsuitFiled(res.data.response[0].suit_field)
+        setwilFulDefault(res.data.response[0].witful_default)
+        setsettledAcc(res.data.response[0].settled_accounts)
+        setloassAcc(res.data.response[0].loss_accounts)
+        setwrittenOffAcc(res.data.response[0].written_of_accounts)
+        setsubStandardAcc(res.data.response[0].sub_standard_accounts)
+
+      })
+
+    // } 
+  }catch (error) {
+      console.log(error)
+    }
+
+}
+
+useEffect(() =>{   
+    getCreditBureauData()
+},[])
+  
+
     return (
+
+        
 
         <div >
 
@@ -61,11 +188,11 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >Customer ID</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{customerIdVal}</span>
 
                     <label  >Bureau Pull</label>
 
-                    <span className='red'>LAP-000312549</span>
+                    <span className='red'>{bureauPull}</span>
 
                 </form>
 
@@ -73,22 +200,22 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >Customer Name</label>
 
-                    <span>xyz</span>
+                    <span>{customerName}</span>
 
                     <label >New accounts in the last 6 months</label>
 
-                    <span>123</span>
+                    <span>{newAccountInLast6Month}</span>
 
                 </form>
 
                 <form className="form-inlinew" >
                     <label >Application ID</label>
 
-                    <span>BRI-123456</span>
+                    <span>{applicationId}</span>
 
                     <label >Loan enquiries in last 6 months</label>
 
-                    <span>BRI-123456</span>
+                    <span>{loanEnquiriInLast6Month}</span>
 
                 </form>
 
@@ -96,11 +223,11 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >Loan Application ID</label>
 
-                    <span>56849705</span>
+                    <span>{loanApplicationId}</span>
 
                     <label >Total Unsecured loan outstanding</label>
 
-                    <span>56849705</span>
+                    <span>{totalUnsecureLoanOutstanding}</span>
 
                 </form>
 
@@ -108,113 +235,113 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >Bureau Pull</label>
 
-                    <span>Status</span>
+                    <span>{bureauPullval}</span>
 
                     <label >Total Secured loan outstanding</label>
 
-                    <span>Status</span>
+                    <span>{totalsecureLoanOutstanding}</span>
 
                 </form>
 
                 <form className="form-inlinew" >
                     <label >Bureau Report ID</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{bureauReportId}</span>
 
                     <label >Total Credit card Oustanding</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{totalCredidCardOutstanding}</span>
 
                 </form>
 
                 <form className="form-inlinew" >
                     <label >Bureau Reference Num</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{bureauRefernaceNum}</span>
 
                     <label >Gold loan POS</label>
 
-                    <span>Status</span>
+                    <span>{goldLoanPOS}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Bureau Request Status</label>
 
-                    <span>Status</span>
+                    <span>{bureauRequestStatus}</span>
 
                     <label >Other loan POS</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{otherLoanPOS}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Bureau Pull date:</label>
 
-                    <span>10-10-2021</span>
+                    <span>{bureauPullDate}</span>
 
                     <label >New delinquencies in last 6 months</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{newdelinquenciesinlast6month}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Bureau Pull Response</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{bureauPullResponse}</span>
 
                     <label >Personal loan</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{personalLoan}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Bureau Updated Final Date</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{bureauUpdateFinalDate}</span>
 
                     <label >Home loan</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{homeLoan}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Email id in Bureau (reported latest)</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{emailIdInBureau}</span>
 
                     <label >Credit card</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{creditcard}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >DOB</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{DOB}</span>
 
                     <label >Gold Loan</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{goldLoan}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >PAN</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{pan}</span>
 
                     <label >Other Loan</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{otherLoan}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Bureau Score</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{bureauScore}</span>
 
                     <label >Credit Vintage</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{creditVintage}</span>
 
                 </form>
             </Section>
@@ -222,11 +349,11 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >No Of Active Accounts</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{noOfActiveAcc}</span>
 
                     <label >Total Balance Amount</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{totalBalanceAcc}</span>
 
                 </form>
 
@@ -234,11 +361,11 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >No Of Past Due Accounts :</label>
 
-                    <span>549</span>
+                    <span>{noOfPastDueAcc}</span>
 
                     <label >Total Sanction Amount</label>
 
-                    <span>2549</span>
+                    <span>{totalSanctionAmt}</span>
 
                 </form>
 
@@ -246,11 +373,11 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >Total Past Due</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{totalPastDue}</span>
 
                     <label >Total Monthly Payment Amount</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{totalmonthlyPaymentAmt}</span>
 
                 </form>
 
@@ -258,11 +385,11 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >Oldest Account:</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{oldestAcc}</span>
 
                     <label >Most Severe Status Within 24 Months </label>
 
-                    <span>LAP-000312549</span>
+                    <span>{mostserveStatuswithin24month}</span>
 
                 </form>
 
@@ -270,7 +397,7 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >Recent Account:</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{recentAcc}</span>
 
 
 
@@ -280,11 +407,11 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >Suit Filed</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{suitFiled}</span>
 
                     <label >Wilful Default</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{wilFulDefault}</span>
 
                 </form>
 
@@ -292,11 +419,11 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >Settled Accounts</label>
 
-                    <span>549</span>
+                    <span>{settledAcc}</span>
 
                     <label >Loss Accounts</label>
 
-                    <span>2549</span>
+                    <span>{loassAcc}</span>
 
                 </form>
 
@@ -304,11 +431,11 @@ const CreditB = () => {
                 <form className="form-inlinew" >
                     <label >Written off Accounts</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{writtenOffAcc}</span>
 
                     <label >Sub-Standard Accounts</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{subStandardAcc}</span>
 
                 </form>
             </Section>

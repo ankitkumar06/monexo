@@ -130,7 +130,7 @@ export default function QTabs(props) {
         {/* <Badge badgeContent={4} color="secondary"> */}
         <Tab className="new1"
           sx={{ paddingRight: "30px" }}
-          label={<Badge badgeContent={5} sx={{
+          label={<Badge badgeContent={0} sx={{
             "& .MuiBadge-badge": {
               color: "white",
               backgroundColor: "red",
@@ -141,7 +141,7 @@ export default function QTabs(props) {
             Credit Bureau Details
           </Badge>} {...a11yProps(1)} />
         {/* </Badge> */}
-        <Tab className="new1" label={<Badge badgeContent={5} sx={{
+        <Tab className="new1" label={<Badge badgeContent={0} sx={{
             "& .MuiBadge-badge": {
               color: "white",
               backgroundColor: "red",
@@ -150,7 +150,7 @@ export default function QTabs(props) {
             }
           }}>Customer Information </Badge>} {...a11yProps(2)} sx={{ paddingRight: "30px" }} />
         <Tab className="new1" label="Address & Bank information " {...a11yProps(2)} sx={{ paddingRight: "30px" }} />
-        <Tab className="new1" label= {<Badge badgeContent={5} sx={{
+        <Tab className="new1" label= {<Badge badgeContent={0} sx={{
             "& .MuiBadge-badge": {
               color: "white",
               backgroundColor: "red",
@@ -158,7 +158,7 @@ export default function QTabs(props) {
               top: "7px",
             }
           }}>KYC Information </Badge>} {...a11yProps(2)} sx={{ paddingRight: "30px" }} />
-        <Tab className="new1" label= {<Badge badgeContent={5} sx={{
+        <Tab className="new1" label= {<Badge badgeContent={0} sx={{
             "& .MuiBadge-badge": {
               color: "white",
               backgroundColor: "red",

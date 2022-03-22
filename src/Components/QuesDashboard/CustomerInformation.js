@@ -6,6 +6,10 @@ import { Button } from "@material-ui/core";
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import useCollapse from 'react-collapsed';
+import { useEffect ,useState } from "react";
+import { useSelector } from "react-redux";
+import axios from 'axios';
+import env from '../../enviorment.json';
 
 
 const Section = (props) =>{
@@ -54,6 +58,87 @@ const Section = (props) =>{
 
 
 const CustomerInformation = () =>{
+    const token = useSelector((state)=>state.authRedux.token)
+    const customerId = useSelector((state)=>state.custRedux.customerId)
+    const [rows, setRowsData] = useState([]);
+
+    const [customerIdVal , setCustomerIdVal] = useState('');
+    const [panNumber, setPanNumber] = useState('');
+    const [existingCustomer, setExistingCustomer] = useState('');
+    const [drivingLicence, setDrivingLicence] = useState('');
+    const [applicationId, setApplicationId] = useState('');
+    const [voterId, setVoterId] = useState('');
+    const [loanApplicationId, setLoanApplicationId] = useState('');
+    const [borrowerCompanyCollege, setBorrowerCompanyCollege] = useState('');
+    const [borrowEmploymentStatus, setBorrowEmploymentStatus] = useState('');
+    const [officeEmailId, setOfficeEmailId] = useState('');
+    const [TCAcceptance, setTCAcceptance] = useState('');
+    const [personalEmailId, setPersonalEmailId] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [emailIdVerified, setEmailIdVerified] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [mobileNumber, setMobileNumber] = useState('');
+    const [gender, setGender] = useState('');
+    const [mobileOTPVerified, setMobileOTPVerified] = useState('');
+    const [fatherName, setFatherName] = useState('');
+    const [applicationPermissionLog, setApplicationPermissionLog] = useState('');
+    const [parentContactNumber, setParentContactNumber] = useState('');
+    const [IMIENumber, setIMIENumber] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [InstrumentGeoLAT, setInstrumentGeoLAT] = useState('');
+    const [age, setAge] = useState('');
+    const [InstrumentGeoLONG, setInstrumentGeoLONG] = useState('');
+    const [aadharNumber, setAadharNumber] = useState('');
+
+    const getCustomerInformation = async()=>{
+        try {
+            let valrequired = {
+                customer_id:customerId
+            }
+              await axios.post(env.apiUrl + 'api/teleservice/customer-info/',valrequired,
+              {
+                 headers: {"Authorization" : `Bearer ${token}`}
+      
+              }).then(res =>{
+                let rowsval = res.data.response 
+                setRowsData(rowsval)
+                setCustomerIdVal(res.data.response[0].id)
+                setPanNumber(res.data.response[0].pan_number)
+                setPersonalEmailId(res.data.response[0].personal_email_id)
+                setFirstName(res.data.response[0].firstName)
+                setLastName(res.data.response[0].lastName)
+                setMobileNumber(res.data.response[0].mobile_number)
+                setGender(res.data.response[0].gender)
+                setFatherName(res.data.response[0].fathers_name)
+                setDateOfBirth(res.data.response[0].dob)
+                setAadharNumber(res.data.response[0].aadhar_number)
+                setBorrowerCompanyCollege(res.data.response[0].borrower_comp_clg_name)
+                setOfficeEmailId(res.data.response[0].official_email_id)
+                setParentContactNumber(res.data.response[0].parent_contact_number)
+                setInstrumentGeoLAT(res.data.response[0].instrument_geo_lat)
+                setInstrumentGeoLONG(res.data.response[0].instrument_geo_long)
+                setIMIENumber(res.data.response[0].imie_number)
+                setLoanApplicationId(res.data.response[0].loan_application_id)
+                setExistingCustomer(res.data.response[0].existing_customer)
+                setApplicationId(res.data.response[0].application_id)
+                setBorrowEmploymentStatus(res.data.response[0].borrower_employment_status)
+                setTCAcceptance(res.data.response[0].tc_acceptance)
+                setEmailIdVerified(res.data.response[0].email_id_verified)
+                setMobileOTPVerified(res.data.response[0].mobile_otp_verified)
+                setApplicationPermissionLog(res.data.response[0].application_permission_log)
+                setDrivingLicence(res.data.response[0].driving_licence)
+                setVoterId(res.data.response[0].voter_id)
+                setAge(res.data.response[0].age)
+              })
+          }catch (error) {
+              console.log(error)
+            }
+    }
+
+
+    useEffect(() =>{   
+        getCustomerInformation()
+      },[])
 
     return (
         <div>
@@ -61,11 +146,11 @@ const CustomerInformation = () =>{
                 <form className="form-inlinew" >
                     <label >Customer ID</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{customerIdVal}</span>
 
                     <label  >Pan Number</label>
 
-                    <span className='red'>BQus000312549</span>
+                    <span className='red'>{panNumber}</span>
 
                 </form>
 
@@ -73,22 +158,22 @@ const CustomerInformation = () =>{
                 <form className="form-inlinew" >
                     <label >Existing Customer </label>
 
-                    <span>Yes</span>
+                    <span>{existingCustomer}</span>
 
                     <label >Driving Licence</label>
 
-                    <span>Yes</span>
+                    <span>{drivingLicence}</span>
 
                 </form>
 
                 <form className="form-inlinew" >
                     <label >Application ID</label>
 
-                    <span>BRI-123456</span>
+                    <span>{applicationId}</span>
 
                     <label >Voter ID</label>
 
-                    <span>BRI-123456</span>
+                    <span>{voterId}</span>
 
                 </form>
 
@@ -96,11 +181,11 @@ const CustomerInformation = () =>{
                 <form className="form-inlinew" >
                     <label >Loan Application ID</label>
 
-                    <span>56849705</span>
+                    <span>{loanApplicationId}</span>
 
                     <label >Borrower Company/College Name</label>
 
-                    <span>56849705</span>
+                    <span>{borrowerCompanyCollege}</span>
 
                 </form>
 
@@ -108,99 +193,99 @@ const CustomerInformation = () =>{
                 <form className="form-inlinew" >
                     <label >Borrower Employment Status</label>
 
-                    <span>Status</span>
+                    <span>{borrowEmploymentStatus}</span>
 
                     <label >Official E-mail ID</label>
 
-                    <span>Status</span>
+                    <span>{officeEmailId}</span>
 
                 </form>
 
                 <form className="form-inlinew" >
                     <label >T&c Acceptance</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{TCAcceptance}</span>
 
                     <label >Personal E-mail Id</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{personalEmailId}</span>
 
                 </form>
 
                 <form className="form-inlinew" >
                     <label >First Name</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{firstName}</span>
 
                     <label >E-mail ID Verified</label>
 
-                    <span>Status</span>
+                    <span>{emailIdVerified}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Last Name</label>
 
-                    <span>Status</span>
+                    <span>{lastName}</span>
 
                     <label >Mobile Number</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{mobileNumber}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Gender</label>
 
-                    <span>10-10-2021</span>
+                    <span>{gender}</span>
 
                     <label >Mobile OTP Verified</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{mobileOTPVerified}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Father's Name</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{fatherName}</span>
 
                     <label >Application Permission Log</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{applicationPermissionLog}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Parent Contact Number</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{parentContactNumber}</span>
 
                     <label >IMIE Number</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{IMIENumber}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Date of Birth</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{dateOfBirth}</span>
 
                     <label >Instrument Geo LAT</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{InstrumentGeoLAT}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Age</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{age}</span>
 
                     <label >Instrument Geo LONG</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{InstrumentGeoLONG}</span>
 
                 </form>
                 <form className="form-inlinew" >
                     <label >Aadhar Number</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{aadharNumber}</span>
 
 
                 </form>

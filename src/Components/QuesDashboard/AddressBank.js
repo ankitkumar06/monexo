@@ -1,9 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
-import { useEffect, useCallback } from "react";
-import axios from 'axios';
-import { useState } from "react";
 import * as Yup from 'yup'
 import { Container, Col, Dropdown } from 'react-bootstrap'
 import "./cred.scss";
@@ -17,6 +13,11 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { ArrowDropDownOutlined } from '@mui/icons-material';
 import useCollapse from 'react-collapsed';
+import { useEffect ,useState } from "react";
+import { useSelector } from "react-redux";
+import axios from 'axios';
+import env from '../../enviorment.json';
+
 
  const Section = (props) =>{
     const [open, setOpen] = React.useState(true);
@@ -52,20 +53,86 @@ import useCollapse from 'react-collapsed';
 
 
 const AddressBank = () => {
+    const token = useSelector((state)=>state.authRedux.token)
+    const customerId = useSelector((state)=>state.custRedux.customerId)
+
+    const [addressType , setaddressType] = useState('');
+    const [active, setactive] = useState('');
+    const [flatBlockBildgStreet, setflatBlockBildgStreet] = useState('');
+    const [locality, setlocality] = useState('');
+    const [city, setcity] = useState('');
+    const [subLocality, setsubLocality] = useState('');
+    const [state, setstate] = useState('');
+    const [pincode, setpincode] = useState('');
+    const [bankName, setbankName] = useState('');
+    const [ActiveBank, setActiveBank] = useState('');
+    const [Acc_number, setAcc_number] = useState('');
+    const [bank_branch, setbank_branch] = useState('');
+    const [SMS_dataRead, setSMS_dataRead] = useState('');
+    const [eVerificationDone, seteVerificationDone] = useState('');
+ 
+
+    const getCustomerAddressBankInfo =async  () =>{
+        try {
+            let valrequired = {
+                customer_id:customerId
+            }
+              await axios.post(env.apiUrl + 'api/teleservice/address-bank-information/',valrequired,
+              {
+                 headers: {"Authorization" : `Bearer ${token}`}
+      
+              }).then(res =>{
+                // console.log("demo url" + res.data.response.response)
+                let rowsval = res.data.response 
+                console.log(rowsval)
+                setaddressType(res.data.response[0].address_type)
+                setactive(res.data.response[0].active)
+                setlocality(res.data.response[0].locality)
+                setsubLocality(res.data.response[0].subLocality)
+                setflatBlockBildgStreet(res.data.response[0].flat_block_buldg_street)
+                setcity(res.data.response[0].city)
+                setstate(res.data.response[0].state)
+                setpincode(res.data.response[0].pincode)
+                setSMS_dataRead(res.data.response[0].sms_data_read)
+                setbankName(res.data.response[0].bank_name)
+                setAcc_number(res.data.response[0].acc_number)
+                setbank_branch(res.data.response[0].bank_branch_name)
+                seteVerificationDone(res.data.response[0].eVarificationDone)
+                setActiveBank(res.data.response[0].bankactive)
+              })
+        
+            // } 
+          }catch (error) {
+              console.log(error)
+            }
+
+    }
+
+    useEffect(() =>{   
+        getCustomerAddressBankInfo()
+      },[])
 
     return (
 
         <div >
 
             <Section title="Address Information">
+            {/* {props.items.map((expense) => (
+      <Expenseitem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ))} */}
                 <form className="form-inlinew" >
                     <label >Address Type</label>
 
-                    <span>Residence</span>
+                    <span>{addressType}</span>
 
                     <label >Active</label>
 
-                    <span>Yes</span>
+                    <span>{active}</span>
 
                 </form>
 
@@ -73,11 +140,11 @@ const AddressBank = () => {
                 <form className="form-inlinew" >
                     <label >Flat No/ Block/Buldg Name/Street Name</label>
 
-                    <span>Yes</span>
+                    <span>{flatBlockBildgStreet}</span>
 
                     <label >Locality</label>
 
-                    <span>Yes</span>
+                    <span>{locality}</span>
 
                 </form>
 
@@ -85,11 +152,11 @@ const AddressBank = () => {
                 <form className="form-inlinew" >
                     <label >City</label>
 
-                    <span>BRI-123456</span>
+                    <span>{city}</span>
 
                     <label >Sub Locality</label>
 
-                    <span>BRI-123456</span>
+                    <span>{subLocality}</span>
 
                 </form>
 
@@ -97,71 +164,26 @@ const AddressBank = () => {
                 <form className="form-inlinew" >
                     <label >State </label>
 
-                    <span>MH</span>
+                    <span>{state}</span>
 
                     <label >Pincode</label>
 
-                    <span></span>
+                    <span>{pincode}</span>
 
                 </form>
 
 
-                <form className="form-inlinew" >
-                    <label >Address Type</label>
-
-                    <span>Office/College</span>
-
-                    <label >Active</label>
-
-                    <span>Yes</span>
-
-                </form>
-
-                <form className="form-inlinew" >
-                    <label >Flat No/ Block/Buldg Name/Street Name</label>
-
-                    <span>Yes</span>
-
-                    <label >Locality</label>
-
-                    <span>Yes</span>
-
-                </form>
-
-
-                <form className="form-inlinew" >
-                    <label >City</label>
-
-                    <span>BRI-123456</span>
-
-                    <label >Sub Locality</label>
-
-                    <span>BRI-123456</span>
-
-                </form>
-
-
-                <form className="form-inlinew" >
-                    <label >State </label>
-
-                    <span>MH</span>
-
-                    <label >Pincode</label>
-
-                    <span></span>
-
-                </form>
 
             </Section>
             <Section title="Bank Information" >
                 <form className="form-inlinew" >
                     <label >Bank Name</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{bankName}</span>
 
                     <label >Active</label>
 
-                    <span>LAP-000312549</span>
+                    <span>{ActiveBank}</span>
 
                 </form>
 
@@ -169,11 +191,11 @@ const AddressBank = () => {
                 <form className="form-inlinew" >
                     <label >Account Number</label>
 
-                    <span>1234234549</span>
+                    <span>{Acc_number}</span>
 
                     <label >Bank Branch Name</label>
 
-                    <span>Pune</span>
+                    <span>{bank_branch}</span>
 
                 </form>
 
@@ -181,11 +203,11 @@ const AddressBank = () => {
                 <form className="form-inlinew" >
                     <label >SMS data read</label>
 
-                    <span>Yes</span>
+                    <span>{SMS_dataRead}</span>
 
                     <label >E verification done </label>
 
-                    <span>Yes</span>
+                    <span>{eVerificationDone}</span>
 
                 </form>
             </Section>

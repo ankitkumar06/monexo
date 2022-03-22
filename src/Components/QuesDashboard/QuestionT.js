@@ -184,12 +184,7 @@ const QuestionT = (props) => {
                 setcallSuccessfull("No")
             }
             setcallSuccessfullRemark(rowsval[0].call_fail_reason)
-            if(rowsval[0].call_not_success)
-            {
-                setcallNoSuccess("Yes")
-            }else{
-                setcallNoSuccess("No")
-            }
+            setcallNoSuccess(rowsval[0].call_not_success)
             setcallNoSuccessRemark(rowsval[0].call_not_success_text)
             setoragnisationName(rowsval[0].name_of_oarganization)
             setnetSalary(rowsval[0].net_salary)
