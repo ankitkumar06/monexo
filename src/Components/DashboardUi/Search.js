@@ -135,7 +135,7 @@ const Search =(props)=>{
       </Grid>
   
     </Grid>
-    <Grid item className={seachcss.horizon_line}></Grid>
+    <Grid md={12} item className={seachcss.horizon_line}></Grid>
      <Grid item className={seachcss.papercss} container >
      <Card  className={seachcss.main_css} >
    

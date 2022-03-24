@@ -21,7 +21,7 @@ import Documents from './Documents';
 import Badge from '@mui/material/Badge';
 import CustomerInformation from './CustomerInformation'
 
-
+//In bewo component we added all required tabs and also  MUI styling to it.
 function QTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -168,7 +168,7 @@ export default function QTabs(props) {
           }}>Documents  </Badge>}{...a11yProps(2)} sx={{ paddingRight: "30px" }} />
 
       </Tabs>
-
+      {/* belwo all Tab component render on UI as per we import other component data we need to include here */}
       <QTabPanel value={value} index={0}>
        <QuestionT  usersName={props.usersName} />
       </QTabPanel>

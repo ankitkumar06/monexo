@@ -7,8 +7,12 @@ import Box from '@mui/material/Box';
 import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 import { orange, pink, green } from "@material-ui/core/colors";
 import EnhancedT from './EnhancedT';
+import Referred from './Reffered';
+import Downgrade from './Downgrade';
+import AppDisb from './AppDisb'
 import EnhancedTable from './EnhancedTable';
-import DownloadIcon from '@mui/icons-material/Download';
+import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
+import SyncOutlinedIcon from '@mui/icons-material/SyncOutlined';
 import {Button} from "@material-ui/core";
 import {useEffect } from "react";
 
@@ -153,27 +157,25 @@ export default function BasicTabs(props) {
           <Tab className="new"label="Pending Disbursed" {...a11yProps(2)} />
           {/* <CSVDownload  target="_blank" />; */}
   
-          {/* <Button style={{maxWidth: '30px', maxHeight: '50px', minWidth: '23px', minHeight: '50px', paddingRight:'28px',left:'550px',background:'#2A9134',color:'white'}} variant="contained"  endIcon={<DownloadIcon />} > */}
-          <CSVLink data={data}  headers={headers} style={{ minHeight: '50px', marginLeft:'550px',background:'#2A9134',color:'white',
-           borderRadius: '9px',padding:'10px'}} variant="contained" 
-           >
-            
-            <span style={{paddingTop:'10px'}}><DownloadIcon /></span> 
-        </CSVLink>
-            {/* </Button> */}
+          <Button style={{maxWidth: '30px', borderRadius: '8px', maxHeight: '50px', minWidth: '23px', minHeight: '50px', paddingRight:'28px',left:'490px',background:'#2A9134',color:'white'}} variant="contained"  endIcon={<SyncOutlinedIcon />} > </Button>
+          <CSVLink data={data}  headers={headers} style={{ minHeight: '28px', marginLeft:'500px',background:'#2A9134',color:'white',
+           borderRadius: '8px',padding:'10px'}} variant="contained"> 
+            <span style={{paddingTop:'12px'}}><ArrowDownwardOutlinedIcon /></span> 
+          </CSVLink>
+           
         </Tabs>
         
       <TabPanel value={value} index={0}>
        <EnhancedT startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+      <Referred startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+      <Downgrade startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+      <AppDisb startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
       </TabPanel>
       <TabPanel value={value} index={4}>
         Item Five

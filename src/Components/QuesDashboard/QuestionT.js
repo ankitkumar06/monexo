@@ -723,19 +723,6 @@ const QuestionT = (props) => {
                  <input type="date" id="followup"  name="followup"  value={nextfollowupDate} onChange={followupdateHandler} />
                 
                 <input type="text" id="followup" placeholder="Enter Message" name="followup" value={nextfollowupDateRemark} onChange={followupdateRemarkHandler}  /> 
-                {/* <label for="followup">Next Follow up date </label>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-
-                        value={value}
-                        onChange={(newValue) => {
-                            setValue(newValue);
-                        }}
-                        renderInput={(params) => <TextField {...params} />}
-                    />
-                </LocalizationProvider>
-                <input type="text" id="followup" placeholder="Enter Message" name="followup" /> */}
-
 
             </form>
 

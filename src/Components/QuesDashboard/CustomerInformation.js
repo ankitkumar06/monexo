@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import axios from 'axios';
 import env from '../../enviorment.json';
 
-
+//Here this belwo function used for to show collapse functionality
 const Section = (props) =>{
     const [open, setOpen] = React.useState(true);
     const handleClick = () => {
@@ -56,7 +56,7 @@ const Section = (props) =>{
     );
 }
 
-
+// In belwo function we use above function to pass as prop in Addressbank
 const CustomerInformation = () =>{
     const token = useSelector((state)=>state.authRedux.token)
     const customerId = useSelector((state)=>state.custRedux.customerId)

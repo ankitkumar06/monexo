@@ -20,10 +20,12 @@
 .ellipse-logo{
     width: 29px;
     height: 29px;
-    position: absolute;
+    /* position: absolute; */
+    position: relative;
     top: 13px; 
-    left: 1435.35px;
-   
+    /* left: 1435.35px; */
+    left: 836.35px;
+
    
 }
 
@@ -73,7 +75,7 @@
   background-color: white;
   position: relative;
   top: 25px;
-  left: 83px;
+  left: 78px;
   width: 176px;
   height: 56px;
   border-radius:  8px 0px 0px 8px;
@@ -89,7 +91,7 @@
     background-color: white;
     position: relative;
   top: 25px;
-  right: 3px;
+  right: -20px;
   width: 176px;
   height: 56px;
   border-radius:  0px 8px 8px 0px; 
