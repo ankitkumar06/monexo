@@ -68,7 +68,7 @@ color: #111111;
     position: absolute;
     width: 130px;
     height: 19px;
-    left: 56.8rem;
+    left: 57.9rem;
     top: 22px;
     font-family: Nunito;
     font-style: normal;
@@ -239,7 +239,7 @@ color: #111111;
     grid-auto-flow: row;
     grid-template-columns: repeat(3, 1.0fr);
     justify-items: start;
-    gap: 1.0rem;
+    gap: 1.9rem;
     align-items: center;
     justify-content: start;
     
@@ -364,5 +364,24 @@ color: #111111;
         height: 57px;
   }
 
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 31.8rem;
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 31.8rem;
+  }
+  
+  input::-webkit-datetime-edit {
+    position: relative;
+    left: 5px;
+  }
+  
+//   input::-webkit-datetime-edit-fields-wrapper {
+//     position: relative;
+//     left: 5px;
+//   }
   
   

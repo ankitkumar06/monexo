@@ -1,7 +1,8 @@
 .main_css{
     
     position: sticky;
-    width: 1415px;
+    /* width: 1415px; */
+    width: 1435px;
     /* height: 812px; */
     left: 80px;
     top: 2px;
@@ -16,9 +17,36 @@
 }
 .horizon_line{
     position: absolute;
-    width: 1460px;
+    /* width: 1460px; */
+    width: 1490px;
     height: 0px;
     left: 50px;
     top: 165px;
     border: 1px solid rgba(51, 51, 51, 0.1);
 }
+
+/* 
+.main_css{
+    
+    position: relative;
+    width: 93.8%;
+    height: 812px;
+    left: 45px;
+    top: 2px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    margin-top: 3em;
+    
+}
+.papercss{
+
+     background-color: #e7f0e7e3;   
+}
+.horizon_line{
+    position: absolute;
+    width: 93.6%;
+    height: 0px;
+    left: 45px;
+    top: 165px;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+} */
