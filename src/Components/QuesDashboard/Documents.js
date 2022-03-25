@@ -22,6 +22,7 @@ import env from '../../enviorment.json';
 // import json from '../DashboardUi/demo-data.json';
 import  { useState } from "react";
 import classes from '../DashboardUi/EnhancedT.module.css';
+import { useSelector } from "react-redux";
 
 
 
@@ -38,14 +39,14 @@ function createData(doc_type, doc_name, password, file_type, file_size,uploaded_
     };
   }
   
-  const rows = [
-    createData('Aadhar Front', 'Aadhar-front.PDF', '-', 'PDF', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
-    createData('Aadhar Back', 'Aadhar-front.PDF', '-', 'PDF', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
-    createData('Selfie', 'image.jpge', '-', 'JPGE', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
-    createData('Office/College ID Front', 'image.jpge', '-', 'JPGE', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
-    createData('Video KYC Response URL', 'image.jpge', '-', 'PDF', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
-    createData('Payslip', 'image.jpge', 'GNPOS24996', 'PDF', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
-  ];
+  // const rows = [
+  //   createData('Aadhar Front', 'Aadhar-front.PDF', '-', 'PDF', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
+  //   createData('Aadhar Back', 'Aadhar-front.PDF', '-', 'PDF', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
+  //   createData('Selfie', 'image.jpge', '-', 'JPGE', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
+  //   createData('Office/College ID Front', 'image.jpge', '-', 'JPGE', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
+  //   createData('Video KYC Response URL', 'image.jpge', '-', 'PDF', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
+  //   createData('Payslip', 'image.jpge', 'GNPOS24996', 'PDF', '3MB','10-10-2021',<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>),
+  // ];
 
 
 function descendingComparator(a, b, orderBy) {
@@ -139,7 +140,6 @@ function EnhancedTableHead(props) {
   };
 
   return (
-
     <TableHead
     sx={{
         backgroundColor: "#EAF4EB",
@@ -215,7 +215,8 @@ EnhancedTableToolbar.propTypes = {
 
 export default function Documents(props ,{parentCallback}) {
 //  const {setData} =props;
-
+const token = useSelector((state)=>state.authRedux.token)
+const customerId = useSelector((state)=>state.custRedux.customerId)
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState();
   const [selected, setSelected] = React.useState([]);
@@ -229,7 +230,8 @@ export default function Documents(props ,{parentCallback}) {
   const [countData, setCountData] = useState(0);
   const [isload, setIsLoading] =useState(false)
   const [tmproryrows,setTemporaryRows] = useState([]);
-  const [isRecord, setIsRecord] = useState(false)
+  const [isRecord, setIsRecord] = useState(false);
+  const [rows, setRowsData] = useState([]);
 
 
 
@@ -276,54 +278,47 @@ export default function Documents(props ,{parentCallback}) {
 //     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
 
-    // const fetchCustomerDataHandler =async () =>{
-    //     try {
-    //         let valrequired={
-              
-    //           }
-    //       const token =localStorage.getItem("token")
-    //       setIsLoading(true)
-    //       await axios.post(env.apiUrl + 'api/users/dashboard/',valrequired,
-    //       {
-    //          headers: {"Authorization" : `Bearer ${token}`}
+    const fetchCustomerDataHandler =async () =>{
+        try {
+            let valrequired={
+              customer_id : customerId
+              }
+          setIsLoading(true)
+          await axios.post(env.apiUrl + 'api/teleservice/documents/',valrequired,
+          {
+             headers: {"Authorization" : `Bearer ${token}`}
   
-    //       }).then(res =>{
-    //         let rowsval = res.data.response
-  
+          }).then(res =>{
+            let rowsval = res.data.response          
+              rowsval.map((item) => (
+                item.view = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,
+                item.edit =<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>
+                // key={item.id}
+              ))
             
-            
-    //           rowsval.map((item) => (
-    //             item.view = <Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<EditIcon />}></Button>,
-    //             item.edit = <Button variant="outlined" style={{borderBlockColor:'green',color:'green',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<RoomIcon />}></Button>
-    //             // key={item.id}
-    //           ))
-            
-    //         props.setData(rowsval);
-    //         setRowsData(rowsval)
-    //         setIsLoading(false)
-    //         setdataRender(true);
-    //         if(rowsval.length == 0)
-    //         {
-    //           setIsRecord(true)
-    //         }
+            setRowsData(rowsval)
+            setIsLoading(false)
+            setdataRender(true);
+            if(rowsval.length == 0)
+            {
+              setIsRecord(true)
+            }
            
            
-    //       })
+          })
     
-    //     // } 
-    //   }catch (error) {
-    //       console.log(error)
-    //       // alert("Please login again")
-    //       // navigate('/dashboard')
-    //     }
-    //   }
+        // } 
+      }catch (error) {
+          console.log(error)
+        }
+      }
 
-    //   useEffect(() =>{
+      useEffect(() =>{
 
        
-    //     fetchCustomerDataHandler();
+        fetchCustomerDataHandler();
        
-    //   },[])
+      },[])
 
 
   return (
@@ -367,12 +362,12 @@ export default function Documents(props ,{parentCallback}) {
                     selected={isItemSelected}              
                     >
 
-                      <TableCell component="th" scope='row' id={labelId} align="left">{row.doc_type}</TableCell>
-                      <TableCell align="left">{row.doc_name}</TableCell>
+                      <TableCell component="th" scope='row' id={labelId} align="left">{row.documentType}</TableCell>
+                      <TableCell align="left">{row.documentName}</TableCell>
                       <TableCell align="left">{row.password}</TableCell>
-                      <TableCell align="left">{row.file_type}</TableCell>
-                      <TableCell align="left">{row.file_size}</TableCell>
-                      <TableCell align="left">{row.uploaded_date }</TableCell>
+                      <TableCell align="left">{row.fileType}</TableCell>
+                      <TableCell align="left">{row.fileSize}</TableCell>
+                      <TableCell align="left">{row.uploadedDate }</TableCell>
                       <TableCell align="left">{row.view }</TableCell>
                       <TableCell align="left">{row.edit }</TableCell> 
                     </TableRow>
