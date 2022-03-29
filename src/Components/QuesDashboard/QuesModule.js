@@ -1,5 +1,5 @@
-import React from "react"
-import {Grid,TextField,InputAdornment,Card,CardActions,CardContent} from "@material-ui/core"
+import React, { useState } from "react"
+import { Grid, TextField, InputAdornment, Card, CardActions, CardContent } from "@material-ui/core"
 import SearchIcon from '@material-ui/icons/Search';
 import Stack from "@mui/material/Stack";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -11,36 +11,59 @@ import QTabPanel from "./QTabPanel"
 import DownloadIcon from '@mui/icons-material/Download';
 import { green } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import CredPar2 from "./CredPar2";
+import newcss from "../QuesDashboard/Credpar.module.css";
 
 
 
 
-const QuesModule =(props)=>{
- 
+const QuesModule = (props) => {
+  const [cdn, setCdn] = useState(0)
+  const abc = (value) => {
+    setCdn(value)
 
-  return(
-    
-    
+  }
+
+  return (
+
+
     <div>
-      
-    <Grid className="searchMain" container >
 
-     
-    
-     <Grid item className={seachcss.papercss} container >
-     <Card  className={seachcss.main_css} >
-   
-      <CardContent>
-      <ThemeProvider >
-      </ThemeProvider>
-       <QTabPanel usersName={props.usersName} />
-      </CardContent>
-    </Card>
-     </Grid>
-     </Grid>
+      <Grid className="searchMain" container >
 
-     </div>
-    
+
+
+        <Grid item className={seachcss.papercss} container >
+          <Card className={seachcss.main_css} >
+
+            <CardContent>
+              <ThemeProvider >
+              </ThemeProvider>
+              <QTabPanel usersName={props.usersName} abc={abc} />
+            </CardContent>
+          </Card>
+        </Grid>
+
+
+        {cdn === 0 && <Grid item className={seachcss.papercssn} container >
+        <Grid  >
+       <p className={newcss.ApprovalTxt}>Approval</p>
+      </Grid>
+      <Grid md={11} item className={newcss.horizon_line_new}></Grid>
+          <Card className={seachcss.main_cssn} >
+
+            <CardContent>
+              <ThemeProvider >
+              </ThemeProvider>
+              <CredPar2 />
+            </CardContent>
+          </Card>
+        </Grid>
+        }
+      </Grid>
+
+    </div>
+
   )
 }
 export default QuesModule;

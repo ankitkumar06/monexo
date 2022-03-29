@@ -1,0 +1,161 @@
+.headertab2 {
+  position: absolute;
+  /* margin-left: 1.6rem; */
+  height: 64px;
+  left: 0px;
+  right: 0px;
+  margin-top: 65px;
+  margin-bottom: 8.1rem;
+  width: 100%;
+  background: #eaf4eb;
+}
+
+.labelcred {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+  margin-left: 25px;
+  margin-top: 20px;
+  /* display: flex;
+    align-items: center; */
+}
+
+.labelcred2 {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  align-items: center;
+  margin-right: 150px;
+  margin-top: 20px;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.labelcred3 {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  align-items: center;
+  margin-right: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.spancred2 {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 27px;
+  align-items: center;
+  margin-right: 195px;
+  margin-top: 10px;
+  color: #111111;
+}
+
+.divider_line3 {
+  position: absolute;
+  width: 94.6%;
+  height: 0px;
+  left: 35px;
+  margin-top: 118px;
+  border: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+.divider_line4 {
+  position: absolute;
+  width: 94.6%;
+  height: 0px;
+  left: 35px;
+  margin-top: 240px;
+  border: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+.divider_line5 {
+  position: absolute;
+  width: 94.6%;
+  height: 0px;
+  left: 35px;
+  margin-top: 410px;
+  border: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+.boxcred {
+  background: rgba(42, 145, 52, 0.05);
+  border: 0.5px solid rgba(42, 145, 52, 0.35);
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 30px;
+  width: 312px;
+  height: 97px;
+}
+
+.boxcred2 {
+  background: rgba(42, 145, 52, 0.05);
+  border: 1px solid #dae1e4;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-left: 30px;
+  width: 422px;
+  height: 57px;
+}
+
+.boxcred3 {
+  background: rgba(42, 145, 52, 0.05);
+
+  border: 1px solid #dae1e4;
+  box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-left: 30px;
+  width: 84rem;
+  height: 104px;
+
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(51, 51, 51, 0.6);
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+input[type="select"]:focus {
+  outline: none;
+}
+
+.fieldset.MuiOutlinedInput-notchedOutline{
+  border-color: 'green',
+}
+
+.ApprovalTxt {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-size: 24px;
+  line-height: 32px;
+  float: left;
+  position: relative;
+ margin-top: 90px;
+ margin-left:100px;
+  color: #333333;
+}
+
+
+.horizon_line_new{
+  position: relative;
+  width: 94.6%;
+  height: 0px;
+  left: 75px;
+  margin-top: 145px;
+  border: 1px solid rgba(51, 51, 51, 0.1);
+}
+
