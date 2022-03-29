@@ -7,8 +7,6 @@ import axios from 'axios';
 import { useState } from "react";
 
 
-import * as Yup from 'yup'
-
 import { Container, Col, Button } from 'react-bootstrap'
 import "./ques.scss";
 
