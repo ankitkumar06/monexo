@@ -24,14 +24,45 @@ import {
 
   import image from "../../assets/images/Ellipse.png";
   import { useEffect ,useState} from "react";
+  import { useSelector } from "react-redux";
+  import axios from "axios";
+import env from "../../enviorment.json";
 
 
 
 const CustomerDetails = () =>{
+
+  const token = useSelector((state) => state.authRedux.token)
+  const customerId = useSelector((state)=>state.custRedux.customerId)
   const [custIDval, setcustID] = useState('-');
   const [custNameval, setcustName] = useState('-');
   const [appIDval, setappID] = useState('-');
   const [laonIDval, setlaonID] = useState('-');
+  const [occupation, setoccupation] = useState('-');
+
+
+  const breadcrumHandler = async ()=>{
+
+    try {
+      let valrequired = {
+        customer_id: customerId
+      }
+      await axios.post(env.apiUrl + 'api/teleservice/getbreadcrumData/', valrequired,
+          {
+              headers: { "Authorization": `Bearer ${token}` }
+
+          }).then(res => {
+              // console.log("demo url" + res.data.response.response)
+              let rowsval = res.data.response
+              setlaonID(rowsval.loan_application_id)
+              setoccupation(rowsval.custType)
+              setappID(rowsval.application_id)
+          })
+  } catch (error) {
+      console.log(error)
+  }
+}
+
 
 
 
@@ -44,6 +75,7 @@ const CustomerDetails = () =>{
     let c = localStorage.getItem("appID")
     setappID(c)
     console.log(a)
+    breadcrumHandler();
 
   },[])
 
@@ -111,19 +143,20 @@ const CustomerDetails = () =>{
                 </Grid>
 
                 <Grid item xs direction="column">  
-
                     <div className={classes.load_app_ID}>
-
                     Loan Application ID
-
                     </div>
-
                     <div className={classes.load_app_ID_value}>
-
                         {laonIDval}
-
                     </div>         
-
+                </Grid>
+                <Grid item xs direction="column">  
+                <div className={classes.occuptionCss}>
+                Occupation
+                </div>
+               <div className={classes.occuptionCss_value}>
+                    {occupation}
+                </div>         
                 </Grid>
 
           </Grid>

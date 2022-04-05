@@ -372,6 +372,7 @@ export default function AppDisb(props ,{parentCallback}) {
         // {
 
         let valrequired={
+          status:"APPROVED",
           search: props.searchVal,
           from_date: startdateVal,
           to_date:endDateVal

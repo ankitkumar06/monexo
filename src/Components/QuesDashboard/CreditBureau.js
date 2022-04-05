@@ -96,6 +96,7 @@ const CreditB = () => {
     const [oldestAcc, setoldestAcc] = useState('');
     const [mostserveStatuswithin24month, setmostserveStatuswithin24month] = useState('');
     const [recentAcc, setrecentAcc] = useState('');
+    const [writtenofAccounts, setwrittenofAccounts] = useState('');
     const [suitFiled, setsuitFiled] = useState('');
     const [wilFulDefault, setwilFulDefault] = useState('');
     const [settledAcc, setsettledAcc] = useState('');
@@ -148,22 +149,23 @@ const CreditB = () => {
         setbureauScore(res.data.response[0].beaure_score)
         setcreditVintage(res.data.response[0].credit_vintage)
 
-        setnoOfActiveAcc(res.data.response[0].no_of_active_accounts)
-        settotalBalanceAcc(res.data.response[0].total_balance_amount)
-        setnoOfPastDueAcc(res.data.response[0].no_of_past_due_accounts)
-        settotalSanctionAmt(res.data.response[0].total_sanction_amount)
-        settotalPastDue(res.data.response[0].total_past_due)
-        settotalmonthlyPaymentAmt(res.data.response[0].total_montly_payment_amount)
-        setoldestAcc(res.data.response[0].oldest_account)
-        setmostserveStatuswithin24month(res.data.response[0].most_server_status_within_24_hours)
-        setrecentAcc(res.data.response[0].recent_account)
+        setnoOfActiveAcc(res.data.response[1].no_of_active_accounts)
+        settotalBalanceAcc(res.data.response[1].total_balance_amount)
+        setnoOfPastDueAcc(res.data.response[1].no_of_past_due_accounts)
+        settotalSanctionAmt(res.data.response[1].total_sanction_amount)
+        settotalPastDue(res.data.response[1].total_past_due)
+        settotalmonthlyPaymentAmt(res.data.response[1].total_montly_payment_amount)
+        setoldestAcc(res.data.response[1].oldest_account)
+        setmostserveStatuswithin24month(res.data.response[1].most_server_status_within_24_hours)
+        setrecentAcc(res.data.response[1].recent_account)
+        // setwrittenofAccounts(res.data.response[1].written_of_accounts)
 
-        setsuitFiled(res.data.response[0].suit_field)
-        setwilFulDefault(res.data.response[0].witful_default)
-        setsettledAcc(res.data.response[0].settled_accounts)
-        setloassAcc(res.data.response[0].loss_accounts)
-        setwrittenOffAcc(res.data.response[0].written_of_accounts)
-        setsubStandardAcc(res.data.response[0].sub_standard_accounts)
+        setsuitFiled(res.data.response[2].suit_field)
+        setwilFulDefault(res.data.response[2].willFull_default)
+        setsettledAcc(res.data.response[2].settled_accounts)
+        setloassAcc(res.data.response[2].loss_accounts)
+        setwrittenOffAcc(res.data.response[1].written_of_accounts)
+        setsubStandardAcc(res.data.response[2].sub_standard_accounts)
 
       })
 

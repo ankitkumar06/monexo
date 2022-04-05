@@ -20,14 +20,20 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 // import {Button } from 'react-bootstrap'
 
 // import seachcss from "../DashboardUi/Search.module.css"
 
+
 export default function CredPar2(props, { parentCallback }) {
-  //  const {setData} =props;
-  const token = useSelector((state) => state.authRedux.token);
+
+  const token = useSelector((state) => state.authRedux.token)
+  const customerId = useSelector((state)=>state.custRedux.customerId)
+  const auth = useSelector((state)=>state.authRedux.userName)
+
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState();
   const [selected, setSelected] = React.useState([]);
@@ -45,100 +51,233 @@ export default function CredPar2(props, { parentCallback }) {
   let storetempdata = [];
   const navigate = useNavigate();
 
-  const fetchCustomerDataHandler = async () => {
-    try {
-      let today = new Date(props.startDate);
-      let startdateVal =
-        today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
-      let endDateVal =
-        props.endDate.getFullYear() +
-        "-" +
-        props.endDate.getMonth() +
-        "-" +
-        props.endDate.getDate();
-      if (startdateVal === endDateVal) {
-        props.startDate.setDate(props.startDate.getDate() - 10);
-      }
-      startdateVal =
-        today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+  const [appnameMatchStudent, setappnameMatchStudent] = React.useState('-');
+  const [nameAsPerApplication, setnameAsPerApplication] = React.useState('-');
+  const [nameAsPerCollegeIdCard, setnameAsPerCollegeIdCard] = React.useState('-');
+  const [namePerctMatch, setnamePerctMatch] = React.useState('-');
+  const [clgEmpNameMatch, setclgEmpNameMatch] = React.useState('-');
+  const [clgEmpNameAsPerApp, setclgEmpNameAsPerApp] = React.useState('-');
+  const [clgNameasPerIdCard, setclgNameasPerIdCard] = React.useState('-');
+  const [clgPerctMatch, setclgPerctMatch] = React.useState('-');
 
-      // if(startdateVal < endDateVal)
-      // {
+  const [finalOfferResult, setfinalOfferResult] = React.useState('0');
+  const [finalQuoteTenor, setfinalQuoteTenor] = React.useState('0');
+  const [finalQuoteLoanAmt, setfinalQuoteLoanAmt] = React.useState('0');
+  const [finalQuoteIntrest, setfinalQuoteIntrest] = React.useState('0');
+  const [rejectCode, setrejectCode] = React.useState([]);
+  const [productList, setproductList] = React.useState([]);
+  const [decision, setdecision] = React.useState([]);
+  const [decisionVal, setdecisionVal] = React.useState('');
+  const [rejectCodeVal, setrejectCodeVal] = React.useState('');
+  const [productVal, setproductVal] = React.useState('');
 
-      let valrequired = {
-        search: props.searchVal,
-        from_date: startdateVal,
-        to_date: endDateVal,
-      };
+  const [approverRemark, setapproverRemark] = React.useState('');
+  const [appAssignTo, setappAssignTo] = React.useState('-');
+  const [appAssignDate, setappAssignDate] = React.useState('');
+  const [approverLoanAmount, setapproverLoanAmount] = React.useState('0');
 
-      // const token =localStorage.getItem("token")
-      setIsLoading(true);
-      await axios
-        .post(env.apiUrl + "api/users/dashboard/", valrequired, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-          // console.log("demo url" + res.data.response.response)
-          let rowsval = res.data.response;
-
-          rowsval.map(
-            (item) =>
-              (item.Override = <Button variant="outlined">Override</Button>)
-
-            // key={item.id}
-          );
-          props.setData(rowsval);
-          setRowsData(rowsval);
-          setIsLoading(false);
-          setdataRender(true);
-          if (rowsval.length == 0) {
-            setIsRecord(true);
-          }
-        });
-
-      // }
-    } catch (error) {
-      console.log(error);
-      // alert("Please login again")
-      // navigate('/dashboard')
-    }
-  };
-
-  useEffect(() => {
-    // setdataRender(true)
-    // const dashboard = {
-    //   search: props.searchVal,
-    //   startdate: props.startDate,
-    //   endDate :props.endDate
-    // };
-
-    fetchCustomerDataHandler();
-    // console.log(dashboard)
-  }, []);
 
   const tablerowClickHandler = () => {
     // console.log("table row click" + values)
   };
 
-  // useEffect(() => {
-  //   fetchCustomerDataHandler();
-  // }, []);
+  const handleChangeDense = (event) => {
+    setDense(event.target.checked);
+};
 
-  const [decision, setDecision] = React.useState("");
-  const [code, setCode] = React.useState("");
-  const [product, setProduct] = React.useState("");
+const isSelected = (name) => selected.indexOf(name) !== -1;
 
-  const handleChange = (event) => {
-    setDecision(event.target.value);
-  };
+// Avoid a layout jump when reaching the last page with empty rows.
+const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const handleChangenew = (event) => {
-    setCode(event.target.value);
-  };
+const fetchcreditParameter= async () => {
+    try {
 
-  const handleChangenew2 = (event) => {
-    setProduct(event.target.value);
-  };
+        let valrequired = {
+            customer_id: customerId
+        }
+
+        // const token =localStorage.getItem("token")
+        setIsLoading(true)
+        await axios.post(env.apiUrl + 'api/teleservice/getCreditParameter/', valrequired,
+            {
+                headers: { "Authorization": `Bearer ${token}` }
+
+            }).then(res => {
+                // console.log("demo url" + res.data.response.response)
+              
+                setappnameMatchStudent(res.data.response1.appnameMatchStudent)
+                setnameAsPerApplication(res.data.response1.nameAsPerApplication)
+                setnameAsPerCollegeIdCard(res.data.response1.nameAsPerCollegeIdCard)
+                setnamePerctMatch(res.data.response1.namePerctMatch)
+                setclgEmpNameMatch(res.data.response1.clgEmpNameMatch)
+                setclgEmpNameAsPerApp(res.data.response1.clgEmpNameAsPerApp)
+                setclgNameasPerIdCard(res.data.response1.clgNameasPerIdCard)
+                setclgPerctMatch(res.data.response1.clgPerctMatch)
+                setfinalOfferResult(res.data.response1.finalOfferResult)
+                setfinalQuoteTenor(res.data.response1.finalQuoteTenor)
+                setfinalQuoteLoanAmt(res.data.response1.finalQuoteLoanAmt)
+                setfinalQuoteIntrest(res.data.response1.finalQuoteIntrest)
+                setrejectCode(res.data.response1.rejectCode)
+                setproductList(res.data.response1.productList)
+                setappAssignTo(auth)
+                setapproverRemark(res.data.response1.approverRemark)
+                setappAssignDate(res.data.response1.appAssignDate)
+                setapproverLoanAmount(res.data.response1.apploanAmount)
+
+
+            })
+
+        // } 
+    } catch (error) {
+        console.log(error)
+        // alert("Please login again")
+        // navigate('/dashboard')
+    }
+}
+
+const handleChangeDecision=(event)=>{
+  let item = event.target.value;
+  setdecisionVal(item)
+}
+
+const rejectCodeHandler=(event)=>{
+  let item = event.target.innerHTML;
+  if(!item.startsWith("<"))
+  {
+    setrejectCodeVal(item)
+  }else{
+    setrejectCodeVal('')
+  }
+}
+
+const productHandler=(event)=>{
+  let item = event.target.innerHTML;
+  if(!item.startsWith("<"))
+  {
+    setproductVal(item)
+  }else{
+    setproductVal('')
+  }
+}
+const approverRemarkHandler=(event)=>{
+  let item = event.target.value;
+  setapproverRemark(item)
+}
+
+
+const submittingForm =async () =>{
+
+  try {
+      // let today = new Date();
+      // let currentD  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+      // setcurrentDate(currentD)
+      let valrequired={
+          customerId : customerId,
+          decisionVal:decisionVal,
+          rejectCodeVal :rejectCodeVal,
+          productVal : productVal,
+          approverRemark : approverRemark,
+          appAssignTo : appAssignTo,
+          appAssignDate : appAssignDate,
+          approverLoanAmount : approverLoanAmount
+
+     
+      }
+      console.log(valrequired)
+      // const token =localStorage.getItem("token")
+      // await axios.post(env.apiUrl + 'api/teleservice/submit-questionnare/',valrequired,
+      // {
+      //    headers: {"Authorization" : `Bearer ${token}`}
+
+      // }).then(res =>{
+      //   // console.log("demo url" + res.data.response.response)
+      //   let rowsval = res.data.message   
+      //   console.log(rowsval)         
+       
+      // })
+
+    // } 
+  }catch (error) {
+      console.log(error)
+    }
+
+}
+
+useEffect(() => {
+
+    fetchcreditParameter();
+    // console.log(dashboard)
+}, [])
+
+ 
+
+  const productListHandler = async (event)=>{
+    let item = event.target.innerHTML;
+    try {
+
+      let valrequired = {
+        product_id: item
+      }
+      setIsLoading(true)
+      await axios.post(env.apiUrl + 'api/teleservice/getProductname/', valrequired,
+          {
+              headers: { "Authorization": `Bearer ${token}` }
+
+          }).then(res => {
+              // console.log("demo url" + res.data.response.response)
+              let rowsval = res.data.response
+              setapproverLoanAmount(rowsval[0].approverLoanAmount)
+          })
+
+      // } 
+  } catch (error) {
+      console.log(error)
+  }
+    
+}
+
+const submitButonhandler=async () =>{
+
+  try {
+      let today = new Date();
+      let currentD  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+      // setcurrentDate(currentD)
+      let valrequired={
+          // customer_id : customer_id,
+          // callbyUser : callByUser,
+          // currentDate: currentDate,
+          // currentDateRemark:currentDateRemark,
+          // callSuccessfull :callSuccessfull,
+          // callSuccessfullRemark : callSuccessfullRemark,
+          // callNoSuccess : callNoSuccess,
+          // callNoSuccessRemark : callNoSuccessRemark,
+          // oragnisationName :oragnisationName,
+          // netSalary : netSalary,
+          // paySlip : paySlip,
+      
+      }
+
+      // const token =localStorage.getItem("token")
+      // await axios.post(env.apiUrl + 'api/teleservice/submit-creditParameter/',valrequired,
+      // {
+      //    headers: {"Authorization" : `Bearer ${token}`}
+
+      // }).then(res =>{
+      //   // console.log("demo url" + res.data.response.response)
+      //   let rowsval = res.data.message   
+      //   console.log(rowsval)         
+       
+      // })
+
+    // } 
+  }catch (error) {
+      console.log(error)
+    }
+
+}
+
 
   return (
     <div>
@@ -148,22 +287,22 @@ export default function CredPar2(props, { parentCallback }) {
             <Grid className={newcss.labelcred}>
               Applicant Name match-Student ID
             </Grid>
-            <Grid> cerdit-beaure-details/</Grid>
+            <Grid>{appnameMatchStudent}</Grid>
           </Grid>
           <Grid item xs={3}>
             <Grid className={newcss.labelcred}>Name as per application</Grid>
-            <Grid> cerdit-beaure-details/</Grid>
+            <Grid> {nameAsPerApplication}</Grid>
           </Grid>
 
           <Grid item xs={2}>
             <Grid className={newcss.labelcred}>
               Name as per College ID Card
             </Grid>
-            <Grid> cerdit-beaure-details/</Grid>
+            <Grid> {nameAsPerCollegeIdCard}</Grid>
           </Grid>
           <Grid item xs={3}>
             <Grid className={newcss.labelcred}>% of match</Grid>
-            <Grid> cerdit-beaure-details/</Grid>
+            <Grid>{namePerctMatch}</Grid>
           </Grid>
 
           <Grid item xs={2}>
@@ -192,24 +331,24 @@ export default function CredPar2(props, { parentCallback }) {
             <Grid className={newcss.labelcred}>
               College / Employer Name match
             </Grid>
-            <Grid> cerdit-beaure-details/</Grid>
+            <Grid> {clgEmpNameMatch}</Grid>
           </Grid>
           <Grid item xs={3}>
             <Grid className={newcss.labelcred}>
               College/Employer name as per application
             </Grid>
-            <Grid> cerdit-beaure-details/</Grid>
+            <Grid> {clgEmpNameAsPerApp}</Grid>
           </Grid>
 
           <Grid item xs={2}>
             <Grid className={newcss.labelcred}>
               College/Employer Name as per ID or salary credit
             </Grid>
-            <Grid> cerdit-beaure-details/</Grid>
+            <Grid> {clgNameasPerIdCard}</Grid>
           </Grid>
           <Grid item xs={3}>
             <Grid className={newcss.labelcred}>% of match</Grid>
-            <Grid> cerdit-beaure-details/</Grid>
+            <Grid> {clgPerctMatch}</Grid>
           </Grid>
 
           <Grid item xs={2}>
@@ -236,7 +375,7 @@ export default function CredPar2(props, { parentCallback }) {
         <Grid container item md={12}>
           <div item className={newcss.boxcred}>
             <Grid className={newcss.labelcred2}>Final Offer Result</Grid>
-            <Grid className={newcss.spancred2}>RESULT</Grid>
+            <Grid className={newcss.spancred2}>{finalOfferResult}</Grid>
           </div>
           <div item className={newcss.boxcred}>
             <Grid
@@ -245,16 +384,16 @@ export default function CredPar2(props, { parentCallback }) {
             >
               Final Quote Loan amount
             </Grid>
-            <Grid className={newcss.spancred2}>RESULT</Grid>
+            <Grid className={newcss.spancred2}>{finalQuoteLoanAmt}</Grid>
           </div>
 
           <div item className={newcss.boxcred}>
             <Grid className={newcss.labelcred2}>Final Quote Tenord</Grid>
-            <Grid className={newcss.spancred2}>RESULT</Grid>
+            <Grid className={newcss.spancred2}>{finalQuoteTenor}</Grid>
           </div>
           <div item className={newcss.boxcred}>
             <Grid className={newcss.labelcred2}>Final Quote Interest</Grid>
-            <Grid className={newcss.spancred2}>RESULT</Grid>
+            <Grid className={newcss.spancred2}>{finalQuoteIntrest}</Grid>
           </div>
         </Grid>
         <Grid className={newcss.divider_line5}></Grid>
@@ -270,12 +409,13 @@ export default function CredPar2(props, { parentCallback }) {
                     id="demoid"
                     value={decision}
                     label="Decision"
-                    onChange={handleChange}
+                    onChange={handleChangeDecision}
                   >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value={10}>Approve</MenuItem>
+                    <MenuItem value={20}>Reject</MenuItem>
+                    
                   </Select>
+                  
                 </FormControl>
               </Grid>
             </div>
@@ -290,18 +430,24 @@ export default function CredPar2(props, { parentCallback }) {
             <div item className={newcss.boxcred2}>
               <Grid>
                 <FormControl fullWidth>
-                  <InputLabel id="code">Select Reject Code</InputLabel>
-                  <Select
+                  {/* <label id="code"></label> */}
+                  {/* <Select
                     labelId="demo"
                     id="demoid"
-                    value={code}
+                    value={rejectCode}
                     label="Select Reject Code"
                     onChange={handleChangenew}
                   >
-                    <MenuItem value={10}>new</MenuItem>
-                    <MenuItem value={20}>abc</MenuItem>
-                    <MenuItem value={30}>xuz</MenuItem>
-                  </Select>
+                  </Select> */}
+                  <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={rejectCode}
+                sx={{ width: 430 }}
+                value={rejectCodeVal} 
+                onChange={rejectCodeHandler}
+                renderInput={(params) => <TextField {...params} label="Select Reject Code" />}
+                />
                 </FormControl>
               </Grid>
             </div>
@@ -317,7 +463,7 @@ export default function CredPar2(props, { parentCallback }) {
             <div item className={newcss.boxcred2}>
               <Grid>
                 <FormControl fullWidth>
-                  <InputLabel id="product">Product Name</InputLabel>
+                  {/* <InputLabel id="product">Product Name</InputLabel>
                   <Select
                     labelId="demo"
                     id="demoid"
@@ -328,7 +474,17 @@ export default function CredPar2(props, { parentCallback }) {
                     <MenuItem value={10}>Ten</MenuItem>
                     <MenuItem value={20}>Twenty</MenuItem>
                     <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
+                  </Select> */}
+
+                  <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={productList}
+                sx={{ width: 430 }}
+                value={productVal} 
+                onChange={productHandler}
+                renderInput={(params) => <TextField {...params} label="Product Name" />}
+                />
                 </FormControl>
               </Grid>
             </div>
@@ -347,7 +503,9 @@ export default function CredPar2(props, { parentCallback }) {
                 <input
                   className={newcss.boxcred3}
                   type="text"
+                  value={approverRemark}
                   placeholder="Enter Message"
+                  onChange={approverRemarkHandler}
                 />
               </Grid>
             </div>
@@ -359,23 +517,24 @@ export default function CredPar2(props, { parentCallback }) {
             <Grid className={newcss.labelcred2}>
             APP Assigned to
             </Grid>
-            <Grid style={{marginLeft:'40px'}} className={newcss.spancred2}> John Parker</Grid>
+            <Grid style={{marginLeft:'40px'}} className={newcss.spancred2}> {appAssignTo}</Grid>
           </Grid>
           <Grid item xs={3}>
             <Grid className={newcss.labelcred2}>App Assigned Date</Grid>
-            <Grid style={{marginLeft:'15px'}} className={newcss.spancred2}> 20-01-2021</Grid>
+            <Grid style={{marginLeft:'15px'}} className={newcss.spancred2}> {appAssignDate}</Grid>
           </Grid>
 
           <Grid item xs={3}>
             <Grid className={newcss.labelcred2}>
             Approver Loan Amount
             </Grid>
-            <Grid style={{marginLeft:'-50px', color:'green'}} className={newcss.spancred2}> 30,000</Grid>
+            <Grid style={{marginLeft:'-50px', color:'green'}} className={newcss.spancred2}> {approverLoanAmount}</Grid>
           </Grid>
           <Grid item xs={3}>
             <Grid>
             
-            <Button style={{padding:'17px 54px', marginTop:"15px", marginLeft:'130px'}} variant="contained" color="success">
+            <Button style={{padding:'17px 54px', marginTop:"15px", marginLeft:'130px'}} variant="contained" color="success" 
+            onClick={submitButonhandler}>
         SUBMIT
       </Button>
 

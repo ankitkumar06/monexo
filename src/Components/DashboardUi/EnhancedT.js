@@ -366,18 +366,21 @@ export default function EnhancedT(props ,{parentCallback}) {
       
 
         let today = new Date(props.startDate);
-        let startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
-        let endDateVal  = props.endDate.getFullYear() + "-"+props.endDate.getMonth()  + "-" +props.endDate.getDate() ;
+        let month = today.getMonth() +1
+        let startdateVal  = today.getFullYear() + "-"+month + "-" +today.getDate();
+        let Endmonth = props.endDate.getMonth() +1
+        let endDateVal  = props.endDate.getFullYear() + "-"+Endmonth + "-" +props.endDate.getDate() ;
         if(startdateVal === endDateVal)
         {
           props.startDate.setDate(props.startDate.getDate() - 10)
         }
-        startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+        startdateVal  = today.getFullYear() + "-"+month + "-" +today.getDate();
 
         // if(startdateVal < endDateVal)
         // {
 
         let valrequired={
+          status:"Work In Progress",
           search: props.searchVal,
           from_date: startdateVal,
           to_date:endDateVal
@@ -395,7 +398,7 @@ export default function EnhancedT(props ,{parentCallback}) {
 
           if(props.searchVal != "")
           {
-            rowsval.call = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
+            rowsval[0].call = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
             setCountData(1);
           }
           else{

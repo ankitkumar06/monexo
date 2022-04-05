@@ -373,6 +373,7 @@ export default function Downgrade(props ,{parentCallback}) {
         // {
 
         let valrequired={
+          status:"DOWNGRADE",
           search: props.searchVal,
           from_date: startdateVal,
           to_date:endDateVal

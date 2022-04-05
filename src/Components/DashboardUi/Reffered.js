@@ -372,6 +372,7 @@ export default function Reffered(props ,{parentCallback}) {
         // {
 
         let valrequired={
+          status:"REFERRED",
           search: props.searchVal,
           from_date: startdateVal,
           to_date:endDateVal
