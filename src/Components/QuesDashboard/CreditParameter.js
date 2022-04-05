@@ -234,6 +234,7 @@ EnhancedTableToolbar.propTypes = {
 export default function CreditParameter(props, { parentCallback }) {
     //  const {setData} =props;
     const token = useSelector((state) => state.authRedux.token)
+    const customerId = useSelector((state)=>state.custRedux.customerId)
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState();
     const [selected, setSelected] = React.useState([]);
@@ -251,11 +252,20 @@ export default function CreditParameter(props, { parentCallback }) {
     let storetempdata = [];
     const navigate = useNavigate();
 
+    const [appnameMatchStudent, setappnameMatchStudent] = React.useState('');
+    const [nameAsPerApplication, setnameAsPerApplication] = React.useState('');
+    const [nameAsPerCollegeIdCard, setnameAsPerCollegeIdCard] = React.useState('');
+    const [namePerctMatch, setnamePerctMatch] = React.useState('');
+    const [clgEmpNameMatch, setclgEmpNameMatch] = React.useState('');
+    const [clgEmpNameAsPerApp, setclgEmpNameAsPerApp] = React.useState('');
+    const [clgNameasPerIdCard, setclgNameasPerIdCard] = React.useState('');
+    const [clgPerctMatch, setclgPerctMatch] = React.useState('');
 
+    const [finalOfferResult, setfinalOfferResult] = React.useState('');
+    const [finalQuoteTenor, setfinalQuoteTenor] = React.useState('');
+    const [finalQuoteLoanAmt, setfinalQuoteLoanAmt] = React.useState('');
+    const [finalQuoteIntrest, setfinalQuoteIntrest] = React.useState('');
 
-    // React.useEffect(() => {
-    //   childFunc.current = fetchCustomerDataHandler
-    //   }, [])
 
 
     const handleRequestSort = (event, property) => {
@@ -276,44 +286,11 @@ export default function CreditParameter(props, { parentCallback }) {
     const handleClick = (event, name) => {
         console.log("table row click" + name)
 
-        localStorage.setItem("custID", name.customer_id)
-        localStorage.setItem("custName", name.customer_name)
-        localStorage.setItem("appID", name.app_id)
-        navigate('/questionnaire')
-        // localStorage.setItem("custID",name)
-        // const selectedIndex = selected.indexOf(name);
-        // let newSelected = [];
-
-        // if (selectedIndex === -1) {
-        //   newSelected = newSelected.concat(selected, name);
-        // } else if (selectedIndex === 0) {
-        //   newSelected = newSelected.concat(selected.slice(1));
-        // } else if (selectedIndex === selected.length - 1) {
-        //   newSelected = newSelected.concat(selected.slice(0, -1));
-        // } else if (selectedIndex > 0) {
-        //   newSelected = newSelected.concat(
-        //     selected.slice(0, selectedIndex),
-        //     selected.slice(selectedIndex + 1)
-        //   );
-        // }
-
-        // setSelected(newSelected);
+      
+     
     };
 
-    //   const handleChangePage = (event, newPage) => {
-    //     console.log(event);
-    //     console.log(newPage);
-    //     let pagecount = newPage * 10
-    //     setPagination(pagecount);
-    //     // fetchCustomerDataHandler()
-    //     setPage(newPage);
-
-    //   };
-
-    //   const handleChangeRowsPerPage = (event) => {
-    //     setRowsPerPage(parseInt(event.target.value, 10));
-    //     setPage(0);
-    //   };
+ 
 
     const handleChangeDense = (event) => {
         setDense(event.target.checked);
@@ -325,42 +302,36 @@ export default function CreditParameter(props, { parentCallback }) {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-    const fetchCustomerDataHandler = async () => {
+    const fetchcreditParameter= async () => {
         try {
 
-
-            let today = new Date(props.startDate);
-            let startdateVal = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
-            let endDateVal = props.endDate.getFullYear() + "-" + props.endDate.getMonth() + "-" + props.endDate.getDate();
-            if (startdateVal === endDateVal) {
-                props.startDate.setDate(props.startDate.getDate() - 10)
-            }
-            startdateVal = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
-
-            // if(startdateVal < endDateVal)
-            // {
-
             let valrequired = {
-                search: props.searchVal,
-                from_date: startdateVal,
-                to_date: endDateVal
+                customer_id: customerId
             }
 
             // const token =localStorage.getItem("token")
             setIsLoading(true)
-            await axios.post(env.apiUrl + 'api/users/dashboard/', valrequired,
+            await axios.post(env.apiUrl + 'api/teleservice/getCreditParameter/', valrequired,
                 {
                     headers: { "Authorization": `Bearer ${token}` }
 
                 }).then(res => {
                     // console.log("demo url" + res.data.response.response)
                     let rowsval = res.data.response
+                    rowsval.filter((item) =>{
+                        if(item.override)
+                        {
+                            item.Override = <Button variant="outlined" >Override</Button>
+                        }
 
-                    rowsval.map((item) => (
-                        item.Override = <Button variant="outlined" >Override</Button>
+                    })
 
-                        // key={item.id}
-                    ))
+                    // rowsval.map((item) => (
+                    //     if(item.override){
+                    //         item.Override = <Button variant="outlined" >Override</Button>
+                    //     }
+                        
+                    // ))
                     props.setData(rowsval);
                     setRowsData(rowsval)
                     setIsLoading(false)
@@ -368,6 +339,9 @@ export default function CreditParameter(props, { parentCallback }) {
                     if (rowsval.length == 0) {
                         setIsRecord(true)
                     }
+
+
+
 
 
                 })
@@ -382,16 +356,9 @@ export default function CreditParameter(props, { parentCallback }) {
 
     useEffect(() => {
 
-        // setdataRender(true)
-        // const dashboard = {
-        //   search: props.searchVal,
-        //   startdate: props.startDate,
-        //   endDate :props.endDate
-        // };
-
-        fetchCustomerDataHandler();
+        fetchcreditParameter();
         // console.log(dashboard)
-    }, [props.searchVal, props.startDate, props.endDate])
+    }, [])
 
     const tablerowClickHandler = () => {
 
@@ -402,6 +369,46 @@ export default function CreditParameter(props, { parentCallback }) {
     // useEffect(() => {
     //   fetchCustomerDataHandler();
     // }, []);
+
+    const overrideHandler =async () =>{
+        console.log('in override')
+        try {
+            let today = new Date();
+            let currentD  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+            // setcurrentDate(currentD)
+            let valrequired={
+                // customer_id : customer_id,
+                // callbyUser : callByUser,
+                // currentDate: currentDate,
+                // currentDateRemark:currentDateRemark,
+                // callSuccessfull :callSuccessfull,
+                // callSuccessfullRemark : callSuccessfullRemark,
+                // callNoSuccess : callNoSuccess,
+                // callNoSuccessRemark : callNoSuccessRemark,
+                // oragnisationName :oragnisationName,
+                // netSalary : netSalary,
+                // paySlip : paySlip,
+            
+            }
+      
+            // const token =localStorage.getItem("token")
+            // await axios.post(env.apiUrl + 'api/teleservice/submit-creditParameter/',valrequired,
+            // {
+            //    headers: {"Authorization" : `Bearer ${token}`}
+      
+            // }).then(res =>{
+            //   // console.log("demo url" + res.data.response.response)
+            //   let rowsval = res.data.message   
+            //   console.log(rowsval)         
+             
+            // })
+      
+          // } 
+        }catch (error) {
+            console.log(error)
+          }
+      
+      }
 
     return (
         <div>
@@ -462,14 +469,14 @@ export default function CreditParameter(props, { parentCallback }) {
                                                 className={classes.rowCursor}
 
                                             >
-                                                {row.customer_id}
+                                                {row.creditParamter}
                                             </TableCell>
-                                            <TableCell align="left" className={classes.rowCursor} >{row.cred_par}</TableCell>
-                                            <TableCell align="left" className={classes.rowCursor}  >{row.exp_val}</TableCell>
-                                            <TableCell align="left">{row.unit}</TableCell>
+                                            <TableCell align="left" className={classes.rowCursor} >{row.expectedValue}</TableCell>
+                                            <TableCell align="left" className={classes.rowCursor}  >{row.unit}</TableCell>
                                             <TableCell align="left">{row.value}</TableCell>
                                             <TableCell align="left">{row.result}</TableCell>
-                                            <TableCell align="left">{row.Override}</TableCell>
+                                            <TableCell align="left" onClick={overrideHandler}>{row.Override}</TableCell>
+                                            {/* <TableCell align="left">{row.Override}</TableCell> */}
                                         </TableRow>
 
 

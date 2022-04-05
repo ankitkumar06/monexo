@@ -284,41 +284,19 @@
 }
 
 .load_app_ID_value{
-
     position: absolute;
-
     width: 124px;
-
     height: 22px;
-
     left: 1140px;
-
     top: 50px;
-
     top: 135px;
-
-    
-
     font-family: Nunito;
-
     font-style: normal;
-
     font-weight: bold;
-
     font-size: 16px;
-
     line-height: 22px;
-
-    /* identical to box height */
-
-    
-
     display: flex;
-
     align-items: center;
-
-    
-
     color: #111111;
 
 }
@@ -355,5 +333,57 @@
     background-color: #FAFAFA;
 
     text-align: left ;   
+
+}
+
+.occuptionCss{
+
+    position: absolute;
+
+    width: 124px;
+
+    height: 19px;
+
+    left: 1342px;
+
+    top: 25px;   
+
+    top: 105px;   
+
+    font-family: Nunito;
+
+    font-style: normal;
+
+    font-weight: normal;
+
+    font-size: 14px;
+
+    line-height: 19px;
+
+    /* identical to box height */  
+
+    display: flex;
+
+    align-items: center;   
+
+    color: rgba(17, 17, 17, 0.6);
+
+}
+
+.occuptionCss_value{
+    position: absolute;
+    width: 124px;
+    height: 22px;
+    left: 1344px;
+    top: 50px;
+    top: 135px;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    color: #111111;
 
 }
