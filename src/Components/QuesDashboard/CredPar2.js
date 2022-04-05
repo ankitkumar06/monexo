@@ -153,6 +153,7 @@ const rejectCodeHandler=(event)=>{
 }
 
 const productHandler=(event)=>{
+  productListHandler()
   let item = event.target.innerHTML;
   if(!item.startsWith("<"))
   {
@@ -174,31 +175,29 @@ const submittingForm =async () =>{
       // let currentD  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
       // setcurrentDate(currentD)
       let valrequired={
-          customerId : customerId,
-          decisionVal:decisionVal,
-          rejectCodeVal :rejectCodeVal,
-          productVal : productVal,
-          approverRemark : approverRemark,
-          appAssignTo : appAssignTo,
-          appAssignDate : appAssignDate,
-          approverLoanAmount : approverLoanAmount
+        customer_id : customerId,
+        approver_final_decision:decisionVal,
+        reject_code :rejectCodeVal,
+        product_offered : productVal,
+        approver_remark : approverRemark,
+        approver_user : appAssignTo,
+        app_assigned_date : appAssignDate,
+        approve_loan_amount : approverLoanAmount
 
      
       }
       console.log(valrequired)
-      // const token =localStorage.getItem("token")
-      // await axios.post(env.apiUrl + 'api/teleservice/submit-questionnare/',valrequired,
-      // {
-      //    headers: {"Authorization" : `Bearer ${token}`}
+      const token =localStorage.getItem("token")
+      await axios.post(env.apiUrl + 'api/approvers/add-approvals/',valrequired,
+      {
+         headers: {"Authorization" : `Bearer ${token}`}
 
-      // }).then(res =>{
-      //   // console.log("demo url" + res.data.response.response)
-      //   let rowsval = res.data.message   
-      //   console.log(rowsval)         
+      }).then(res =>{
+        // console.log("demo url" + res.data.response.response)
+        let rowsval = res.data.response   
+        console.log(rowsval)         
        
-      // })
-
-    // } 
+      })
   }catch (error) {
       console.log(error)
     }
@@ -277,6 +276,30 @@ const submitButonhandler=async () =>{
     }
 
 }
+const eyeButtonhandler =async ()=>{
+
+try {
+
+        let valrequired = {
+            customer_id: customerId
+        }
+
+        // const token =localStorage.getItem("token")
+        setIsLoading(true)
+        await axios.post(env.apiUrl + 'api/teleservice/getCreditParameter/', valrequired,
+            {
+                headers: { "Authorization": `Bearer ${token}` }
+
+            }).then(res => {
+                // console.log("demo url" + res.data.response.response)
+            
+            })
+
+        // } 
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
   return (
@@ -321,6 +344,7 @@ const submitButonhandler=async () =>{
                   top: "20px",
                 }}
                 startIcon={<VisibilityOutlinedIcon />}
+                onClick={eyeButtonhandler}
               ></Button>
             </Grid>
           </Grid>
@@ -407,14 +431,15 @@ const submitButonhandler=async () =>{
                   <Select
                     labelId="demo"
                     id="demoid"
-                    value={decision}
+                    value={decisionVal}
                     label="Decision"
                     onChange={handleChangeDecision}
                   >
-                    <MenuItem value={10}>Approve</MenuItem>
-                    <MenuItem value={20}>Reject</MenuItem>
+                    <MenuItem value='Approve'>Approve</MenuItem>
+                    <MenuItem value='Reject'>Reject</MenuItem>
                     
                   </Select>
+                  
                   
                 </FormControl>
               </Grid>
@@ -482,7 +507,7 @@ const submitButonhandler=async () =>{
                 options={productList}
                 sx={{ width: 430 }}
                 value={productVal} 
-                onChange={productHandler}
+                onChange={productListHandler}
                 renderInput={(params) => <TextField {...params} label="Product Name" />}
                 />
                 </FormControl>
@@ -534,7 +559,7 @@ const submitButonhandler=async () =>{
             <Grid>
             
             <Button style={{padding:'17px 54px', marginTop:"15px", marginLeft:'130px'}} variant="contained" color="success" 
-            onClick={submitButonhandler}>
+            onClick={submittingForm}>
         SUBMIT
       </Button>
 

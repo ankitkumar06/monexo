@@ -283,8 +283,48 @@ export default function CreditParameter(props, { parentCallback }) {
         setSelected([]);
     };
 
-    const handleClick = (event, name) => {
+    const handleClick = async (event, name) => {
         console.log("table row click" + name)
+        let param = ''
+        if(name.creditParamter == "Age")
+        {
+            param = "AGE"
+        }
+        else if(name.creditParamter == "Bureau Score")
+        {
+            param = "Bureauscore"
+        }
+        else if(name.creditParamter == "EMI Bounce")
+        {
+            param = "EMI Bounce"
+        }
+        else if(name.creditParamter == "Bureau Vintage")
+        {
+            param = "BureauVintage"
+        }
+
+        try {
+
+            let valrequired = {
+                customer_id: customerId,
+                screen_name : param
+            }
+    
+            // const token =localStorage.getItem("token")
+            // setIsLoading(true)
+            await axios.post(env.apiUrl + 'api/approvers/putOverrideButton/', valrequired,
+                {
+                    headers: { "Authorization": `Bearer ${token}` }
+    
+                }).then(res => {
+                    console.log( res.data.message)
+                
+                })
+    
+            // } 
+        } catch (error) {
+            console.log(error)
+        }
 
       
      
@@ -319,7 +359,7 @@ export default function CreditParameter(props, { parentCallback }) {
                     // console.log("demo url" + res.data.response.response)
                     let rowsval = res.data.response
                     rowsval.filter((item) =>{
-                        if(item.override)
+                        if(!item.override)
                         {
                             item.Override = <Button variant="outlined" >Override</Button>
                         }
