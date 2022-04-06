@@ -93,7 +93,7 @@ const emptyRows =
 
 const fetchcreditParameter= async () => {
     try {
-
+        console.log(customerId)
         let valrequired = {
             customer_id: customerId
         }
@@ -195,7 +195,8 @@ const submittingForm =async () =>{
       }).then(res =>{
         // console.log("demo url" + res.data.response.response)
         let rowsval = res.data.response   
-        console.log(rowsval)         
+        console.log(rowsval)    
+        navigate('/dashboard')     
        
       })
   }catch (error) {
@@ -214,6 +215,7 @@ useEffect(() => {
 
   const productListHandler = async (event)=>{
     let item = event.target.innerHTML;
+    setproductVal(item)
     try {
 
       let valrequired = {

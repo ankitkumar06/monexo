@@ -54,6 +54,7 @@ const CustomerDetails = () =>{
           }).then(res => {
               // console.log("demo url" + res.data.response.response)
               let rowsval = res.data.response
+              console.log("response"+rowsval)
               setlaonID(rowsval.loan_application_id)
               setoccupation(rowsval.custType)
               setappID(rowsval.application_id)
