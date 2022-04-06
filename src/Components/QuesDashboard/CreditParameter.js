@@ -344,13 +344,13 @@ export default function CreditParameter(props, { parentCallback }) {
 
     const fetchcreditParameter= async () => {
         try {
-
+            console.log(customerId)
             let valrequired = {
                 customer_id: customerId
             }
 
             // const token =localStorage.getItem("token")
-            setIsLoading(true)
+            // setIsLoading(true)
             await axios.post(env.apiUrl + 'api/teleservice/getCreditParameter/', valrequired,
                 {
                     headers: { "Authorization": `Bearer ${token}` }
@@ -359,7 +359,7 @@ export default function CreditParameter(props, { parentCallback }) {
                     // console.log("demo url" + res.data.response.response)
                     let rowsval = res.data.response
                     rowsval.filter((item) =>{
-                        if(!item.override)
+                        if(item.override)
                         {
                             item.Override = <Button variant="outlined" >Override</Button>
                         }
@@ -374,7 +374,7 @@ export default function CreditParameter(props, { parentCallback }) {
                     // ))
                     props.setData(rowsval);
                     setRowsData(rowsval)
-                    setIsLoading(false)
+                    // setIsLoading(false)
                     setdataRender(true);
                     if (rowsval.length == 0) {
                         setIsRecord(true)

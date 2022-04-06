@@ -17,12 +17,13 @@ import DatePicker from '@mui/lab/DatePicker';
 import Autocomplete from '@mui/material/Autocomplete';
 import env from '../../enviorment.json';
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const QuestionT = (props) => {
-
+    const navigate = useNavigate();
     const token = useSelector((state)=>state.authRedux.token)
 
     const [banklist, setBankList] = useState([]);
@@ -438,7 +439,8 @@ const QuestionT = (props) => {
             }).then(res =>{
               // console.log("demo url" + res.data.response.response)
               let rowsval = res.data.message   
-              console.log(rowsval)         
+              console.log(rowsval)   
+              navigate('/dashboard')     
              
             })
       

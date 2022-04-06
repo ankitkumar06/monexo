@@ -13,11 +13,13 @@ import { green } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CredPar2 from "./CredPar2";
 import newcss from "../QuesDashboard/Credpar.module.css";
+import { useSelector } from "react-redux";
 
 
 
 
 const QuesModule = (props) => {
+  const userRole = useSelector((state) => state.authRedux.userRole)
   const [cdn, setCdn] = useState(0)
   const abc = (value) => {
     setCdn(value)
@@ -45,7 +47,7 @@ const QuesModule = (props) => {
         </Grid>
 
 
-        {cdn === 0 && <Grid item className={seachcss.papercssn} container >
+        {cdn === 0 && userRole ==  4 &&  <Grid item className={seachcss.papercssn} container >
         <Grid  >
        <p className={newcss.ApprovalTxt}>Approval</p>
       </Grid>
@@ -55,7 +57,9 @@ const QuesModule = (props) => {
             <CardContent>
               <ThemeProvider >
               </ThemeProvider>
-              <CredPar2 />
+              { userRole ==  4 &&
+              <CredPar2 />}
+              
             </CardContent>
           </Card>
         </Grid>

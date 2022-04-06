@@ -482,7 +482,6 @@ export default function Downgrade(props ,{parentCallback}) {
                     <TableRow
                     style={{ whiteSpace:'nowrap' ,textOverflow: 'ellipsis',overflow:'hidden'}}
                       hover
-                      onClick={(event) => handleClick(event, row)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -507,12 +506,11 @@ export default function Downgrade(props ,{parentCallback}) {
                         scope="row"
                         padding="none"
                         className={classes.rowCursor}
-                        onClick={tablerowClickHandler} 
                       >
                         {row.customer_id}
                       </TableCell>
-                      <TableCell  align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.customer_name}</TableCell>
-                      <TableCell align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.app_id}</TableCell>
+                      <TableCell  align="left" className={classes.rowCursor}  >{row.customer_name}</TableCell>
+                      <TableCell align="left" className={classes.rowCursor} >{row.app_id}</TableCell>
                       <TableCell align="left">{row.completed_date}</TableCell>
                       <TableCell align="left">{row.city}</TableCell>
                       <TableCell align="left">{row.loan_product}</TableCell>

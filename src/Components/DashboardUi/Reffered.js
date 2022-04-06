@@ -31,6 +31,8 @@ import  { useState } from "react";
 import classes from './EnhancedT.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { custAction } from '../../store/customerSlice';
 
 
 function descendingComparator(a, b, orderBy) {
@@ -263,6 +265,7 @@ EnhancedTableToolbar.propTypes = {
 
 export default function Reffered(props ,{parentCallback}) {
 //  const {setData} =props;
+const dispatch = useDispatch();
   const token = useSelector((state)=>state.authRedux.token)
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState();
@@ -309,6 +312,9 @@ export default function Reffered(props ,{parentCallback}) {
     localStorage.setItem("custID",name.customer_id)
     localStorage.setItem("custName",name.customer_name)
     localStorage.setItem("appID",name.app_id)
+    dispatch(custAction.setCustomerId(name.customer_id))
+    dispatch(custAction.setCustomerName(name.customer_name))
+    dispatch(custAction.setApplicationId(name.app_id))
     navigate('/questionnaire')
     // localStorage.setItem("custID",name)
     // const selectedIndex = selected.indexOf(name);
