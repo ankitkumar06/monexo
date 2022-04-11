@@ -288,7 +288,7 @@ try {
 
         // const token =localStorage.getItem("token")
         setIsLoading(true)
-        await axios.post(env.apiUrl + 'api/teleservice/getCreditParameter/', valrequired,
+        await axios.post(env.apiUrl + 'api/approvers/get_docuCredScreen/', valrequired,
             {
                 headers: { "Authorization": `Bearer ${token}` }
 

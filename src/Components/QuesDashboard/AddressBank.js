@@ -109,6 +109,7 @@ const AddressBank = () => {
     }
 
     useEffect(() =>{   
+
         getCustomerAddressBankInfo()
       },[])
 
