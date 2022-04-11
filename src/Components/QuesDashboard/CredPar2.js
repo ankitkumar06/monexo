@@ -279,11 +279,11 @@ const submitButonhandler=async () =>{
 
 }
 const eyeButtonhandler =async ()=>{
-
 try {
-
+  let name = 'Office/College ID Front'
         let valrequired = {
-            customer_id: customerId
+            customer_id: customerId,
+            name_Id : name
         }
 
         // const token =localStorage.getItem("token")
@@ -312,11 +312,11 @@ try {
             <Grid className={newcss.labelcred}>
               Applicant Name match-Student ID
             </Grid>
-            <Grid style={{marginRight:'28px'}}>{appnameMatchStudent}</Grid>
+            <Grid>{appnameMatchStudent}</Grid>
           </Grid>
           <Grid item xs={3}>
             <Grid className={newcss.labelcred}>Name as per application</Grid>
-            <Grid style={{marginLeft:'29px'}}> {nameAsPerApplication}</Grid>
+            <Grid> {nameAsPerApplication}</Grid>
           </Grid>
 
           <Grid item xs={2}>
@@ -357,20 +357,20 @@ try {
             <Grid className={newcss.labelcred}>
               College / Employer Name match
             </Grid>
-            <Grid style={{marginRight:'15px'}}> {clgEmpNameMatch}</Grid>
+            <Grid> {clgEmpNameMatch}</Grid>
           </Grid>
           <Grid item xs={3}>
             <Grid className={newcss.labelcred}>
               College/Employer name as per application
             </Grid>
-            <Grid style={{marginRight:'75px'}}> {clgEmpNameAsPerApp}</Grid>
+            <Grid> {clgEmpNameAsPerApp}</Grid>
           </Grid>
 
           <Grid item xs={2}>
             <Grid className={newcss.labelcred}>
               College/Employer Name as per ID or salary credit
             </Grid>
-            <Grid style={{marginRight:'20px'}}> {clgNameasPerIdCard}</Grid>
+            <Grid> {clgNameasPerIdCard}</Grid>
           </Grid>
           <Grid item xs={3}>
             <Grid className={newcss.labelcred}>% of match</Grid>

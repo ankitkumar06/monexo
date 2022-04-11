@@ -255,7 +255,7 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
     let newSelected = [];
 
     try {
-        name = 'Office/College ID Front'
+        
       let valrequired = {
           customer_id: customerId,
           name_Id : name
