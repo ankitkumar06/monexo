@@ -250,24 +250,32 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
       setSelected([]);
   };
 
-  const handleClick = (event, name) => {
+  const handleClick = async(event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
+    try {
+        name = 'Office/College ID Front'
+      let valrequired = {
+          customer_id: customerId,
+          name_Id : name
+      }
 
-    setSelected(newSelected);
+      // const token =localStorage.getItem("token")
+      setIsLoading(true)
+      await axios.post(env.apiUrl + 'api/approvers/getDocView/', valrequired,
+          {
+              headers: { "Authorization": `Bearer ${token}` }
+
+          }).then(res => {
+              // console.log("demo url" + res.data.response.response)
+          
+          })
+
+      // } 
+  } catch (error) {
+      console.log(error)
+  }
   };
 
 
@@ -320,6 +328,32 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
        
       },[])
 
+
+      const eyeButtonhandler =async ()=>{
+        try {
+        
+                let valrequired = {
+                    customer_id: customerId
+                }
+        
+                // const token =localStorage.getItem("token")
+                setIsLoading(true)
+                await axios.post(env.apiUrl + 'api/approvers/get_docuCredScreen/', valrequired,
+                    {
+                        headers: { "Authorization": `Bearer ${token}` }
+        
+                    }).then(res => {
+                        // console.log("demo url" + res.data.response.response)
+                    
+                    })
+        
+                // } 
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        
+
   return (
     <div>
         <TableContainer>
@@ -353,7 +387,7 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
                  
                     <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name)}
+                    onClick={(event) => handleClick(event, row.documentType)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -367,7 +401,7 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
                       <TableCell align="left">{row.fileType}</TableCell>
                       <TableCell align="left">{row.fileSize}</TableCell>
                       <TableCell align="left">{row.uploadedDate }</TableCell>
-                      <TableCell align="left">{row.view }</TableCell>
+                      <TableCell align="left" >{row.view }</TableCell>
                       <TableCell align="left">{row.edit }</TableCell> 
                     </TableRow>
 
