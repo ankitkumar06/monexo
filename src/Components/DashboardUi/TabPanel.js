@@ -19,6 +19,7 @@ import {useEffect } from "react";
 import "./TabPanel.scss";
 import { MarginOutlined } from '@mui/icons-material';
 import { CSVLink  } from "react-csv";
+import PendingDisbursed from './PendingDisbursed';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -178,7 +179,7 @@ export default function BasicTabs(props) {
       <AppDisb startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
+        <PendingDisbursed startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
       </TabPanel>
      
       </Box>
