@@ -20,6 +20,9 @@ import "./TabPanel.scss";
 import { MarginOutlined } from '@mui/icons-material';
 import { CSVLink  } from "react-csv";
 import PendingDisbursed from './PendingDisbursed';
+import axios from 'axios';
+import env from '../../enviorment.json';
+import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -57,6 +60,7 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs(props) {
+  const token = useSelector((state)=>state.authRedux.token)
   const [value, setValue] = React.useState(0);
   const [data, setData] = React.useState([]);
   // const childFunc = React.useRef(null)
@@ -121,6 +125,23 @@ export default function BasicTabs(props) {
       }
     }
   });
+
+  const handleSysncHandler = async() =>{
+    try {
+      await axios.get(env.apiUrl + 'api/users/sync-my_report',
+          {
+              headers: { "Authorization": `Bearer ${token}` }
+
+          }).then(res => {
+              // console.log("demo url" + res.data.response.response)
+          
+          })
+
+      // } 
+  } catch (error) {
+      console.log(error)
+  }
+  }
   // useEffect(() =>{
   //   console.log(localStorage.getItem("token"))
   //   console.log("use effect works tabpanel")
@@ -158,7 +179,8 @@ export default function BasicTabs(props) {
           <Tab className="new"label="Pending Disbursed" {...a11yProps(2)} />
           {/* <CSVDownload  target="_blank" />; */}
   
-          <Button style={{maxWidth: '30px', borderRadius: '8px', maxHeight: '50px', minWidth: '23px', minHeight: '50px', paddingRight:'28px',left:'490px',background:'#2A9134',color:'white'}} variant="contained"  endIcon={<SyncOutlinedIcon />} > </Button>
+          <Button style={{maxWidth: '30px', borderRadius: '8px', maxHeight: '50px', minWidth: '23px', minHeight: '50px', paddingRight:'28px',left:'490px',background:'#2A9134',color:'white'}} variant="contained"  endIcon={<SyncOutlinedIcon />} 
+          onClick={handleSysncHandler}> </Button>
           <CSVLink data={data}  headers={headers} style={{ minHeight: '28px', marginLeft:'500px',background:'#2A9134',color:'white',
            borderRadius: '8px',padding:'10px'}} variant="contained"> 
             <span style={{paddingTop:'12px'}}><ArrowDownwardOutlinedIcon /></span> 

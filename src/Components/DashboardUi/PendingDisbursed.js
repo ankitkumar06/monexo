@@ -504,19 +504,19 @@ export default function PendingDisbursed(props ,{parentCallback}) {
                         scope="row"
                         padding="none"
                         className={classes.rowCursor}
-                        onClick={tablerowClickHandler} 
+                        
                       >
                         {row.customer_id}
                       </TableCell>
-                      <TableCell align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.loan_app_id}</TableCell>
-                      <TableCell align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.approved_dt}</TableCell>
-                      <TableCell align="left">{row.funded_dt}</TableCell>
-                      <TableCell align="left">{row.loan_amt}</TableCell>
+                      <TableCell align="left" className={classes.rowCursor}  >{row.loan_app_id}</TableCell>
+                      <TableCell align="left" className={classes.rowCursor} >{row.app_date}</TableCell>
+                      <TableCell align="left">{row.funded_date}</TableCell>
+                      <TableCell align="left">{row.loan_amount}</TableCell>
                       <TableCell align="left">{row.date}</TableCell>
                       <TableCell align="left">{row.email_verified}</TableCell>
-                      <TableCell align="left">{row.ev_kyc}</TableCell>
+                      <TableCell align="left">{row.e_v_kyc}</TableCell>
                       <TableCell align="left">{row.e_nach}</TableCell>
-                      <TableCell align="left">{row.phone_num }</TableCell>
+                      <TableCell align="left">{row.mobile_no}</TableCell>
                       <TableCell align="left">{row.call}</TableCell>
                     </TableRow>
 
