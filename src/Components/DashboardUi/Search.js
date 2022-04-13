@@ -45,6 +45,15 @@ const Search =(props)=>{
     let item = event.target.value;
     console.log(item)
     setSearchval(item)
+    var key = event.keyCode || event.charCode;
+
+    // if( key == 8 || key == 46 )
+    // {
+      if(item.length == 0)
+      {
+        setSearchvalToCall(item)
+      }
+    // }
     if(item.length > 3)
     {
       // childFunc.current()
@@ -83,7 +92,7 @@ const Search =(props)=>{
     <Grid className="searchMain" container >
 
       <Grid item md={4}>
-       <p className="Applicationtxt">Loan Application's</p>
+       <p className="Applicationtxt">Loan Application</p>
       </Grid>
       <Grid item md={4}>
         <div className="Searchtag">

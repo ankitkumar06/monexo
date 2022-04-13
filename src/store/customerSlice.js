@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialAuthState = { customerId :'', customerName:'', applicationId:'' };
+const initialAuthState = { customerId :'', customerName:'', applicationId:'',overRideCounter : 0 };
 
 const customerSlice = createSlice({
     name:'customer',
@@ -14,7 +14,10 @@ const customerSlice = createSlice({
         },
         setApplicationId(state,action){
             state.applicationId = action.payload
-        }     
+        },
+        setOverrideCounter(state,action){
+            state.overRideCounter = action.payload
+        } 
 
     },
 })

@@ -33,6 +33,7 @@ export default function CredPar2(props, { parentCallback }) {
   const token = useSelector((state) => state.authRedux.token)
   const customerId = useSelector((state)=>state.custRedux.customerId)
   const auth = useSelector((state)=>state.authRedux.userName)
+  const overrideCountRedux = useSelector((state)=>state.custRedux.overRideCounter)
 
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState();
@@ -169,7 +170,9 @@ const approverRemarkHandler=(event)=>{
 
 
 const submittingForm =async () =>{
-
+  console.log(overrideCountRedux)
+if(overrideCountRedux == 0)
+{
   try {
       // let today = new Date();
       // let currentD  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
@@ -202,6 +205,10 @@ const submittingForm =async () =>{
   }catch (error) {
       console.log(error)
     }
+}
+else{
+  alert("please override all credit Parameter")
+}
 
 }
 
@@ -414,7 +421,7 @@ try {
           </div>
 
           <div item className={newcss.boxcred}>
-            <Grid className={newcss.labelcred2}>Final Quote Tenord</Grid>
+            <Grid className={newcss.labelcred2}>Final Quote Tenor</Grid>
             <Grid className={newcss.spancred2}>{finalQuoteTenor}</Grid>
           </div>
           <div item className={newcss.boxcred}>
