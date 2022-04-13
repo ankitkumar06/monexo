@@ -387,13 +387,25 @@ export default function PendingDisbursed(props ,{parentCallback}) {
         }).then(res =>{
           // console.log("demo url" + res.data.response.response)
           let rowsval = res.data.response
+          if(rowsval.length == 0)
+          {
+            setIsLoading(false)
+            setdataRender(true);
+            setIsRecord(true)
+          }
+          else{
 
           if(props.searchVal != "")
           {
-            rowsval.call = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
+            rowsval[0].call = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
             setCountData(1);
+            setIsLoading(false)
+            setIsRecord(false)
+            setdataRender(true);
+            setRowsData(rowsval)
           }
           else{
+            setdataRender(false);
             rowsval.map((item) => (
               item.call = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
               // key={item.id}
@@ -401,15 +413,10 @@ export default function PendingDisbursed(props ,{parentCallback}) {
             let pgcount = res.data.pagination.total_pages
             setCountData(pgcount);
             setIsLoading(false)
-          }
-          props.setData(rowsval);
-          setRowsData(rowsval)
-          setIsLoading(false)
-          setdataRender(true);
-          if(rowsval.length == 0)
-          {
-            setIsRecord(true)
-          }
+            setIsRecord(false)
+            setdataRender(true);
+            setRowsData(rowsval)
+          }}
          
          
         })

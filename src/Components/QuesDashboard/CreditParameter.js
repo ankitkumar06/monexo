@@ -31,6 +31,8 @@ import { useState } from "react";
 import classes from '../DashboardUi/EnhancedT.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {custAction} from '../../store/customerSlice'
 
 import { Grid, TextField, InputAdornment, Card, CardActions, CardContent } from "@material-ui/core"
 
@@ -232,6 +234,8 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function CreditParameter(props, { parentCallback }) {
+    const dispatch = useDispatch();
+    const overrideCountRedux = useSelector((state)=>state.custRedux.overRideCounter)
     //  const {setData} =props;
     const token = useSelector((state) => state.authRedux.token)
     const customerId = useSelector((state)=>state.custRedux.customerId)
@@ -318,6 +322,14 @@ export default function CreditParameter(props, { parentCallback }) {
     
                 }).then(res => {
                     console.log( res.data.message)
+                    let countToDecrease = overrideCountRedux
+                    if(countToDecrease >0)
+                    {
+                        countToDecrease = countToDecrease - 1
+                        console.log(countToDecrease)
+                        dispatch(custAction.setOverrideCounter(countToDecrease))
+                    }
+                    
                 
                 })
     
@@ -358,13 +370,17 @@ export default function CreditParameter(props, { parentCallback }) {
                 }).then(res => {
                     // console.log("demo url" + res.data.response.response)
                     let rowsval = res.data.response
+                    let overrideCounter = 0
                     rowsval.filter((item) =>{
                         if(item.override)
                         {
+                            overrideCounter = overrideCounter + 1;
                             item.Override = <Button variant="outlined" >Override</Button>
                         }
 
                     })
+                    console.log(overrideCounter)
+                    dispatch(custAction.setOverrideCounter(overrideCounter))
 
                     // rowsval.map((item) => (
                     //     if(item.override){
