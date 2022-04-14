@@ -77,6 +77,8 @@ export default function CredPar2(props, { parentCallback }) {
   const [appAssignDate, setappAssignDate] = React.useState('');
   const [approverLoanAmount, setapproverLoanAmount] = React.useState('0');
 
+  const [approvedCheck, setapprovedCheck] = React.useState(true);
+
 
   const tablerowClickHandler = () => {
     // console.log("table row click" + values)
@@ -140,6 +142,14 @@ const fetchcreditParameter= async () => {
 
 const handleChangeDecision=(event)=>{
   let item = event.target.value;
+  if(item == 'Approve')
+  {
+    setapprovedCheck(true)
+  }
+  else{
+    setapprovedCheck(false)
+  }
+  
   setdecisionVal(item)
 }
 
@@ -171,8 +181,64 @@ const approverRemarkHandler=(event)=>{
 
 const submittingForm =async () =>{
   console.log(overrideCountRedux)
+  if(decisionVal == "")
+  {
+   alert("Please choose final decision")
+   return
+  }
+
+  if(decisionVal == "Reject")
+  {
+    if(rejectCodeVal == '')
+    {
+      alert("please choose rejected code")
+      return
+    }
+    else{
+    try {
+      // let today = new Date();
+      // let currentD  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+      // setcurrentDate(currentD)
+      let valrequired={
+        customer_id : customerId,
+        approver_final_decision:decisionVal,
+        reject_code :rejectCodeVal,
+        product_offered : productVal,
+        approver_remark : approverRemark,
+        approver_user : appAssignTo,
+        app_assigned_date : appAssignDate,
+        approve_loan_amount : approverLoanAmount
+
+     
+      }
+      console.log(valrequired)
+      const token =localStorage.getItem("token")
+      await axios.post(env.apiUrl + 'api/approvers/add-approvals/',valrequired,
+      {
+         headers: {"Authorization" : `Bearer ${token}`}
+
+      }).then(res =>{
+        // console.log("demo url" + res.data.response.response)
+        let rowsval = res.data.response   
+        console.log(rowsval)    
+        navigate('/dashboard')     
+       
+      })
+  }catch (error) {
+      console.log(error)
+    }
+  }
+  }
+  else{
+
 if(overrideCountRedux == 0)
 {
+  if(productVal == "")
+  {
+    alert("please choose product")
+    return
+  }
+  else{
   try {
       // let today = new Date();
       // let currentD  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
@@ -205,10 +271,12 @@ if(overrideCountRedux == 0)
   }catch (error) {
       console.log(error)
     }
+  }
 }
 else{
   alert("please override all credit Parameter")
 }
+  }
 
 }
 
@@ -473,15 +541,28 @@ try {
                     onChange={handleChangenew}
                   >
                   </Select> */}
+                  {!approvedCheck && 
                   <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                options={rejectCode}
-                sx={{ width: 430 }}
-                value={rejectCodeVal} 
-                onChange={rejectCodeHandler}
-                renderInput={(params) => <TextField {...params} label="Select Reject Code" />}
-                />
+                  disablePortal
+                  id="combo-box-demo"
+                  options={rejectCode}
+                  sx={{ width: 430 }}
+                  value={rejectCodeVal} 
+                  onChange={rejectCodeHandler}
+                  renderInput={(params) => <TextField {...params} label="Select Reject Code" />}
+                  />}
+                  {approvedCheck && 
+                  <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={rejectCode}
+                  sx={{ width: 430 }}
+                  value={rejectCodeVal} 
+                  onChange={rejectCodeHandler}
+                  disabled
+                  renderInput={(params) => <TextField {...params} label="Select Reject Code" />}
+                  />}
+                  
                 </FormControl>
               </Grid>
             </div>
@@ -509,7 +590,7 @@ try {
                     <MenuItem value={20}>Twenty</MenuItem>
                     <MenuItem value={30}>Thirty</MenuItem>
                   </Select> */}
-
+              {approvedCheck && 
                   <Autocomplete
                 disablePortal
                 id="combo-box-demo"
@@ -519,6 +600,19 @@ try {
                 onChange={productListHandler}
                 renderInput={(params) => <TextField {...params} label="Product Name" />}
                 />
+              }
+              {!approvedCheck && 
+                  <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={productList}
+                sx={{ width: 430 }}
+                value={productVal} 
+                onChange={productListHandler}
+                disabled
+                renderInput={(params) => <TextField {...params} label="Product Name" />}
+                />
+              }
                 </FormControl>
               </Grid>
             </div>
