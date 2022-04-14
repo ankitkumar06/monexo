@@ -162,7 +162,8 @@ const QuestionT = (props) => {
             if(!rowsval)
             {
                 let today = new Date();
-                let startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+                let month = today.getMonth() +1
+                let startdateVal  =today.getDate() + "-"+month + "-" +today.getFullYear()
                 setcurrentDate(startdateVal)
 
             }
@@ -171,7 +172,8 @@ const QuestionT = (props) => {
                 setcurrentDate(rowsval[0].updated_date)
             }else{
                 let today = new Date();
-                let startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+                let month = today.getMonth() +1
+                let startdateVal  = today.getDate() +"-"+month + "-" +today.getFullYear()
                 setcurrentDate(startdateVal)
             }
 
@@ -400,7 +402,9 @@ const QuestionT = (props) => {
 
         try {
             let today = new Date();
-            let currentD  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+                let month = today.getMonth() +1
+                let currentD  = today.getDate() +"-"+month + "-" +today.getFullYear()
+         
             setcurrentDate(currentD)
             let valrequired={
                 customer_id : customer_id,

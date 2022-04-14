@@ -118,7 +118,7 @@ const Search =(props)=>{
       <Stack   className="dateadjust">
 
         <DesktopDatePicker 
-          inputFormat="MM/dd/yyyy"
+          inputFormat="dd/MM/yyyy"
           renderInput={(params) => <TextField  {...params} />}
           value={value1}
           onChange={handleChange1}
@@ -133,7 +133,7 @@ const Search =(props)=>{
       <Stack   className="dateadjust2">
 
         <DesktopDatePicker 
-          inputFormat="MM/dd/yyyy"
+          inputFormat="dd/MM/yyyy"
           renderInput={(params) => <TextField  {...params} />}
           value={value2}
           onChange={handleChange2}
