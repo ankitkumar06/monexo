@@ -146,6 +146,11 @@ const Search =(props)=>{
     </Grid>
     <Grid md={12} item className={seachcss.horizon_line}></Grid>
      <Grid item className={seachcss.papercss} container >
+       {/* <Grid item container spacing={0}
+  direction="column"
+  alignItems="center"
+  justify="center">
+    <Grid xs={14}> */}
      <Card  className={seachcss.main_css} >
    
       <CardContent>
@@ -154,6 +159,8 @@ const Search =(props)=>{
        <TabPanel startDate={value1} endDate={value2} searchVal={searchvalToCall} ParentFunc={singleData} />
       </CardContent>
     </Card>
+    {/* </Grid>
+    </Grid> */}
      </Grid>
      </div>
     

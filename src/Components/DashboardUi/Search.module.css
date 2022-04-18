@@ -3,7 +3,8 @@
     position: sticky;
     width: 1435px;
     /* height: 812px; */
-    left: 80px;
+    left: 50px;
+    /* left: 80px; */
     top: 2px;
     background: #FFFFFF;
     border-radius: 8px;
@@ -54,7 +55,8 @@
     position: sticky;
     width: 1435px;
     /* height: 812px; */
-    left: 80px;
+    left: 60px;
+    /* left: 80px; */
     top: 2px;
     background: #FFFFFF;
     border-radius: 8px;
@@ -63,6 +65,6 @@
     
 }
 .papercssn{
-    margin-top: 2.5em;
+    margin-top: 0.0em;
      background-color: #e7f0e7e3;   
 }
