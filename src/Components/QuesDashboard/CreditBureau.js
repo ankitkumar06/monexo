@@ -194,8 +194,8 @@ useEffect(() =>{
                     <span>{customerIdVal}</span>
 
                     <label  >Bureau Pull</label>
-
-                    <span className='red'>{bureauPull}</span>
+                    <span>{bureauPull}</span>
+                    {/* <span className='red'>{bureauPull}</span> */}
 
                 </form>
 

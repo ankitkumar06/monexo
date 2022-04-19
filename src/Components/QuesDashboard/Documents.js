@@ -269,6 +269,8 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
 
           }).then(res => {
               // console.log("demo url" + res.data.response.response)
+              let url = res.data.response 
+              window.open(url);
           
           })
 
