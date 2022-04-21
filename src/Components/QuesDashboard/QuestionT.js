@@ -617,7 +617,7 @@ const QuestionT = (props) => {
             <div className="line9"></div>
 
             <form className="form-inline" >
-                <label for="icard">Do you have Company I card?</label>
+                <label for="icard">Do you have company I card or Student I card?</label>
                 {iscompanyId != "" ?(
                     <select type="select" id="icard" name="icard" value={iscompanyId} onChange={companyIdHandler} >
                     <option value="" disabled >Select Option</option>
