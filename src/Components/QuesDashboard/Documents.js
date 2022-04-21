@@ -23,6 +23,10 @@ import env from '../../enviorment.json';
 import  { useState } from "react";
 import classes from '../DashboardUi/EnhancedT.module.css';
 import { useSelector } from "react-redux";
+import { Input } from '@mui/material';
+import fileUploadDoc from './fileUploadDoc';
+import Card from '@mui/material/Card';
+import classesCss  from './fileuploadDoc.module.css';
 
 
 
@@ -232,6 +236,14 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
   const [tmproryrows,setTemporaryRows] = useState([]);
   const [isRecord, setIsRecord] = useState(false);
   const [rows, setRowsData] = useState([]);
+  const [isfileupload, setisfileupload] =useState(false)
+  const [filename, setfilename] = React.useState('asc');
+
+
+  const FormData = require('form-data');
+
+// Create a new form instance
+    const form = new FormData();
 
 
 
@@ -250,7 +262,15 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
       setSelected([]);
   };
 
-  const handleClick = async(event, name) => {
+  const handleClick = async(event, name, view, edit) => {
+    console.log(event)
+    console.log(view)
+    console.log(edit)
+    if(!isfileupload)
+    {
+      console.log("true")
+    }
+    else{
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
 
@@ -278,6 +298,7 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
   } catch (error) {
       console.log(error)
   }
+}
   };
 
 
@@ -301,9 +322,10 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
           }).then(res =>{
             let rowsval = res.data.response          
               rowsval.map((item) => (
+                
                 item.view = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px',left:'40px'}}startIcon={<VisibilityOutlinedIcon />}></Button>,
                 item.edit =<Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<ModeEditOutlineOutlinedIcon />}></Button>
-                // key={item.id}
+                              // key={item.id}
               ))
             
             setRowsData(rowsval)
@@ -331,33 +353,117 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
       },[])
 
 
-      const eyeButtonhandler =async ()=>{
+      const eyeButtonhandler =async (name)=>{
         try {
         
-                let valrequired = {
-                    customer_id: customerId
-                }
-        
-                // const token =localStorage.getItem("token")
-                setIsLoading(true)
-                await axios.post(env.apiUrl + 'api/approvers/get_docuCredScreen/', valrequired,
-                    {
-                        headers: { "Authorization": `Bearer ${token}` }
-        
-                    }).then(res => {
-                        // console.log("demo url" + res.data.response.response)
-                    
-                    })
+          const selectedIndex = selected.indexOf(name);
+          let newSelected = [];
+      
+          try {
+              
+            let valrequired = {
+                customer_id: customerId,
+                name_Id : name
+            }
+      
+            // const token =localStorage.getItem("token")
+            setIsLoading(true)
+            await axios.post(env.apiUrl + 'api/approvers/getDocView/', valrequired,
+                {
+                    headers: { "Authorization": `Bearer ${token}` }
+      
+                }).then(res => {
+                    // console.log("demo url" + res.data.response.response)
+                    let url = res.data.response 
+                    window.open(url);
+                
+                })
+      
+            // } 
+        } catch (error) {
+            console.log(error)
+        }
         
                 // } 
             } catch (error) {
                 console.log(error)
             }
         }
+
+        const editButtonHandler =async (docType)=>{
+          try {
+                setfilename(docType)
+                 setisfileupload(true)
+          
+                  // } 
+              } catch (error) {
+                  console.log(error)
+              }
+          }
+
+          const uploadHandler = ()=>{
+            setisfileupload(false)
+          }
+
+    const onfileChoosed = async(e) =>{
+      console.log("got file")
+
+      let reader = new FileReader();
+    let file = e.target.files[0];
+    form.append('customer_id', customerId);
+    form.append('filename', filename);
+    form.append('fileData', file);
+
+      console.log(form)
+      const config = {
+        headers: {
+          
+        }
+      }
+      await axios.post(env.apiUrl + 'api/approvers/postuploadDocument/', form,
+                {
+                    headers: { "Authorization": `Bearer ${token}`,
+                    'content-type': 'multipart/form-data' }
+      
+                }).then(res => {
+                    // console.log("demo url" + res.data.response.response)
+                    let url = res.data.message 
+                    if(url = "done")
+                    {
+                      setisfileupload(false)
+                    }
+                    // window.open(url);
+                
+                })
+
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+
+  //     reader.onload = (event) => {
+  //         resolve(event.target.result);
+  //     };
+
+  //     reader.onerror = (err) => {
+  //         reject(err);
+  //     };
+
+  //     // reader.readAsDataURL(file);
+  //     let byteArray = reader.readAsBinaryString(file)
+  //     console.log(byteArray)
+  // });
+    }
         
 
   return (
     <div>
+      { isfileupload &&
+      <div className={classesCss.card}>
+      <div class="custom-file">
+    <input type="file" class="custom-file-input" id="customFile" onChange={onfileChoosed}></input>
+    <Button className='Sbtn' onClick={uploadHandler}>close</Button>
+  </div>  
+  
+      </div>}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -389,7 +495,7 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
                  
                     <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.documentType)}
+                    // onClick={(event) => handleClick(event, row.documentType, row.view, row.edit)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -403,8 +509,9 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
                       <TableCell align="left">{row.fileType}</TableCell>
                       <TableCell align="left">{row.fileSize}</TableCell>
                       <TableCell align="left">{row.uploadedDate }</TableCell>
-                      <TableCell align="left" >{row.view }</TableCell>
-                      <TableCell align="left">{row.edit }</TableCell> 
+                      {row.documentName != '-' && <TableCell align="left" onClick={() => eyeButtonhandler(row.documentType)}>{ row.view }</TableCell>}
+                      {row.documentName != '-' && <TableCell align="left" onClick={() =>editButtonHandler(row.documentType)}>{row.edit }</TableCell> }
+                     
                     </TableRow>
 
                   );
@@ -414,6 +521,9 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
 {/* } */}
           </Table>
         </TableContainer>
+        
+ 
+
        
         </div>
          
