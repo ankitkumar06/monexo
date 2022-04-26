@@ -360,14 +360,17 @@ export default function PendingDisbursed(props ,{parentCallback}) {
       try {
       
 
+        
         let today = new Date(props.startDate);
-        let startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
-        let endDateVal  = props.endDate.getFullYear() + "-"+props.endDate.getMonth()  + "-" +props.endDate.getDate() ;
+        let month = today.getMonth() +1
+        let startdateVal  = today.getDate() + "-" + month + "-" +today.getFullYear();
+        let Endmonth = props.endDate.getMonth() +1
+        let endDateVal  =props.endDate.getDate()  + "-"+Endmonth + "-"+ props.endDate.getFullYear();
         if(startdateVal === endDateVal)
         {
           props.startDate.setDate(props.startDate.getDate() - 10)
         }
-        startdateVal  = today.getFullYear() + "-"+today.getMonth()  + "-" +today.getDate();
+        startdateVal  =  today.getDate() + "-" + month + "-" +today.getFullYear();
 
         // if(startdateVal < endDateVal)
         // {
