@@ -510,7 +510,7 @@ const customerId = useSelector((state)=>state.custRedux.customerId)
                       <TableCell align="left">{row.fileSize}</TableCell>
                       <TableCell align="left">{row.uploadedDate }</TableCell>
                       {row.documentName != '-' && <TableCell align="left" onClick={() => eyeButtonhandler(row.documentType)}>{ row.view }</TableCell>}
-                      {row.documentName != '-' && <TableCell align="left" onClick={() =>editButtonHandler(row.documentType)}>{row.edit }</TableCell> }
+                      {row.documentName != '-' && row.documentName !="URL" && <TableCell align="left" onClick={() =>editButtonHandler(row.documentType)}>{row.edit }</TableCell> }
                      
                     </TableRow>
 

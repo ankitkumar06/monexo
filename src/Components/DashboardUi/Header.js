@@ -1,7 +1,7 @@
 import {Grid} from "@material-ui/core";
 import React from "react";
 import "../DashboardUi/dashboard.css";
-import ellipse from "../../assets/images/Ellipse.png";
+import ellipse from "../../assets/images/avtar.png";
 import ndfc from "../../assets/images/nbfc-logo.png";
 import monexologo from "../../assets/images/monexo-logo.png";
 import classes from "./Header.module.scss";
