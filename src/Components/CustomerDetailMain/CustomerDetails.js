@@ -22,7 +22,7 @@ import {
 
   import { styled } from '@mui/material/styles';
 
-  import image from "../../assets/images/Ellipse.png";
+  import image from "../../assets/images/avtar.png";
   import { useEffect ,useState} from "react";
   import { useSelector } from "react-redux";
   import axios from "axios";
