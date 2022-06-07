@@ -23,16 +23,39 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import CallIcon from '@mui/icons-material/Call';
 import Button from '@mui/material/Button';
-import { useEffect,useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import axios from 'axios';
 import env from '../../enviorment.json';
 import json from './demo-data.json';
-import  { useState } from "react";
+import { useState } from "react";
 import classes from './EnhancedT.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { custAction } from '../../store/customerSlice';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack'
+import item from './data.json'
+// new..........................
+
+
+// const customerArray = item.response;
+
+//   const customerDetail = customerArray.map((customer) => 
+
+//   // console.log(customer.Cust_Name) 
+//     <div>
+//       <span>{customer.customer_id}</span>
+//       <span>{customer.Cust_Name}</span>
+//       <span>{customer.App_ID}</span>
+//       <span>{customer.completed_date}</span>
+//       <span>{customer.city}</span>
+//       <span>{customer.loan_product}</span>
+//       <span>{customer. beaure_score}</span>
+//       <span>{customer. user_stage}</span>
+//       <span>{customer.loan_offered}</span>
+//       </div>  
+//   );
 
 
 function descendingComparator(a, b, orderBy) {
@@ -127,7 +150,10 @@ const headCells = [
     label: 'User',
   },
   {
-    id: 'Call'
+    id: 'Call',
+    // numeric: false,
+    // disablePadding: false,
+    // label:'Call'
   },
 
 ];
@@ -148,9 +174,9 @@ function EnhancedTableHead(props) {
   return (
 
     <TableHead
-    sx={{
+      sx={{
         backgroundColor: "#EAF4EB",
-        
+
         borderBottom: "0.10 rem solid black",
         "& th": {
           color: "rgba(96, 96, 96)"
@@ -176,9 +202,9 @@ function EnhancedTableHead(props) {
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
-              hideSortIcon={ true ? headCell.id== 'App_ID' || headCell.id== 'Call' || headCell.id== 'Cust Name': false}
-              disabled={true ? headCell.id== 'App_ID' || headCell.id== 'Call' || headCell.id== 'Cust Name': false}
-              active={ headCell.id=='customer_id' ||  headCell.id== 'completed_date' ||  headCell.id== 'city' ||  headCell.id== 'loan_product' ||   headCell.id== 'beaure_score'|| headCell.id== 'user_stage' ||   headCell.id== 'loan_offered'||   headCell.id== 'user' ||  orderBy === headCell.id }
+              hideSortIcon={true ? headCell.id == 'App_ID' || headCell.id == 'Call' || headCell.id == 'Cust Name' : false}
+              disabled={true ? headCell.id == 'App_ID' || headCell.id == 'Call' || headCell.id == 'Cust Name' : false}
+              active={headCell.id == 'customer_id' || headCell.id == 'completed_date' || headCell.id == 'city' || headCell.id == 'loan_product' || headCell.id == 'beaure_score' || headCell.id == 'user_stage' || headCell.id == 'loan_offered' || headCell.id == 'user' || orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
@@ -263,10 +289,50 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function Reffered(props ,{parentCallback}) {
-//  const {setData} =props;
-const dispatch = useDispatch();
-  const token = useSelector((state)=>state.authRedux.token)
+
+
+export default function Reffered(props, { parentCallback }) {
+
+ 
+
+  // return (
+  //   customerArray.map((customer) => {
+  //     return (
+
+  //       <div>
+  //         <TableRow>
+  //         <TableCell align="left">{customer.customer_id}</TableCell>
+  //         <TableCell align="left">{customer.Cust_Name}</TableCell>
+  //           <TableCell align="left">{customer.App}</TableCell>
+  //           <TableCell align="left">{customer.completed_date}</TableCell>
+  //           <TableCell align="left">{customer.city}</TableCell>
+  //           <TableCell align="left">{customer.loan_product}</TableCell>
+  //           <TableCell align="left">{customer.beaure_score}</TableCell>
+  //           <TableCell align="left">{customer.user_stage}</TableCell>
+  //           <TableCell align="left">{customer.loan_offered}</TableCell>
+  //           <TableCell align="left">{customer.user}</TableCell>
+  //           <TableCell align="left">{customer.call}</TableCell>
+  //         </TableRow>
+  //       </div>
+  //     )
+  //     }
+
+  //   )
+  // )
+
+  // return(
+  //   <>
+
+  //  {customerDetail}
+  //     {/* Hello */}
+  //   </>
+
+  // )
+
+  //  const {setData} =props;
+  const customerArray = item.response;
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.authRedux.token)
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState();
   const [selected, setSelected] = React.useState([]);
@@ -274,23 +340,23 @@ const dispatch = useDispatch();
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   // const [rows, setJsondata] = useState();
-  const [datarender , setdataRender] = useState(false);
-  const [rows, setRowsData] = useState([]);
+  const [datarender, setdataRender] = useState(false);
+  const [rows, setRowsData] = useState();
   const [paginationVal, setPagination] = useState(0);
   const [countData, setCountData] = useState(0);
-  const [isload, setIsLoading] =useState(false)
-  const [tmproryrows,setTemporaryRows] = useState([]);
+  const [isload, setIsLoading] = useState(false)
+  const [tmproryrows, setTemporaryRows] = useState([]);
   const [isRecord, setIsRecord] = useState(false)
   let storetempdata = [];
   const navigate = useNavigate();
 
-  
-  
-    // React.useEffect(() => {
-    //   childFunc.current = fetchCustomerDataHandler
-    //   }, [])
 
-  
+
+  // React.useEffect(() => {
+  //   childFunc.current = fetchCustomerDataHandler
+  //   }, [])
+
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -301,20 +367,22 @@ const dispatch = useDispatch();
     if (event.target.checked) {
       const newSelecteds = rows.map((n) => n.name);
       setSelected(newSelecteds);
+    
       return;
     }
     setSelected([]);
   };
 
+
   const handleClick = (event, name) => {
     console.log("table row click" + name)
 
-    localStorage.setItem("custID",name.customer_id)
-    localStorage.setItem("custName",name.customer_name)
-    localStorage.setItem("appID",name.app_id)
-    dispatch(custAction.setCustomerId(name.customer_id))
-    dispatch(custAction.setCustomerName(name.customer_name))
-    dispatch(custAction.setApplicationId(name.app_id))
+    localStorage.setItem("custID", name.customer_id)
+    localStorage.setItem("custName", name.customer_name)
+    localStorage.setItem("appID", name.app_id)
+    // dispatch(custAction.setCustomerId(name.customer_id))
+    // dispatch(custAction.setCustomerName(name.customer_name))
+    // dispatch(custAction.setApplicationId(name.app_id))
     navigate('/questionnaire')
     // localStorage.setItem("custID",name)
     // const selectedIndex = selected.indexOf(name);
@@ -343,12 +411,13 @@ const dispatch = useDispatch();
     setPagination(pagecount);
     // fetchCustomerDataHandler()
     setPage(newPage);
- 
+
   };
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+    
   };
 
   const handleChangeDense = (event) => {
@@ -359,149 +428,186 @@ const dispatch = useDispatch();
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - item.response.length) : 0;
 
-    const fetchCustomerDataHandler =async () =>{
-      try {
-      
+  const fetchCustomerDataHandler = async () => {
+    try {
 
-        let today = new Date(props.startDate);
-        let month = today.getMonth() +1
-        let startdateVal  = today.getDate() + "-" + month + "-" +today.getFullYear();
-        let Endmonth = props.endDate.getMonth() +1
-        let endDateVal  =props.endDate.getDate()  + "-"+Endmonth + "-"+ props.endDate.getFullYear();
-        if(startdateVal === endDateVal)
-        {
-          props.startDate.setDate(props.startDate.getDate() - 10)
-        }
-        startdateVal  =  today.getDate() + "-" + month + "-" +today.getFullYear();
-        // if(startdateVal < endDateVal)
-        // {
 
-        let valrequired={
-          status:"REFERRED",
-          search: props.searchVal,
-          from_date: startdateVal,
-          to_date:endDateVal
-        }
+      let today = new Date(props.startDate);
+      let month = today.getMonth() + 1
+      let startdateVal = today.getDate() + "-" + month + "-" + today.getFullYear();
+      let Endmonth = props.endDate.getMonth() + 1
+      let endDateVal = props.endDate.getDate() + "-" + Endmonth + "-" + props.endDate.getFullYear();
+      if (startdateVal === endDateVal) {
+        props.startDate.setDate(props.startDate.getDate() - 10)
+      }
+      startdateVal = today.getDate() + "-" + month + "-" + today.getFullYear();
+      // if(startdateVal < endDateVal)
+      // {
 
-        // const token =localStorage.getItem("token")
-        setIsLoading(true)
-        await axios.post(env.apiUrl + 'api/users/dashboard/',valrequired,
-        {
-           headers: {"Authorization" : `Bearer ${token}`}
+      let valrequired = {
+        status: "REFERRED",
+        search: props.searchVal,
+        from_date: startdateVal,
+        to_date: endDateVal
+      }
 
-        }).then(res =>{
-          // console.log("demo url" + res.data.response.response)
-          let rowsval = res.data.response
-          if(rowsval.length == 0)
-          {
+      // const token =localStorage.getItem("token")
+      setIsLoading(true)
+      // await axios.post(env.apiUrl + 'api/users/dashboard/', valrequired,
+      //   {
+      //     headers: { "Authorization": `Bearer ${token}` }
+
+      //   }).then(res => {
+      //     // console.log("demo url" + res.data.response.response)
+          let rowsval=item.response;
+          if (rowsval.length == 0) {
             setIsLoading(false)
             setdataRender(true);
             setIsRecord(true)
           }
-          else{
+          else {
 
-          if(props.searchVal != "")
-          {
-            rowsval[0].call = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
-            setCountData(1);
-            setIsLoading(false)
-            setIsRecord(false)
-            setdataRender(true);
-            setRowsData(rowsval)
+            if (props.searchVal != "") {
+              rowsval[0].call = <Button variant="outlined" style={{ borderBlockColor: '#61C261', color: '#61C261', paddingRight: '6px', paddingLeft: '16px', paddingBottom: '1px', maxWidth: '5px', minWidth: '5px' }} startIcon={<CallIcon />}></Button>
+              setCountData(1);
+              setIsLoading(false)
+              setIsRecord(false)
+              setdataRender(true);
+              setRowsData(rowsval)
+            }
+            else {
+              setdataRender(false);
+              rowsval.map((item) => (
+                item.call = <Button variant="outlined" style={{ borderBlockColor: '#61C261', color: '#61C261', paddingRight: '6px', paddingLeft: '16px', paddingBottom: '1px', maxWidth: '5px', minWidth: '5px' }} startIcon={<CallIcon />}></Button>
+                // key={item.id}
+              ))
+              let pgcount = item.Pagination.total_pages;
+              setCountData(pgcount);
+              setIsLoading(false)
+              setIsRecord(false)
+              setdataRender(true);
+              setRowsData(rowsval)
+            }
           }
-          else{
-            setdataRender(false);
-            rowsval.map((item) => (
-              item.call = <Button variant="outlined" style={{borderBlockColor:'#61C261',color:'#61C261',paddingRight:'6px',paddingLeft:'16px',paddingBottom:'1px',maxWidth:'5px',minWidth:'5px'}}startIcon={<CallIcon />}></Button>
-              // key={item.id}
-            ))
-            let pgcount = res.data.pagination.total_pages
-            setCountData(pgcount);
-            setIsLoading(false)
-            setIsRecord(false)
-            setdataRender(true);
-            setRowsData(rowsval)
-          }}
-         
-         
-        })
-  
-      // } 
-    }catch (error) {
-        console.log(error)
-        // alert("Please login again")
-        // navigate('/dashboard')
-      }
+
+
+        // })
+
+      } 
+    // }
+     catch (error) {
+      console.log(error)
+      // alert("Please login again")
+      // navigate('/dashboard')
     }
-  
-    useEffect(() =>{
+  }
 
-      // setdataRender(true)
-      // const dashboard = {
-      //   search: props.searchVal,
-      //   startdate: props.startDate,
-      //   endDate :props.endDate
-      // };
-    
-      fetchCustomerDataHandler();
-      // console.log(dashboard)
-    },[props.searchVal,props.startDate,props.endDate])
-  
-    const tablerowClickHandler = () =>{
+  useEffect(() => {
 
-      // console.log("table row click" + values)
-     
-    }
-  
-    // useEffect(() => {
-    //   fetchCustomerDataHandler();
-    // }, []);
+    setdataRender(true)
+    // const dashboard = {
+    //   search: props.searchVal,
+    //   startdate: props.startDate,
+    //   endDate :props.endDate
+    // };
 
-  
+    fetchCustomerDataHandler();
+    // console.log(dashboard)
+  }, [props.searchVal, props.startDate, props.endDate])
 
+  const tablerowClickHandler = () => {
+
+    // console.log("table row click" + values)
+
+  }
+
+  useEffect(() => {
+    fetchCustomerDataHandler();
+  }, []);
 
   return (
     <div>
-        <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
-          >
-            <EnhancedTableHead
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={countData}
-            />
-            {isload && <h3>Loading...</h3>}
-            { isRecord && !isload && <h3>No Record Found</h3>}
-               { datarender && !isload && !isRecord &&
+      <TableRow
+                      hover
+                      onClick={(event) => handleClick(event)}
+                      role="checkbox"
+                      // aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      // key={row.name}
+                      // selected={isItemSelected}
+
+                    >
+      <TableContainer component={Paper}>
+        <Table
+          sx={{ minWidth: 750 }}
+          aria-labelledby="tableTitle"
+          size={dense ? 'small' : 'medium'}
+        >
+          <EnhancedTableHead
+            numSelected={selected.length}
+            order={order}
+            orderBy={orderBy}
+            onSelectAllClick={handleSelectAllClick}
+            onRequestSort={handleRequestSort}
+            rowCount={countData}
+          />
+          {/* {isload && <h3>Loading...</h3>}
+          
+          {isRecord && !isload && <h3>No Record Found</h3>}
+          {datarender && !isload && !isRecord && */}
+{/* 
+            <TableHead>
+              <TableRow>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                              <TableCell align="left">Customer</TableCell>
+                                
+              </TableRow>
+            </TableHead> */}
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(rows, getComparator(order, orderBy))
+              {/* {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.name);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+                  const labelId = `enhanced-table-checkbox-${index}`; */}
 
-                  return (
-                 
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.name}
-                      selected={isItemSelected}
-                      
-                    >
+                  {/* return ( */}
+                  {customerArray.slice(page*rowsPerPage, page * rowsPerPage + rowsPerPage).map((customer) => {
+                          return (
+                    
+                              <TableRow>
+                              <TableCell align="left">{customer.customer_id}</TableCell>
+                              <TableCell align="left">{customer.Cust_Name}</TableCell>
+                                <TableCell align="left">{customer.App_ID}</TableCell>
+                                <TableCell align="left">{customer.completed_date}</TableCell>
+                                <TableCell align="left">{customer.city}</TableCell>
+                                <TableCell align="left">{customer.loan_product}</TableCell>
+                                <TableCell align="left">{customer.beaure_score}</TableCell>
+                                <TableCell align="left">{customer.user_stage}</TableCell>
+                                <TableCell align="left">{customer.loan_offered}</TableCell>
+                                <TableCell align="left">{customer.user}</TableCell>
+                                <TableCell align="left">{customer.call}</TableCell>
+                             
+                              </TableRow>
+                          );
+
+                         
+                          })}
+
+
                       {/* <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
@@ -511,18 +617,18 @@ const dispatch = useDispatch();
                           }}
                         />
                       </TableCell> */}
-                        
-                      <TableCell
+
+                      {/* <TableCell
                         component="th"
                         id={labelId}
                         scope="row"
                         padding="none"
                         className={classes.rowCursor}
-                        onClick={tablerowClickHandler} 
+                        onClick={tablerowClickHandler}
                       >
                         {row.customer_id}
-                      </TableCell>
-                      <TableCell align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.customer_name}</TableCell>
+                      </TableCell> */}
+                      {/* <TableCell align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.customer_name}</TableCell>
                       <TableCell align="left" className={classes.rowCursor} onClick={tablerowClickHandler} >{row.app_id}</TableCell>
                       <TableCell align="left">{row.completed_date}</TableCell>
                       <TableCell align="left">{row.city}</TableCell>
@@ -531,13 +637,13 @@ const dispatch = useDispatch();
                       <TableCell align="left">{row.user_stage}</TableCell>
                       <TableCell align="left">{row.loan_offered}</TableCell>
                       <TableCell align="left">{row.user }</TableCell>
-                      <TableCell align="left">{row.call}</TableCell>
-                    </TableRow>
+                      <TableCell align="left">{row.call}</TableCell> */}
+                    {/* </TableRow> */}
 
-     
-                  );
-                })}
-              {emptyRows > 0 && (
+
+                  {/* );
+                })} */}
+              {/* {emptyRows > 0 && (
                 <TableRow
                   style={{
                     height: (dense ? 33 : 53) * emptyRows,
@@ -545,23 +651,25 @@ const dispatch = useDispatch();
                 >
                   <TableCell colSpan={6} />
                 </TableRow>
-              )}
-            </TableBody>
-}
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10]}
-          component="div"
-          count={countData}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-        </div>
-         
-    
-    
+              )} */}
+            
+          {/* } */}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        //rowsPerPageOptions={[10]}
+        component="div"
+        count={20}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPage={rowsPerPage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+        </TableRow>
+    </div>
+
+
+
   );
 }

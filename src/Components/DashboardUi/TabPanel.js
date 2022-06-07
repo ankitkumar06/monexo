@@ -180,6 +180,7 @@ export default function BasicTabs(props) {
           { userRole ==  4 &&
           <Tab className="new"label="Referred" {...a11yProps(0)} />
 }
+<Tab className="new"label="Referred" {...a11yProps(0)} /> 
           <Tab className="new"label="Downgrade" {...a11yProps(1)} />
           <Tab className="new"label="Approved/Disbursed" {...a11yProps(2)} />
           <Tab className="new"label="Pending Disbursed" {...a11yProps(2)} />
@@ -226,14 +227,20 @@ export default function BasicTabs(props) {
         </Tabs>
 }
         
-      <TabPanel value={value} index={0}>
+     
       { userRole ==  4 &&
+  
+  
+  <EnhancedT startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
+}   
+      <TabPanel value={value} index={0}>
+      
       <Referred startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
-}
+      </TabPanel>
 { userRole ==  3 &&
       <EnhancedT startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
 }
-      </TabPanel>
+      {/*  */}
       <TabPanel value={value} index={1}>
       <Downgrade startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
       </TabPanel>

@@ -26,7 +26,7 @@ const Header = (props) => {
       <Grid container>
         
         <div className="header">
-          <Grid container >
+          <Grid container>
           <Grid item lg={5}>
               <img src={monexologo} className="monexo-logo" />
               <div className={classes.line}></div>

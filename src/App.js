@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 
 import './App.css';
 
@@ -13,6 +13,7 @@ import Questionnaire  from './Components/QuesDashboard/Questionnaire';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { useState } from "react";
+
 
 
 function App() {
@@ -33,9 +34,12 @@ function App() {
 
   }
 
+  
+
   return (
 
     <div className="App">
+     
 
       {/* <header className="App-header">
 
@@ -73,8 +77,9 @@ function App() {
     {/* <Login /> */}
 
     {/* <Prac/> */}
+  
 
-    <Router >
+    <Router>
 
       <div>
 
@@ -94,12 +99,14 @@ function App() {
 
 
       </Router>
-
+      
     {/* <MainDashboard /> */}
 
 
       {/* <CustomerDetails /> */}
 
+
+     
     </div>
 
   );

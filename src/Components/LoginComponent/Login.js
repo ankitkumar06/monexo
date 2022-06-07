@@ -88,45 +88,45 @@ const Login = (props) => {
   }
   function loginHandle(e) {
     e.preventDefault();
-    // if (email.length < 4 || password.length < 4) {
-    //   alert("Provide Valid Input");
-    // } else {
-    //   alert("Welcome to Monexo");
-    // }
-    // this.props.history.push('/dashboard')
+    if (email.length < 4 || password.length < 4) {
+      alert("Provide Valid Input");
+    } else {
+      navigate('/dashboard');
+    }
+    // navigate('/dashboard');
     const enteredValue = usernameRef.current.value;
     console.log(enteredValue);
-    const user = {
-      email: email,
-      password: password,
-    };
-    axios.post(env.apiUrl + 'api/auth/login/',user,
-    {
-      headers:{
-        "Content-type": "application/json",
-     }
-    }).then(res =>{
-      console.log(res)
-      if(res.data.code === 1)
-      {
-        const access_token = res.data.Token
-        const userNameIs = res.data.firstName
-        const userRoleis = res.data.group_id
-        localStorage.setItem("token",access_token)
-        setAuthToken(access_token)
-        props.onChange(userNameIs);
-        dispatch(authAction.setUserNameApp(userNameIs))
-        dispatch(authAction.setUserRoken(access_token))
-        dispatch(authAction.setUserRole(userRoleis))
-        setEmail("");
-        setPassword("");
-        navigate('/dashboard')
-      }else{
-        setEmail("");
-        setPassword("");
-        alert("wrong username or password")
-      }
-    })
+    // const user = {
+    //   email: email,
+    //   password: password,
+    // };
+    // axios.post(env.apiUrl + 'api/auth/login/',user,
+    // {
+    //   headers:{
+    //     "Content-type": "application/json",
+    //  }
+    // }).then(res =>{
+    //   console.log(res)
+    //   if(res.data.code === 1)
+    //   {
+    //     const access_token = res.data.Token
+    //     const userNameIs = res.data.firstName
+    //     const userRoleis = res.data.group_id
+    //     localStorage.setItem("token",access_token)
+    //     setAuthToken(access_token)
+    //     props.onChange(userNameIs);
+    //     dispatch(authAction.setUserNameApp(userNameIs))
+    //     dispatch(authAction.setUserRoken(access_token))
+    //     dispatch(authAction.setUserRole(userRoleis))
+    //     setEmail("");
+    //     setPassword("");
+    //     navigate('/dashboard')
+    //   }else{
+    //     setEmail("");
+    //     setPassword("");
+    //     alert("wrong username or password")
+    //   }
+    // })
 
    
   }

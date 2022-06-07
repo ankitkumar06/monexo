@@ -1,0 +1,259 @@
+{
+    "code": 1,
+    "response": [
+        {   "customer_id":"1",
+            "Cust_Name":"sunny",
+            "App_ID":"21432",
+            "completed_date": "01-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@sun"
+        },
+        
+        
+        {
+            "customer_id":"2",
+            "Cust_Name":"anil",
+            "App_ID":"27892",
+            "completed_date": "03-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "9865",
+            "user_stage": "-",
+            "loan_offered" :"9",
+            "user":"@anil"
+        },
+        {
+            "customer_id":"3",
+            "Cust_Name":"rohit",
+            "App_ID":"29832",
+            "completed_date": "05-08-2021",
+            "city":"pune",
+            "loan_product": "-",
+            "beaure_score": "7068",
+            "user_stage": "-",
+            "loan_offered" :"2",
+            "user":"@rohit"
+        },
+        {
+           
+            "customer_id":"4",
+            "Cust_Name":"jai",
+            "App_ID":"29032",
+            "completed_date": "01-09-2021",
+            "city":"delhi",
+            "loan_product": "-",
+            "beaure_score": "7008",
+            "user_stage": "-",
+            "loan_offered" :"9",
+            "user":"@jai"
+        },
+        {
+           
+            "customer_id":"5",
+            "Cust_Name":"ali",
+            "App_ID":"20238",
+            "completed_date": "03-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7893",
+            "user_stage": "-",
+            "loan_offered" :"2",
+            "user":"@ali"
+        },
+        {
+            "customer_id":"6",
+            "Cust_Name":"deepak",
+            "App_ID":"21459",
+            "completed_date": "01-09-2022",
+            "city":"goa",
+            "loan_product": "-",
+            "beaure_score": "7805",
+            "user_stage": "-",
+            "loan_offered" :"8",
+            "user":"@deepak"
+        },
+        {
+          
+            "customer_id":"7",
+            "Cust_Name":"vikas",
+            "App_ID":"21672",
+            "completed_date": "07-06-2022",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "6868",
+            "user_stage": "-",
+            "loan_offered" :"9",
+            "user":"@vikas"
+        },
+        {
+           
+            "customer_id":"8",
+            "Cust_Name":"ravi",
+            "App_ID":"21432",
+            "completed_date": "01-11-2022",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7008",
+            "user_stage": "-",
+            "loan_offered" :"5",
+            "user":"@ravi"
+        },
+        {
+           
+            "customer_id":"9",
+            "Cust_Name":"suraj",
+            "App_ID":"2132",
+            "completed_date": "04-03-2022",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"4",
+            "user":"@sun"
+        },
+        {
+           
+            "customer_id":"10",
+            "Cust_Name":"sahil",
+            "App_ID":"21432",
+            "completed_date": "01-03-2022",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@sahil"
+        },
+        {
+            "customer_id":"11",
+            "Cust_Name":"ram",
+            "App_ID":"21432",
+            "completed_date": "04-03-2022",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@ram"
+        },
+        {
+           
+            "customer_id":"12",
+            "Cust_Name":"kushal",
+            "App_ID":"21432",
+            "completed_date": "01-03-2023",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"8",
+            "user":"@kushal"
+        },
+        {
+            
+            "customer_id":"13",
+            "Cust_Name":"sumit",
+            "App_ID":"21432",
+            "completed_date": "01-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@sumit"
+        },
+        {
+           
+            "customer_id":"14",
+            "Cust_Name":"shivam",
+            "App_ID":"21432",
+            "completed_date": "01-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@shivam"
+        },
+        {
+          
+            "customer_id":"15",
+            "Cust_Name":"sam",
+            "App_ID":"21432",
+            "completed_date": "01-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@sam"
+        },
+        {
+           
+            "customer_id":"16",
+            "Cust_Name":"rucha",
+            "App_ID":"21432",
+            "completed_date": "01-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@rucha"
+        },
+        {
+           
+            "customer_id":"17",
+            "Cust_Name":"pooja",
+            "App_ID":"21432",
+            "completed_date": "01-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@pooja"
+        },
+        {
+            "customer_id":"18",
+            "Cust_Name":"birendra",
+            "App_ID":"21432",
+            "completed_date": "01-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@birendra"
+        },
+        {
+            "customer_id":"19",
+            "Cust_Name":"amit",
+            "App_ID":"21432",
+            "completed_date": "01-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@amit"
+        },
+        {
+            "customer_id":"20",
+            "Cust_Name":"ashish",
+            "App_ID":"21432",
+            "completed_date": "01-03-2021",
+            "city":"mumbai",
+            "loan_product": "-",
+            "beaure_score": "7868",
+            "user_stage": "-",
+            "loan_offered" :"6",
+            "user":"@ashish"
+        }
+    ]
+    
+}
