@@ -68,10 +68,10 @@ const Login = (props) => {
   function emailHandler(e) {
   //   console.warn(e.target.value);
     let item = e.target.value;
-    if (item.length < 4) {
-      setEmailErr(true);
+    if (item ==="ankit06@gmail.com") {
+      setEmailErr(false); 
     } else {
-      setEmailErr(false);
+      setEmailErr(true);
     }
     setEmail(item);
   }
@@ -79,20 +79,22 @@ const Login = (props) => {
   function PasswordHandler(e) {
     // console.log(e.target.value);
     let item = e.target.value;
-    if (item.length < 4) {
-      setPassErr(true);
-    } else {
+    if (item === "1234567") {
       setPassErr(false);
+    } else {
+      setPassErr(true);
     }
     setPassword(item);
   }
   function loginHandle(e) {
     e.preventDefault();
-    if (email.length < 4 || password.length < 4) {
-      alert("Provide Valid Input");
-    } else {
+    if (email ==="ankit06@gmail.com" && password === "1234567") {
       navigate('/dashboard');
+    } else {
+      // navigate('/dashboard');
+      alert("invalid...")
     }
+    
     // navigate('/dashboard');
     const enteredValue = usernameRef.current.value;
     console.log(enteredValue);
