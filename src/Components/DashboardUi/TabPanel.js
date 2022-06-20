@@ -24,11 +24,20 @@ import axios from 'axios';
 import env from '../../enviorment.json';
 import { useSelector } from "react-redux";
 import Mis from './Mis';
+import Delinquent_Customer from './Delinquent_Customer'; 
+import Stack from '@mui/material/Stack';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   const childFunc = React.useRef(null)
  
+
+
+
+
+
+
+  
 
   return (
     <div
@@ -156,6 +165,9 @@ export default function BasicTabs(props) {
   // },[])
 
   return (
+<>
+   
+
 
    
     <Box sx={{ width: '100%' }}>
@@ -176,15 +188,20 @@ export default function BasicTabs(props) {
         >
             { userRole ==  3 &&
           <Tab className="new "label="Work In Progress" {...a11yProps(0)} />
+          
             }
           { userRole ==  4 &&
           <Tab className="new"label="Referred" {...a11yProps(0)} />
 }
+
 <Tab className="new"label="Referred" {...a11yProps(0)} /> 
           <Tab className="new"label="Downgrade" {...a11yProps(1)} />
           <Tab className="new"label="Approved/Disbursed" {...a11yProps(2)} />
           <Tab className="new"label="Pending Disbursed" {...a11yProps(2)} />
+          <Tab className="new"label="Delinquent Customer" {...a11yProps(2)} />
           <Tab className="new"label="MIS Report" {...a11yProps(2)} />
+         
+        
           {/* <CSVDownload  target="_blank" />; */}
   
           <Button style={{maxWidth: '30px', borderRadius: '8px', maxHeight: '50px', minWidth: '23px', minHeight: '50px', paddingRight:'28px',left:'490px',background:'#2A9134',color:'white'}} variant="contained"  endIcon={<SyncOutlinedIcon />} 
@@ -215,6 +232,7 @@ export default function BasicTabs(props) {
           <Tab className="new"label="Downgrade" {...a11yProps(1)} />
           <Tab className="new"label="Approved/Disbursed" {...a11yProps(2)} />
           <Tab className="new"label="Pending Disbursed" {...a11yProps(2)} />
+          {/* <Tab className="new"label="Delinquent Customer" {...a11yProps(2)} /> */}
           {/* <CSVDownload  target="_blank" />; */}
   
           <Button style={{maxWidth: '30px', borderRadius: '8px', maxHeight: '50px', minWidth: '23px', minHeight: '50px', paddingRight:'28px',left:'490px',background:'#2A9134',color:'white'}} variant="contained"  endIcon={<SyncOutlinedIcon />} 
@@ -227,17 +245,20 @@ export default function BasicTabs(props) {
         </Tabs>
 }
         
+
      
       { userRole ==  4 &&
   
   
   <EnhancedT startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
+  
 }   
       <TabPanel value={value} index={0}>
       
       <Referred startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
       </TabPanel>
 { userRole ==  3 &&
+
       <EnhancedT startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
 }
       {/*  */}
@@ -251,6 +272,10 @@ export default function BasicTabs(props) {
         <PendingDisbursed startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
       </TabPanel>
       <TabPanel value={value} index={4}>
+        <Delinquent_Customer startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
+      </TabPanel>
+
+      <TabPanel value={value} index={5}>
         <Mis startDate={props.startDate} endDate={props.endDate} searchVal={props.searchVal} setData={setData} />
       </TabPanel>
      { userRole ==  1 &&
@@ -273,8 +298,10 @@ export default function BasicTabs(props) {
      </div>
 }
 
+
      
       </Box>
+      </>
     
   );
 }
